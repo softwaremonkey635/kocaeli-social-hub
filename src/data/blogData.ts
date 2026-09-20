@@ -1,5 +1,7 @@
 import { BlogPost } from '../types';
 
+const BASE = import.meta.env.BASE_URL;
+
 /**
  * ============================================================================
  * KOCAELİ SOSYAL - BLOG & DUYURULAR VERİ MODÜLÜ
@@ -43,7 +45,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     tags: ['Duyuru', 'Gönüllülük', 'Kocaeli Gençlik', 'Yeni Dönem'],
     readTime: '3 dk okuma',
-    image: '/images/events/hiking.jpeg',
+    image: `${BASE}images/events/hiking.jpeg`,
     isPinned: true
   },
   {
@@ -64,7 +66,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     tags: ['Workshop', 'Sanat', 'Biblo Boyama', 'Kil', 'İzmit'],
     readTime: '4 dk okuma',
-    image: '/images/events/biblo-boyama.jpeg'
+    image: `${BASE}images/events/biblo-boyama.jpeg`
   },
   {
     id: 'tek-basina-katilmak-korkulur-mu',
@@ -84,7 +86,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     tags: ['Topluluk Ruhu', 'Sosyalleşme', 'İletişim', 'Yeni Arkadaşlar'],
     readTime: '3 dk okuma',
-    image: '/images/events/speaking-club.jpeg'
+    image: `${BASE}images/events/speaking-club.jpeg`
   },
   {
     id: 'doga-yuruyusleri-ve-camping-rotalari',
@@ -104,7 +106,7 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     tags: ['Hiking', 'Doğa', 'Camping', 'Kartepe', 'Kandıra'],
     readTime: '4 dk okuma',
-    image: '/images/events/camping.jpeg'
+    image: `${BASE}images/events/camping.jpeg`
   },
   {
     id: 'edebi-soylesi-ve-fikir-kulubu',
@@ -124,6 +126,6 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
     tags: ['Kitap Kulübü', 'Edebiyat', 'Felsefe', 'Söyleşi'],
     readTime: '3 dk okuma',
-    image: '/images/events/kitap-soylesisi.jpeg'
+    image: `${BASE}images/events/kitap-soylesisi.jpeg`
   }
 ];

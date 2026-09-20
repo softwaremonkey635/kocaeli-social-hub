@@ -1,5 +1,7 @@
 import { ActivityEvent, ClubInfo, Testimonial, GalleryItem, FAQItem, SponsorItem } from '../types';
 
+const BASE = import.meta.env.BASE_URL;
+
 export const ACTIVITIES_DATA: ActivityEvent[] = [
   {
     id: 'speaking-club',
@@ -17,7 +19,7 @@ export const ACTIVITIES_DATA: ActivityEvent[] = [
     badge: 'En Popüler',
     nextDate: '26 Eylül Cumartesi, 18:00',
     targetAudience: 'Her seviyeden İngilizce pratik yapmak isteyen gençler ve üniversiteliler',
-    image: '/images/events/speaking-club.jpeg',
+    image: `${BASE}images/events/speaking-club.jpeg`,
     description:
       'Hata yapmaktan korkmadan, samimi bir masa etrafında çay-kahve eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: "Grammar polisi giremez!" Amacımız akıcı konuşma cesareti kazanmak, yeni arkadaşlıklar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.',
     highlights: [
@@ -48,7 +50,7 @@ export const ACTIVITIES_DATA: ActivityEvent[] = [
     badge: 'Canlı & Dinamik',
     nextDate: '24 Eylül Perşembe, 18:00',
     targetAudience: 'Haftanın yorgunluğunu doğayla atmak ve temiz havada yürümek isteyen herkes',
-    image: '/images/events/hiking.jpeg',
+    image: `${BASE}images/events/hiking.jpeg`,
     description:
       'İş ya da okul çıkışı doğanın kucağına kaçıyoruz! Kolay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüyüş yapıyor hem de harika sohbetler eşliğinde Kocaeli’nin yeşilini keşfediyoruz.',
     highlights: [
@@ -79,11 +81,11 @@ export const ACTIVITIES_DATA: ActivityEvent[] = [
     badge: 'Her Pazar 1 Tanesi!',
     nextDate: '27 Eylül Pazar, 18:00',
     targetAudience: 'Haftayı renklerle kapatmak, el sanatıyla üretmek ve tarzını yansıtmak isteyenler',
-    image: '/images/events/biblo-boyama.jpeg',
+    image: `${BASE}images/events/biblo-boyama.jpeg`,
     subImages: [
-      { title: 'Biblo Boyama Workshop', image: '/images/events/biblo-boyama.jpeg' },
-      { title: 'Çanta Boyama Workshop', image: '/images/events/canta-boyama.jpeg' },
-      { title: 'Kil Boyama & Şekillendirme', image: '/images/events/kil-boyama.jpeg' }
+      { title: 'Biblo Boyama Workshop', image: `${BASE}images/events/biblo-boyama.jpeg` },
+      { title: 'Çanta Boyama Workshop', image: `${BASE}images/events/canta-boyama.jpeg` },
+      { title: 'Kil Boyama & Şekillendirme', image: `${BASE}images/events/kil-boyama.jpeg` }
     ],
     whatsappFocus: true,
     whatsappNote: 'Önemli: Biblo, Çanta ve Kil boyama etkinliklerimiz her hafta 1 tanesi olacak şekilde dönerli yapılır. O hafta hangi atölyenin gerçekleşeceği ve mekan detayları WhatsApp topluluk grubumuzda oylama/duyuru ile belirlenmektedir. Katılım için WhatsApp grubumuza katılmanız gerekmektedir.',
@@ -117,7 +119,7 @@ export const ACTIVITIES_DATA: ActivityEvent[] = [
     badge: 'Tarih WhatsApp\'ta',
     nextDate: 'Tarih WhatsApp Grubunda Belirtilir',
     targetAudience: 'Çadırını kapan, kamp ateşi başında şarkılara ve sohbetlere katılmak isteyen gençler',
-    image: '/images/events/camping.jpeg',
+    image: `${BASE}images/events/camping.jpeg`,
     whatsappFocus: true,
     whatsappNote: 'Önemli: Kamp etkinliklerimiz daha kapsamlı bir organizasyon ve lojistik/hava durumu hazırlığı gerektirdiği için kesin tarih, toplanma alanı ve katılım detayları WhatsApp topluluk grubumuzda önceden duyurulmaktadır.',
     description:
@@ -150,7 +152,7 @@ export const ACTIVITIES_DATA: ActivityEvent[] = [
     badge: 'Haftalık',
     nextDate: '23 Eylül Çarşamba, 18:00',
     targetAudience: 'Okuduğunu paylaşmayı, farklı bakış açılarını dinlemeyi seven kitap kurtları',
-    image: '/images/events/kitap-soylesisi.jpeg',
+    image: `${BASE}images/events/kitap-soylesisi.jpeg`,
     description:
       'Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi. Düşüncelerini özgürce aktarabileceğin, yeni yazarlar keşfedeceğin ilham dolu iki saat.',
     highlights: [
@@ -220,7 +222,7 @@ export const CLUBS_DATA: ClubInfo[] = [
     schedule: 'Her Cumartesi 18:00 - 20:00',
     coordinator: 'Dil & İletişim Çalışma Grubu',
     color: 'from-blue-600 to-cyan-600',
-    image: '/images/events/speaking-club.jpeg',
+    image: `${BASE}images/events/speaking-club.jpeg`,
     description:
       'Öğrenciler ve genç çalışanların yabancı dil çekingenliğini kıran, samimi masalarda gündelik ve eğlenceli konular konuştuğumuz popüler kulübümüz.',
     features: [
@@ -238,7 +240,7 @@ export const CLUBS_DATA: ClubInfo[] = [
     schedule: 'Her Pazar 18:00 - 20:00',
     coordinator: 'Görsel Sanatlar & Tasarım Masası',
     color: 'from-orange-500 to-amber-500',
-    image: '/images/events/biblo-boyama.jpeg',
+    image: `${BASE}images/events/biblo-boyama.jpeg`,
     description:
       'Biblo boyama, kil modelajı, bez çanta tasarımı ve ebru gibi birçok disiplinde el becerilerini geliştiren yaratıcı üretim alanı.',
     features: [
@@ -256,7 +258,7 @@ export const CLUBS_DATA: ClubInfo[] = [
     schedule: 'Her Perşembe 18:00 & Hafta Sonu Kampları',
     coordinator: 'Outdoor & Çevre Ekibi',
     color: 'from-emerald-600 to-teal-600',
-    image: '/images/events/hiking.jpeg',
+    image: `${BASE}images/events/hiking.jpeg`,
     description:
       'Kısa mesafe hiking yürüyüşleri, Menekşe Yaylası, Ballıkayalar, Ormanya ve Kandıra sahillerinde çadır kampları düzenleyen doğa tutkunları.',
     features: [
@@ -274,7 +276,7 @@ export const CLUBS_DATA: ClubInfo[] = [
     schedule: 'Her Çarşamba 18:00 - 20:00',
     coordinator: 'Fikir & Kültür Koordinasyonu',
     color: 'from-indigo-600 to-violet-600',
-    image: '/images/events/kitap-soylesisi.jpeg',
+    image: `${BASE}images/events/kitap-soylesisi.jpeg`,
     description:
       'Her hafta farklı bir yazar veya temanın ele alındığı, kitap takaslarının yapıldığı ve kültürel gezilerin planlandığı zihinsel buluşma alanı.',
     features: [

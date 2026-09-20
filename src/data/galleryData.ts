@@ -1,5 +1,7 @@
 import { GalleryItem } from '../types';
 
+const BASE = import.meta.env.BASE_URL;
+
 /**
  * ============================================================================
  * KOCAELİ SOSYAL - GALERİ VERİ MODÜLÜ
@@ -25,7 +27,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     title: 'Speaking Club Kahve Sohbetleri',
     activity: 'Speaking Club',
     location: '',
-    image: '/images/events/speaking-club.jpeg',
+    image: `${BASE}images/events/speaking-club.jpeg`,
     date: 'Eylül 2026',
     category: 'language'
   },
@@ -34,7 +36,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     title: 'Umuttepe Orman Yürüyüşü',
     activity: 'Hiking',
     location: '',
-    image: '/images/events/hiking.jpeg',
+    image: `${BASE}images/events/hiking.jpeg`,
     date: 'Eylül 2026',
     category: 'nature'
   },
@@ -43,7 +45,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     title: 'Kandıra Sahil Çadır Kampı',
     activity: 'Kocaeli Camping',
     location: '',
-    image: '/images/events/camping.jpeg',
+    image: `${BASE}images/events/camping.jpeg`,
     date: 'Ağustos 2026',
     category: 'nature'
   },
@@ -52,7 +54,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     title: 'Biblo & Seramik Boyama Atölyesi',
     activity: 'Sanat Atölyesi',
     location: '',
-    image: '/images/events/biblo-boyama.jpeg',
+    image: `${BASE}images/events/biblo-boyama.jpeg`,
     date: 'Eylül 2026',
     category: 'art'
   },
@@ -61,7 +63,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     title: 'Bez Çanta Tasarımı & Renkler',
     activity: 'Çanta Workshop',
     location: '',
-    image: '/images/events/canta-boyama.jpeg',
+    image: `${BASE}images/events/canta-boyama.jpeg`,
     date: 'Eylül 2026',
     category: 'art'
   },
@@ -70,7 +72,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     title: 'Kil Şekillendirme Anları',
     activity: 'Kil Boyama',
     location: '',
-    image: '/images/events/kil-boyama.jpeg',
+    image: `${BASE}images/events/kil-boyama.jpeg`,
     date: 'Ağustos 2026',
     category: 'art'
   },
@@ -79,7 +81,7 @@ export const GALLERY_DATA: GalleryItem[] = [
     title: 'Kitap Söyleşisi & Fikir Molası',
     activity: 'Kitap Okuma',
     location: '',
-    image: '/images/events/kitap-soylesisi.jpeg',
+    image: `${BASE}images/events/kitap-soylesisi.jpeg`,
     date: 'Eylül 2026',
     category: 'culture'
   },

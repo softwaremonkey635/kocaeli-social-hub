@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const BASE = import.meta.env.BASE_URL;
+
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   showText?: boolean;
@@ -54,7 +56,7 @@ export const Logo: React.FC<LogoProps> = ({
           <div className="relative rounded-full overflow-hidden flex items-center justify-center bg-slate-950">
             {!imgError ? (
               <img
-                src="/images/logo/kocaeli-logo.jpeg"
+                src={`${BASE}images/logo/kocaeli-logo.jpeg`}
                 alt="Kocaeli Social Hub Logo"
                 width={iconDimensions}
                 height={iconDimensions}
