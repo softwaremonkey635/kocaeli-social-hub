@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", "Plus Jakarta Sans", sans-serif;
+  --color-brand-navy: #0e223d;
+  --color-brand-blue: #153860;
+  --color-brand-cyan: #00d2eb;
+  --color-brand-orange: #ff7324;
+  --color-brand-amber: #f8a834;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: #050811;
+  color: #f8fafc;
+}
+
+body {
+  background-color: #050811;
+  /* Tactile Dark Mode Texture: Subtle ambient glows + Soft Balanced Dot Matrix */
+  background-image:
+    radial-gradient(ellipse 80% 40% at 50% 0%, rgba(0, 210, 235, 0.07), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 35%, rgba(255, 115, 36, 0.05), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 75%, rgba(14, 42, 74, 0.15), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+  background-attachment: fixed;
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar for refined dark appearance */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #060913;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Utility for hiding scrollbars while preserving swipeability on mobile */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+

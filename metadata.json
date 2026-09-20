@@ -1,0 +1,6 @@
+{
+  "name": "Kocaeli Social Hub",
+  "description": "Kocaeli'nin gençlik ve canlı etkinlik platformu. Speaking Club, workshoplar, doğa yürüyüşleri, kamplar ve sosyal buluşmalar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
