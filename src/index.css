@@ -82,4 +82,15 @@ h1, h2, h3, h4, .font-display {
   animation-play-state: paused;
 }
 
+@keyframes finance-ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.finance-marquee {
+  display: flex;
+  width: max-content;
+  animation: finance-ticker-scroll 20s linear infinite;
+}
+
 
