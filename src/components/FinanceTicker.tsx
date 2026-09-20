@@ -149,11 +149,7 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#091224] to-transparent z-10" />
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#091224] to-transparent z-10" />
 
-        {/* Mobile: tighter gap. Desktop: wider gap. Both use same infinite marquee. */}
-        <div className="sm:hidden animate-marquee items-center gap-2 select-none">
-          {marqueeItems.map((r, i) => renderChip(r, i, 'sm'))}
-        </div>
-        <div className="hidden sm:flex animate-marquee items-center gap-4 select-none">
+        <div className="animate-marquee items-center gap-2 sm:gap-4 select-none">
           {marqueeItems.map((r, i) => renderChip(r, i, 'md'))}
         </div>
       </div>
