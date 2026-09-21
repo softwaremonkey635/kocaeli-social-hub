@@ -406,6 +406,17 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
       navigator.clipboard.writeText(summaryText);
       setCopiedSummary(true);
       setTimeout(() => setCopiedSummary(false), 2500);
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = summaryText;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      setCopiedSummary(true);
+      setTimeout(() => setCopiedSummary(false), 2500);
     }
   };
 
@@ -494,7 +505,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5 text-[#00d2eb]" />
-                  <span className="text-[10px] sm:text-[11px] font-bold hidden xs:inline">Kopyala</span>
+                  <span className="text-[10px] sm:text-[11px] font-bold hidden sm:inline">Kopyala</span>
                 </>
               )}
             </button>

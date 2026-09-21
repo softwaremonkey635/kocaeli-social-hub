@@ -172,22 +172,22 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="p-2 rounded-xl bg-slate-900/40 border border-slate-800/60 text-center sm:text-left">
                 <span className="font-display text-base sm:text-xl font-black text-[#00d2eb] drop-shadow-[0_0_8px_rgba(0,210,235,0.3)]">5+</span>
                 <p className="text-[11px] sm:text-xs font-bold text-white leading-tight mt-0.5">Düzenli Etkinlik</p>
-                <p className="text-[9px] sm:text-[10px] text-slate-400 hidden xs:block mt-0.5">Speaking, hiking, boyama, dans</p>
+                <p className="text-[9px] sm:text-[10px] text-slate-400 hidden sm:block mt-0.5">Speaking, hiking, boyama, dans</p>
               </div>
               <div className="p-2 rounded-xl bg-slate-900/40 border border-slate-800/60 text-center sm:text-left">
                 <span className="font-display text-base sm:text-xl font-black text-[#ff7324] drop-shadow-[0_0_8px_rgba(255,115,36,0.3)]">3.400+</span>
                 <p className="text-[11px] sm:text-xs font-bold text-white leading-tight mt-0.5">Genç Topluluk Üyesi</p>
-                <p className="text-[9px] sm:text-[10px] text-slate-400 hidden xs:block mt-0.5">Öğrenci &amp; genç çalışanlar</p>
+                <p className="text-[9px] sm:text-[10px] text-slate-400 hidden sm:block mt-0.5">Öğrenci &amp; genç çalışanlar</p>
               </div>
               <div className="p-2 rounded-xl bg-slate-900/40 border border-slate-800/60 text-center sm:text-left">
                 <span className="font-display text-base sm:text-xl font-black text-cyan-300 drop-shadow-[0_0_8px_rgba(103,232,249,0.3)]">12</span>
                 <p className="text-[11px] sm:text-xs font-bold text-white leading-tight mt-0.5">Kocaeli İlçesi</p>
-                <p className="text-[9px] sm:text-[10px] text-slate-400 hidden xs:block mt-0.5">İzmit, Gebze, Kartepe...</p>
+                <p className="text-[9px] sm:text-[10px] text-slate-400 hidden sm:block mt-0.5">İzmit, Gebze, Kartepe...</p>
               </div>
               <div className="p-2 rounded-xl bg-slate-900/40 border border-slate-800/60 text-center sm:text-left">
                 <span className="font-display text-base sm:text-xl font-black text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]">%100</span>
                 <p className="text-[11px] sm:text-xs font-bold text-white leading-tight mt-0.5">Gönüllü &amp; Samimi</p>
-                <p className="text-[9px] sm:text-[10px] text-slate-400 hidden xs:block mt-0.5">Ticari kaygısız gençlik</p>
+                <p className="text-[9px] sm:text-[10px] text-slate-400 hidden sm:block mt-0.5">Ticari kaygısız gençlik</p>
               </div>
             </div>
           </div>

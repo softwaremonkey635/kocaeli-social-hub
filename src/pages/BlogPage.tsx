@@ -48,8 +48,19 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
     const text = `${post.title} - Kocaeli Sosyal Hub Duyurular & Blog`;
     if (navigator.share) {
       navigator.share({ title: post.title, text, url: window.location.href }).catch(() => {});
-    } else {
+    } else if (navigator.clipboard) {
       navigator.clipboard.writeText(`${text} ${window.location.href}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = `${text} ${window.location.href}`;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }

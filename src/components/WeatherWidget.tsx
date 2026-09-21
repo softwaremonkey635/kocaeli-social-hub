@@ -356,7 +356,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
             <span className="text-[11px] font-mono font-bold text-cyan-200">
               {formattedTime}
             </span>
-            <span className="text-[9px] text-slate-400 hidden xs:inline ml-0.5">
+            <span className="text-[9px] text-slate-400 hidden sm:inline ml-0.5">
               • {formattedDate}
             </span>
           </div>
@@ -483,7 +483,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
             <span className="text-[9px] text-slate-400">12 İlçe &amp; Umuttepe</span>
           </div>
 
-          <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
             {districts.map((d) => {
               const info = getWeatherDetails(d.weatherCode, d.isDay);
               return (
