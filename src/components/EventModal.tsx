@@ -101,7 +101,7 @@ END:VCALENDAR`;
 
   return (
     <>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto bg-slate-950/85 backdrop-blur-md animate-fade-in">
         <div
           className="relative w-full max-w-3xl bg-slate-900 rounded-3xl shadow-2xl overflow-hidden my-6 border border-slate-800 max-h-[92vh] flex flex-col text-slate-100"
           onClick={(e) => e.stopPropagation()}
@@ -394,7 +394,7 @@ END:VCALENDAR`;
       {/* Full Size Image / Poster Lightbox Modal */}
       {isLightboxOpen && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-lg animate-in fade-in duration-200"
+          className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-lg animate-fade-in"
           onClick={() => setIsLightboxOpen(false)}
         >
           <div

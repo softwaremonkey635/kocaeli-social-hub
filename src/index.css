@@ -55,10 +55,12 @@ body {
 }
 
 /* Utility for hiding scrollbars while preserving swipeability on mobile */
-.scrollbar-none::-webkit-scrollbar {
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-.scrollbar-none {
+.scrollbar-none,
+.no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -72,25 +74,36 @@ h1, h2, h3, h4, .font-display {
   100% { transform: translateX(-50%); }
 }
 
+/* Content is repeated 4x: one half shifted per 50s, so the loop stays
+   seamless for as long as a single repetition set is at least half the
+   container width. Keeps the visual scroll speed at one set per 25s. */
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 25s linear infinite;
+  will-change: transform;
+  animation: marquee 50s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-@keyframes finance-ticker-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.finance-marquee {
-  display: flex;
-  width: max-content;
-  animation: finance-ticker-scroll 20s linear infinite;
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out both;
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.18s ease-out both;
 }
 
 

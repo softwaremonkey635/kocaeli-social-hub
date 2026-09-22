@@ -134,11 +134,12 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured 
 
         {/* Footer info & CTA */}
         <div className="mt-5 pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400 truncate">
+          <div
+            className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400 truncate"
+            title="Konum: WhatsApp Topluluk Grubunda paylaşılır"
+          >
             <MessageCircle className="w-3.5 h-3.5 shrink-0 text-emerald-400" />
-            <span className="truncate">
-              Konum: WhatsApp Grubunda
-            </span>
+            <span className="truncate">WhatsApp Grubu</span>
           </div>
 
           <button

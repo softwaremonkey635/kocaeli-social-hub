@@ -298,7 +298,7 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
 
       {/* Full Post Reader Modal */}
       {activePost && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs animate-fade-in overflow-y-auto">
           <div className="bg-slate-900 rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-800 my-8">
             {/* Modal Header Cover */}
             <div className="relative h-60 sm:h-72 w-full overflow-hidden">

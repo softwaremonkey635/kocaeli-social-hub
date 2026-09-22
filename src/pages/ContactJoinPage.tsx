@@ -543,7 +543,7 @@ Topluluk etkinliklerinde görüşmek üzere!`;
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-3 animate-in fade-in duration-150">
+                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-3 animate-fade-in">
                     {faq.answer}
                   </div>
                 )}

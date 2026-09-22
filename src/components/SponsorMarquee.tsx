@@ -40,8 +40,9 @@ export const SponsorMarquee: React.FC<SponsorMarqueeProps> = ({
     }
   };
 
-  // Double the list for seamless continuous infinite marquee loop
-  const marqueeItems = [...sponsors, ...sponsors];
+  // Repeat the set 4x so one half of the track is at least as wide as the
+  // card, which keeps the -50% loop seamless on every screen width.
+  const marqueeItems = [...sponsors, ...sponsors, ...sponsors, ...sponsors];
 
   return (
     <div

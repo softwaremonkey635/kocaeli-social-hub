@@ -52,8 +52,9 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Mini top notification bar - Dynamic Nearest Event + Murat Malkoç WhatsApp */}
       <div className="bg-gradient-to-r from-[#0d223a] via-[#10345e] to-[#0d3446] text-white py-1.5 px-3 sm:px-4 text-xs font-medium border-b border-slate-800/60">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
-          <div className="flex items-center gap-2.5 truncate min-w-0">
-            {/* Authentic Dual-Ring Live Radar Ping - Perfectly aligned in dedicated overflow-visible container */}
+          <div className="flex items-center gap-2.5 min-w-0">
+            {/* Authentic Dual-Ring Live Radar Ping - overflow-visible so the
+                expanding ring is never clipped into a square by the row */}
             <div className="relative w-4 h-4 shrink-0 flex items-center justify-center overflow-visible" title="Canlı Takvim Aktif">
               <span className="animate-ping absolute inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400 opacity-80" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
@@ -164,7 +165,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer Menu - Dark Mode */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0d1527] border-b border-slate-800 px-4 pt-3 pb-5 space-y-2.5 shadow-2xl animate-in slide-in-from-top duration-150">
+        <div className="lg:hidden bg-[#0d1527] border-b border-slate-800 px-4 pt-3 pb-5 space-y-2.5 shadow-2xl animate-slide-down">
           <div className="space-y-1">
             {navItems.map((item) => {
               const isActive = currentPage === item.id;

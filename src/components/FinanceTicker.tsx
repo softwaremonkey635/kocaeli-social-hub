@@ -10,10 +10,10 @@ interface TickerItem {
 }
 
 const DEFAULT_ITEMS: TickerItem[] = [
-  { code: 'USD', name: 'Dolar', value: '48,78 ₺', change: '%0,08', isUp: true },
-  { code: 'EUR', name: 'Euro', value: '56,11 ₺', change: '%-0,08', isUp: false },
-  { code: 'BIST500', name: 'BIST 500', value: '10.842', change: '%1,23', isUp: true },
-  { code: 'ALTIN', name: 'Gram Altın', value: '6.866 ₺', change: '%0,94', isUp: true },
+  { code: 'USD', name: 'Dolar', value: '—', change: '%0,00', isUp: true },
+  { code: 'EUR', name: 'Euro', value: '—', change: '%0,00', isUp: true },
+  { code: 'BIST100', name: 'BIST 100', value: '—', change: '—', isUp: true },
+  { code: 'ALTIN', name: 'Gram Altın', value: '—', change: '%0,00', isUp: true },
 ];
 
 export const FinanceTicker: React.FC<{ className?: string }> = ({ className = '' }) => {
@@ -24,40 +24,67 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
   const fetchRates = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch('https://finans.truncgil.com/today.json');
-      const data = await res.json();
+      const [fxResult, bistResult] = await Promise.allSettled([
+        fetch('https://finans.truncgil.com/today.json').then((r) => r.json()),
+        fetch(
+          'https://scanner.tradingview.com/symbol?symbol=BIST%3AXU100&fields=close,change&no_404=true'
+        ).then((r) => r.json()),
+      ]);
+
+      const data = fxResult.status === 'fulfilled' ? fxResult.value : null;
+      const bist = bistResult.status === 'fulfilled' ? bistResult.value : null;
+      const bistClose = typeof bist?.close === 'number' ? bist.close : null;
+      const bistChange = typeof bist?.change === 'number' ? bist.change : null;
+
+      const toNum = (v: string | undefined) => {
+        if (!v) return null;
+        const n = Number(String(v).replace(/\./g, '').replace(',', '.'));
+        return Number.isFinite(n) ? n : null;
+      };
+      const fmtTRY = (n: number | null, digits = 2) =>
+        n === null
+          ? '—'
+          : `${n.toLocaleString('tr-TR', {
+              minimumFractionDigits: digits,
+              maximumFractionDigits: digits,
+            })} ₺`;
 
       if (data) {
-        const usdChange = data.USD?.Değişim || '%0.00';
-        const eurChange = data.EUR?.Değişim || '%0.00';
-        const goldChange = data['gram-altin']?.Değişim || '%0.00';
+        const usdChange = data.USD?.Değişim || '%0,00';
+        const eurChange = data.EUR?.Değişim || '%0,00';
+        const goldChange = data['gram-altin']?.Değişim || '%0,00';
 
         setItems([
           {
             code: 'USD',
             name: 'Dolar',
-            value: `${data.USD?.Satış?.slice(0, 5) || '48,78'} ₺`,
+            value: fmtTRY(toNum(data.USD?.Satış), 2),
             change: usdChange,
             isUp: !usdChange.startsWith('%-'),
           },
           {
             code: 'EUR',
             name: 'Euro',
-            value: `${data.EUR?.Satış?.slice(0, 5) || '56,11'} ₺`,
+            value: fmtTRY(toNum(data.EUR?.Satış), 2),
             change: eurChange,
             isUp: !eurChange.startsWith('%-'),
           },
           {
-            code: 'BIST500',
-            name: 'BIST 500',
-            value: '10.842',
-            change: '%1,23',
-            isUp: true,
+            code: 'BIST100',
+            name: 'BIST 100',
+            value: bistClose === null ? '—' : Math.round(bistClose).toLocaleString('tr-TR'),
+            change:
+              bistChange === null
+                ? '—'
+                : `${bistChange >= 0 ? '%' : '%-'}${Math.abs(bistChange)
+                    .toFixed(2)
+                    .replace('.', ',')}`,
+            isUp: (bistChange ?? 0) >= 0,
           },
           {
             code: 'ALTIN',
             name: 'Gram Altın',
-            value: `${data['gram-altin']?.Satış?.split(',')[0] || '6.866'} ₺`,
+            value: fmtTRY(toNum(data['gram-altin']?.Satış), 2),
             change: goldChange,
             isUp: !goldChange.startsWith('%-'),
           },
@@ -81,7 +108,9 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
     return () => clearInterval(interval);
   }, [fetchRates]);
 
-  const marqueeItems = [...items, ...items];
+  // Repeat the set 4x so one half of the track is at least as wide as the
+  // card, which keeps the -50% loop seamless on every screen width.
+  const marqueeItems = [...items, ...items, ...items, ...items];
 
   const renderChip = (item: TickerItem, idx: number, size: 'sm' | 'md') => (
     <div
@@ -92,27 +121,33 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
           : 'px-2.5 py-1 text-[11px]'
       }`}
     >
-      {item.code === 'BIST500' ? (
+      {item.code === 'BIST100' ? (
         <BarChart3 className="w-3 h-3 text-cyan-400 shrink-0" />
       ) : null}
       <span className="font-bold text-slate-300">{item.name}:</span>
       <span className="font-black text-white font-mono">{item.value}</span>
-      <span
-        className={`flex items-center font-bold px-1 rounded ${
-          size === 'sm' ? 'text-[9px]' : 'text-[10px]'
-        } ${
-          item.isUp
-            ? 'text-emerald-400 bg-emerald-950/60'
-            : 'text-rose-400 bg-rose-950/60'
-        }`}
-      >
-        {item.isUp ? (
-          <TrendingUp className="w-2.5 h-2.5 mr-0.5" />
-        ) : (
-          <TrendingDown className="w-2.5 h-2.5 mr-0.5" />
-        )}
-        {item.change}
-      </span>
+      {item.change === '—' ? (
+        <span className="flex items-center font-bold px-1 rounded text-[9px] text-slate-400 bg-slate-800/60">
+          —
+        </span>
+      ) : (
+        <span
+          className={`flex items-center font-bold px-1 rounded ${
+            size === 'sm' ? 'text-[9px]' : 'text-[10px]'
+          } ${
+            item.isUp
+              ? 'text-emerald-400 bg-emerald-950/60'
+              : 'text-rose-400 bg-rose-950/60'
+          }`}
+        >
+          {item.isUp ? (
+            <TrendingUp className="w-2.5 h-2.5 mr-0.5" />
+          ) : (
+            <TrendingDown className="w-2.5 h-2.5 mr-0.5" />
+          )}
+          {item.change}
+        </span>
+      )}
     </div>
   );
 
