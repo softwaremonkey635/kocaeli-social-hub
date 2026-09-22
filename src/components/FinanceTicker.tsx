@@ -23,12 +23,27 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
 
   const fetchRates = useCallback(async () => {
     setLoading(true);
+    const fetchJson = async (url: string, tries = 2): Promise<any> => {
+      let lastErr: unknown;
+      for (let i = 0; i < tries; i++) {
+        try {
+          const r = await fetch(url);
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return await r.json();
+        } catch (e) {
+          lastErr = e;
+          if (i < tries - 1) await new Promise((res) => setTimeout(res, 1200));
+        }
+      }
+      throw lastErr;
+    };
+
     try {
       const [fxResult, bistResult] = await Promise.allSettled([
-        fetch('https://finans.truncgil.com/today.json').then((r) => r.json()),
-        fetch(
+        fetchJson('https://finans.truncgil.com/today.json'),
+        fetchJson(
           'https://scanner.tradingview.com/symbol?symbol=BIST%3AXU100&fields=close,change&no_404=true'
-        ).then((r) => r.json()),
+        ),
       ]);
 
       const data = fxResult.status === 'fulfilled' ? fxResult.value : null;
@@ -49,51 +64,45 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
               maximumFractionDigits: digits,
             })} ₺`;
 
-      if (data) {
-        const usdChange = data.USD?.Değişim || '%0,00';
-        const eurChange = data.EUR?.Değişim || '%0,00';
-        const goldChange = data['gram-altin']?.Değişim || '%0,00';
+      setItems((prev) => {
+        const prevByCode = new Map(prev.map((i) => [i.code, i]));
+        const fallback = (code: string): TickerItem =>
+          prevByCode.get(code) || DEFAULT_ITEMS.find((i) => i.code === code)!;
 
-        setItems([
-          {
-            code: 'USD',
-            name: 'Dolar',
-            value: fmtTRY(toNum(data.USD?.Satış), 2),
-            change: usdChange,
-            isUp: !usdChange.startsWith('%-'),
-          },
-          {
-            code: 'EUR',
-            name: 'Euro',
-            value: fmtTRY(toNum(data.EUR?.Satış), 2),
-            change: eurChange,
-            isUp: !eurChange.startsWith('%-'),
-          },
-          {
-            code: 'BIST100',
-            name: 'BIST 100',
-            value: bistClose === null ? '—' : Math.round(bistClose).toLocaleString('tr-TR'),
-            change:
-              bistChange === null
-                ? '—'
-                : `${bistChange >= 0 ? '%' : '%-'}${Math.abs(bistChange)
-                    .toFixed(2)
-                    .replace('.', ',')}`,
-            isUp: (bistChange ?? 0) >= 0,
-          },
-          {
-            code: 'ALTIN',
-            name: 'Gram Altın',
-            value: fmtTRY(toNum(data['gram-altin']?.Satış), 2),
-            change: goldChange,
-            isUp: !goldChange.startsWith('%-'),
-          },
-        ]);
+        const usdChange = data?.USD?.Değişim || '%0,00';
+        const eurChange = data?.EUR?.Değişim || '%0,00';
+        const goldChange = data?.['gram-altin']?.Değişim || '%0,00';
 
-        if (data.Update_Date) {
-          const timePart = data.Update_Date.split(' ')[1]?.slice(0, 5);
-          setLastUpdate(timePart || 'Yeni');
-        }
+        return [
+          data
+            ? { code: 'USD', name: 'Dolar', value: fmtTRY(toNum(data.USD?.Satış), 2), change: usdChange, isUp: !usdChange.startsWith('%-') }
+            : fallback('USD'),
+          data
+            ? { code: 'EUR', name: 'Euro', value: fmtTRY(toNum(data.EUR?.Satış), 2), change: eurChange, isUp: !eurChange.startsWith('%-') }
+            : fallback('EUR'),
+          bistClose !== null
+            ? {
+                code: 'BIST100',
+                name: 'BIST 100',
+                value: Math.round(bistClose).toLocaleString('tr-TR'),
+                change:
+                  bistChange === null
+                    ? '—'
+                    : `${bistChange >= 0 ? '%' : '%-'}${Math.abs(bistChange)
+                        .toFixed(2)
+                        .replace('.', ',')}`,
+                isUp: (bistChange ?? 0) >= 0,
+              }
+            : fallback('BIST100'),
+          data
+            ? { code: 'ALTIN', name: 'Gram Altın', value: fmtTRY(toNum(data['gram-altin']?.Satış), 2), change: goldChange, isUp: !goldChange.startsWith('%-') }
+            : fallback('ALTIN'),
+        ];
+      });
+
+      if (data?.Update_Date) {
+        const timePart = data.Update_Date.split(' ')[1]?.slice(0, 5);
+        setLastUpdate(timePart || 'Yeni');
       }
     } catch (err) {
       console.warn('Döviz verisi çekilemedi:', err);
