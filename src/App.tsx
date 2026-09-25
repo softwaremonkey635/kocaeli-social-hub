@@ -11,14 +11,24 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { EventModal } from './components/EventModal';
 import { HomePage } from './pages/HomePage';
-import { EventsPage } from './pages/EventsPage';
-import { VisionMissionPage } from './pages/VisionMissionPage';
-import { ClubsPage } from './pages/ClubsPage';
-import { ContactJoinPage } from './pages/ContactJoinPage';
-import { SponsorsPage } from './pages/SponsorsPage';
 import { COMMUNITY_LINKS } from './constants/links';
 import { MessageCircle, Heart, ArrowUp } from 'lucide-react';
 
+const EventsPage = React.lazy(() =>
+  import('./pages/EventsPage').then((m) => ({ default: m.EventsPage }))
+);
+const VisionMissionPage = React.lazy(() =>
+  import('./pages/VisionMissionPage').then((m) => ({ default: m.VisionMissionPage }))
+);
+const ClubsPage = React.lazy(() =>
+  import('./pages/ClubsPage').then((m) => ({ default: m.ClubsPage }))
+);
+const ContactJoinPage = React.lazy(() =>
+  import('./pages/ContactJoinPage').then((m) => ({ default: m.ContactJoinPage }))
+);
+const SponsorsPage = React.lazy(() =>
+  import('./pages/SponsorsPage').then((m) => ({ default: m.SponsorsPage }))
+);
 const GalleryPage = React.lazy(() =>
   import('./pages/GalleryPage').then((m) => ({ default: m.GalleryPage }))
 );
