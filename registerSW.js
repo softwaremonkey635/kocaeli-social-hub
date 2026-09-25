@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/kocaeli-social-hub/sw.js', { scope: '/kocaeli-social-hub/' })})}
