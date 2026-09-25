@@ -28,6 +28,10 @@ const TR_MONTHS = [
   'Aralık',
 ];
 
+/** getUTCDay sırasıyla: Paz, Pzt, Sal, Çar, Per, Cum, Cmt. */
+const TR_DAYS_SHORT = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+const TR_MONTHS_SHORT = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+
 export interface Occurrence {
   start: Date;
   end: Date;
@@ -124,6 +128,15 @@ export function formatTrDateTime(date: Date): string {
   const ist = new Date(date.getTime() + IST_UTC_OFFSET_MS);
   return (
     `${ist.getUTCDate()} ${TR_MONTHS[ist.getUTCMonth()]} ${ist.getUTCFullYear()} ` +
+    `${pad2(ist.getUTCHours())}:${pad2(ist.getUTCMinutes())}`
+  );
+}
+
+/** Kart rozeti için kısa biçim: "Cmt 26 Eyl, 18:00". */
+export function formatTrShort(date: Date): string {
+  const ist = new Date(date.getTime() + IST_UTC_OFFSET_MS);
+  return (
+    `${TR_DAYS_SHORT[ist.getUTCDay()]} ${ist.getUTCDate()} ${TR_MONTHS_SHORT[ist.getUTCMonth()]}, ` +
     `${pad2(ist.getUTCHours())}:${pad2(ist.getUTCMinutes())}`
   );
 }

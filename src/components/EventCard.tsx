@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityEvent } from '../types';
-import { whatsappShareUrl } from '../utils/calendar';
+import { whatsappShareUrl, nextOccurrence, formatTrShort } from '../utils/calendar';
 import { imageDims } from '../utils/imageDims';
 import { Calendar, Clock, MapPin, Users, ArrowRight, Sparkles, MessageCircle, Eye, Share2 } from 'lucide-react';
 
@@ -11,6 +11,8 @@ interface EventCardProps {
 }
 
 export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured = false }) => {
+  const occurrence = nextOccurrence(event);
+
   return (
     <div
       id={`event-card-${event.id}`}
@@ -100,12 +102,22 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured 
       {/* Content */}
       <div className="flex flex-col flex-1 p-5 sm:p-6 justify-between bg-[#0c1424]/95">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-[#ff7324] mb-1.5">
-            <Calendar className="w-3.5 h-3.5" />
-            <span>{event.day}</span>
-            <span className="text-slate-600">•</span>
-            <Clock className="w-3.5 h-3.5" />
-            <span>{event.time}</span>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-xs font-semibold text-[#ff7324] mb-1.5">
+            <span className="inline-flex items-center gap-2">
+              <Calendar className="w-3.5 h-3.5" />
+              <span>{event.day}</span>
+              <span className="text-slate-600">•</span>
+              <Clock className="w-3.5 h-3.5" />
+              <span>{event.time}</span>
+            </span>
+            {occurrence && (
+              <span
+                data-testid="next-occurrence-chip"
+                className="shrink-0 whitespace-nowrap px-2 py-0.5 rounded-full text-[10px] font-extrabold tracking-wide bg-cyan-400/10 text-cyan-300 border border-cyan-400/40"
+              >
+                {formatTrShort(occurrence.start)}
+              </span>
+            )}
           </div>
 
           <h3 className="font-display text-lg sm:text-xl font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
