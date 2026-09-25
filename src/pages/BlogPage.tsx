@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BLOG_POSTS } from '../data/blogData';
 import { BlogPost } from '../types';
+import { imageDims } from '../utils/imageDims';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { HistoryTodayWidget } from '../components/HistoryTodayWidget';
 import {
@@ -151,6 +152,8 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
                 <img
                   src={pinnedPost.image}
                   alt={pinnedPost.title}
+                  width={imageDims(pinnedPost.image)?.w}
+                  height={imageDims(pinnedPost.image)?.h}
                   className="w-full h-full object-cover"
                   loading="lazy"
                   decoding="async"
@@ -228,6 +231,8 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
                 <img
                   src={post.image}
                   alt={post.title}
+                  width={imageDims(post.image)?.w}
+                  height={imageDims(post.image)?.h}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                   decoding="async"
@@ -323,6 +328,8 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
               <img
                 src={activePost.image}
                 alt={activePost.title}
+                width={imageDims(activePost.image)?.w}
+                height={imageDims(activePost.image)?.h}
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"

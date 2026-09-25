@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ActivityEvent } from '../types';
 import { buttonProps } from '../utils/keyboard';
+import { imageDims } from '../utils/imageDims';
 import { COMMUNITY_LINKS } from '../constants/links';
 import {
   downloadIcs,
@@ -133,6 +134,8 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               <img
                 src={currentDisplayImage}
                 alt={event.title}
+                width={imageDims(currentDisplayImage)?.w}
+                height={imageDims(currentDisplayImage)?.h}
                 className="w-full h-full object-contain sm:object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent pointer-events-none" />
@@ -211,6 +214,8 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                       <img
                         src={sub.image}
                         alt={sub.title}
+                        width={imageDims(sub.image)?.w}
+                        height={imageDims(sub.image)?.h}
                         className="w-4 h-4 rounded object-cover"
                       />
                       <span>{sub.title.split(' ')[0]}</span>
@@ -482,6 +487,8 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               <img
                 src={currentDisplayImage}
                 alt={event.title}
+                width={imageDims(currentDisplayImage)?.w}
+                height={imageDims(currentDisplayImage)?.h}
                 className="max-h-[78vh] w-auto object-contain rounded-lg"
               />
             </div>

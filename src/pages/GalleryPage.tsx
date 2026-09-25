@@ -3,6 +3,7 @@ import { GALLERY_DATA } from '../data/mockData';
 import { GalleryItem, EventCategory } from '../types';
 import { Camera, MapPin, Calendar, X } from 'lucide-react';
 import { buttonProps } from '../utils/keyboard';
+import { imageDims } from '../utils/imageDims';
 
 export const GalleryPage: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryItem | null>(null);
@@ -119,6 +120,8 @@ export const GalleryPage: React.FC = () => {
             <img
               src={item.image}
               alt={item.title}
+              width={imageDims(item.image)?.w}
+              height={imageDims(item.image)?.h}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
               loading="lazy"
               decoding="async"
@@ -166,7 +169,9 @@ export const GalleryPage: React.FC = () => {
             <img
               src={selectedPhoto.image}
               alt={selectedPhoto.title}
-              className="w-full max-h-[75vh] object-contain bg-slate-950"
+              width={imageDims(selectedPhoto.image)?.w}
+              height={imageDims(selectedPhoto.image)?.h}
+              className="w-full h-auto max-h-[75vh] object-contain bg-slate-950"
               decoding="async"
             />
 

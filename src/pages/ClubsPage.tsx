@@ -3,6 +3,7 @@ import { CLUBS_DATA, ACTIVITIES_DATA } from '../data/mockData';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { ActivityEvent } from '../types';
 import { buttonProps } from '../utils/keyboard';
+import { imageDims } from '../utils/imageDims';
 import {
   Users,
   CheckCircle2,
@@ -98,6 +99,8 @@ export const ClubsPage: React.FC<ClubsPageProps> = ({ onSelectEvent }) => {
             <img
               src={activeClub.image}
               alt={activeClub.name}
+              width={imageDims(activeClub.image)?.w}
+              height={imageDims(activeClub.image)?.h}
               className="w-full h-full object-cover"
               loading="lazy"
               decoding="async"

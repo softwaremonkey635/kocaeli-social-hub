@@ -4,6 +4,7 @@ import { ACTIVITIES_DATA } from '../data/mockData';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { EventCard } from '../components/EventCard';
 import { buttonProps } from '../utils/keyboard';
+import { imageDims } from '../utils/imageDims';
 import {
   Calendar as CalendarIcon,
   Search,
@@ -227,6 +228,8 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                   <img
                     src={event.image}
                     alt={event.title}
+                    width={imageDims(event.image)?.w}
+                    height={imageDims(event.image)?.h}
                     className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl object-cover ring-1 ring-slate-700 group-hover/thumb:ring-[#00d2eb] group-hover/thumb:scale-105 transition-all shadow-md"
                     loading="lazy"
                     decoding="async"

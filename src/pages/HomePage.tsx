@@ -3,6 +3,7 @@ import { PageId, ActivityEvent, SponsorItem } from '../types';
 import { ACTIVITIES_DATA, VISION_MISSION_DATA, TESTIMONIALS_DATA, SPONSORS_DATA } from '../data/mockData';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { getNearestUpcomingEvent } from '../utils/eventHelpers';
+import { imageDims } from '../utils/imageDims';
 import { buttonProps } from '../utils/keyboard';
 import { SponsorMarquee } from '../components/SponsorMarquee';
 import { WeatherWidget } from '../components/WeatherWidget';
@@ -147,6 +148,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <img
                     src={nextUpcoming.image}
                     alt={nextUpcoming.title}
+                    width={imageDims(nextUpcoming.image)?.w}
+                    height={imageDims(nextUpcoming.image)?.h}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     fetchPriority="high"
                     decoding="async"
@@ -238,6 +241,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <img
                     src={act.image}
                     alt={act.title}
+                    width={imageDims(act.image)?.w}
+                    height={imageDims(act.image)?.h}
                     className="w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"
@@ -280,6 +285,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                   <img
                     src={act.image}
                     alt={act.title}
+                    width={imageDims(act.image)?.w}
+                    height={imageDims(act.image)?.h}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                     decoding="async"
@@ -563,6 +570,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <img
                   src={item.avatar}
                   alt={item.name}
+                  width={imageDims(item.avatar)?.w}
+                  height={imageDims(item.avatar)?.h}
                   className="w-8 h-8 rounded-full object-cover ring-2 ring-[#00d2eb]/50"
                   loading="lazy"
                   decoding="async"
