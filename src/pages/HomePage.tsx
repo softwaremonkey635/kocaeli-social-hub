@@ -7,6 +7,7 @@ import { imageDims } from '../utils/imageDims';
 import { buttonProps } from '../utils/keyboard';
 import { SponsorMarquee } from '../components/SponsorMarquee';
 import { WeatherWidget } from '../components/WeatherWidget';
+import { NextEventCountdown } from '../components/NextEventCountdown';
 import {
   Calendar,
   Clock,
@@ -196,6 +197,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <p className="text-[9px] sm:text-[10px] text-slate-400 hidden sm:block mt-0.5">Ticari kaygısız gençlik</p>
               </div>
             </div>
+
+            <NextEventCountdown />
           </div>
         </div>
       </section>
