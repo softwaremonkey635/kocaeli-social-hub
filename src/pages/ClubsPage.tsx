@@ -98,6 +98,8 @@ export const ClubsPage: React.FC<ClubsPageProps> = ({ onSelectEvent }) => {
               src={activeClub.image}
               alt={activeClub.name}
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 text-white">

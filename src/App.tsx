@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { PageId, ActivityEvent } from './types';
 import { ACTIVITIES_DATA } from './data/mockData';
+import { applySeo } from './utils/seo';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { EventModal } from './components/EventModal';
@@ -13,13 +14,20 @@ import { HomePage } from './pages/HomePage';
 import { EventsPage } from './pages/EventsPage';
 import { VisionMissionPage } from './pages/VisionMissionPage';
 import { ClubsPage } from './pages/ClubsPage';
-import { GalleryPage } from './pages/GalleryPage';
 import { ContactJoinPage } from './pages/ContactJoinPage';
-import { BlogPage } from './pages/BlogPage';
 import { SponsorsPage } from './pages/SponsorsPage';
-import { GuidePage } from './pages/GuidePage';
 import { COMMUNITY_LINKS } from './constants/links';
 import { MessageCircle, Heart, ArrowUp } from 'lucide-react';
+
+const GalleryPage = React.lazy(() =>
+  import('./pages/GalleryPage').then((m) => ({ default: m.GalleryPage }))
+);
+const BlogPage = React.lazy(() =>
+  import('./pages/BlogPage').then((m) => ({ default: m.BlogPage }))
+);
+const GuidePage = React.lazy(() =>
+  import('./pages/GuidePage').then((m) => ({ default: m.GuidePage }))
+);
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('home');
@@ -49,6 +57,10 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  useEffect(() => {
+    applySeo(currentPage, selectedEvent);
+  }, [currentPage, selectedEvent]);
+
   const navigateTo = (page: PageId) => {
     setCurrentPage(page);
     window.location.hash = page === 'home' ? '' : `#${page}`;
@@ -61,6 +73,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-transparent text-slate-100 font-sans selection:bg-[#ff7324] selection:text-white relative">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-3 focus:py-2 focus:rounded-lg focus:bg-[#10345e] focus:text-white focus:text-sm focus:font-bold">İçeriğe atla</a>
       {/* Subtle & Balanced Dark Mode Atmospheric Ambient Glows */}
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
         {/* Soft Colorful Ambient Glows */}
@@ -78,35 +91,44 @@ export default function App() {
       </div>
 
       {/* Main Page Content */}
-      <main className="flex-1 relative z-10">
-        {currentPage === 'home' && (
-          <HomePage
-            onNavigate={navigateTo}
-            onSelectEvent={handleSelectEvent}
-          />
-        )}
-        {currentPage === 'events' && (
-          <EventsPage
-            onSelectEvent={handleSelectEvent}
-          />
-        )}
-        {currentPage === 'blog' && (
-          <BlogPage
-            onNavigateToJoin={() => navigateTo('contact')}
-          />
-        )}
-        {currentPage === 'vision' && (
-          <VisionMissionPage />
-        )}
-        {currentPage === 'clubs' && (
-          <ClubsPage
-            onSelectEvent={handleSelectEvent}
-          />
-        )}
-        {currentPage === 'gallery' && <GalleryPage />}
-        {currentPage === 'sponsors' && <SponsorsPage onNavigate={navigateTo} />}
-        {currentPage === 'guide' && <GuidePage onNavigate={navigateTo} />}
-        {currentPage === 'contact' && <ContactJoinPage />}
+      <main id="main-content" tabIndex={-1} className="flex-1 relative z-10">
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center py-24" role="status" aria-live="polite">
+              <div className="w-8 h-8 rounded-full border-2 border-slate-600 border-t-cyan-400 animate-spin" />
+              <span className="sr-only">Yükleniyor</span>
+            </div>
+          }
+        >
+          {currentPage === 'home' && (
+            <HomePage
+              onNavigate={navigateTo}
+              onSelectEvent={handleSelectEvent}
+            />
+          )}
+          {currentPage === 'events' && (
+            <EventsPage
+              onSelectEvent={handleSelectEvent}
+            />
+          )}
+          {currentPage === 'blog' && (
+            <BlogPage
+              onNavigateToJoin={() => navigateTo('contact')}
+            />
+          )}
+          {currentPage === 'vision' && (
+            <VisionMissionPage />
+          )}
+          {currentPage === 'clubs' && (
+            <ClubsPage
+              onSelectEvent={handleSelectEvent}
+            />
+          )}
+          {currentPage === 'gallery' && <GalleryPage />}
+          {currentPage === 'sponsors' && <SponsorsPage onNavigate={navigateTo} />}
+          {currentPage === 'guide' && <GuidePage onNavigate={navigateTo} />}
+          {currentPage === 'contact' && <ContactJoinPage />}
+        </Suspense>
       </main>
 
       {/* Footer */}

@@ -138,6 +138,8 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
                   src={pinnedPost.image}
                   alt={pinnedPost.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -213,6 +215,8 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
                   src={post.image}
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                 <div className="absolute top-3 left-3">
@@ -306,6 +310,8 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
                 src={activePost.image}
                 alt={activePost.title}
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-950/40 to-transparent" />
 

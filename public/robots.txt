@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://softwaremonkey635.github.io/kocaeli-social-hub/sitemap.xml

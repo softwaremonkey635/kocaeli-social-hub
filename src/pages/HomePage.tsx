@@ -147,6 +147,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                     src={nextUpcoming.image}
                     alt={nextUpcoming.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    fetchPriority="high"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
                   <div className="absolute bottom-1.5 left-1.5 text-white text-[9px] font-medium flex items-center gap-1 bg-slate-950/90 backdrop-blur-xs px-2 py-0.5 rounded-md border border-slate-700/60">
@@ -230,6 +232,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                     src={act.image}
                     alt={act.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-1 right-1">
                     <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-[#ff7324] text-white">
@@ -269,6 +273,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                     src={act.image}
                     alt={act.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute top-1.5 right-1.5">
                     <span className="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-[#ff7324] text-white shadow-xs">
@@ -549,6 +555,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                   src={item.avatar}
                   alt={item.name}
                   className="w-8 h-8 rounded-full object-cover ring-2 ring-[#00d2eb]/50"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div>
                   <h4 className="font-bold text-xs text-white">{item.name}</h4>

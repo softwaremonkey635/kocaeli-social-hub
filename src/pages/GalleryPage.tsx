@@ -104,6 +104,7 @@ export const GalleryPage: React.FC = () => {
               alt={item.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
               loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
 
@@ -149,6 +150,7 @@ export const GalleryPage: React.FC = () => {
               src={selectedPhoto.image}
               alt={selectedPhoto.title}
               className="w-full max-h-[75vh] object-contain bg-slate-950"
+              decoding="async"
             />
 
             <div className="p-6 text-white space-y-1 bg-slate-900">

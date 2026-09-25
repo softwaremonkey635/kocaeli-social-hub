@@ -225,6 +225,8 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                     src={event.image}
                     alt={event.title}
                     className="w-18 h-18 sm:w-20 sm:h-20 rounded-2xl object-cover ring-1 ring-slate-700 group-hover/thumb:ring-[#00d2eb] group-hover/thumb:scale-105 transition-all shadow-md"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-slate-950/40 rounded-2xl opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center">
                     <span className="text-[10px] text-white font-bold bg-[#0c1424]/90 border border-cyan-500/30 px-1.5 py-0.5 rounded">Gör</span>

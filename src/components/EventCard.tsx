@@ -24,6 +24,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured 
           alt={event.title}
           className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0c1424] via-[#0c1424]/30 to-transparent pointer-events-none" />
 
@@ -59,6 +60,8 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured 
                   alt={sub.title}
                   className="w-7 h-7 rounded-md object-cover border border-slate-600"
                   title={sub.title}
+                  loading="lazy"
+                  decoding="async"
                 />
               ))}
             </div>
