@@ -2,9 +2,27 @@ import { PageId } from '../types';
 
 export const SITE_ORIGIN = 'https://softwaremonkey635.github.io';
 export const BASE_URL = 'https://softwaremonkey635.github.io/kocaeli-social-hub/';
+export const APP_BASE = import.meta.env?.BASE_URL ?? '/';
 export const DEFAULT_IMAGE = 'https://softwaremonkey635.github.io/kocaeli-social-hub/images/logo/kocaeli-logo.jpeg';
 export const SITE_NAME = 'Kocaeli Social Hub';
 export const SITE_LANGUAGE = 'tr';
+
+function currentOrigin(): string {
+  return typeof window !== 'undefined' && window.location.origin
+    ? window.location.origin
+    : SITE_ORIGIN;
+}
+
+/** Real per-route URL for the current host: origin + base + route, no fragment. */
+export function currentRouteUrl(): string {
+  if (typeof window === 'undefined') return BASE_URL;
+  return currentOrigin() + window.location.pathname;
+}
+
+/** Origin + deployment base, without a route segment. */
+export function currentSiteUrl(): string {
+  return currentOrigin() + APP_BASE;
+}
 
 export interface SeoEventInput {
   title?: string;
@@ -170,7 +188,7 @@ function buildEventNode(event: SeoEventInput, startDate: string, fallback: PageS
     startDate,
     eventStatus: 'https://schema.org/EventScheduled',
     image,
-    url: BASE_URL,
+    url: currentRouteUrl(),
   };
   if (event.location) {
     node.eventAttendanceMode = 'https://schema.org/OfflineEventAttendanceMode';
@@ -189,13 +207,14 @@ function buildEventNode(event: SeoEventInput, startDate: string, fallback: PageS
 
 export function applySeo(page: PageId, event?: SeoEventInput | null): void {
   const seo = PAGE_SEO[page] || PAGE_SEO.home;
+  const routeUrl = currentRouteUrl();
 
   document.title = seo.title;
   upsertMeta('meta[name="description"]', 'name', 'description', seo.description);
-  upsertCanonical(BASE_URL);
+  upsertCanonical(routeUrl);
   upsertMeta('meta[property="og:title"]', 'property', 'og:title', seo.title);
   upsertMeta('meta[property="og:description"]', 'property', 'og:description', seo.description);
-  upsertMeta('meta[property="og:url"]', 'property', 'og:url', BASE_URL);
+  upsertMeta('meta[property="og:url"]', 'property', 'og:url', routeUrl);
   upsertMeta('meta[property="og:type"]', 'property', 'og:type', 'website');
   upsertMeta('meta[property="og:image"]', 'property', 'og:image', DEFAULT_IMAGE);
   upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', seo.title);
@@ -205,20 +224,20 @@ export function applySeo(page: PageId, event?: SeoEventInput | null): void {
   const graph: unknown[] = [
     {
       '@type': 'WebSite',
-      '@id': `${BASE_URL}#website`,
+      '@id': `${currentSiteUrl()}#website`,
       name: SITE_NAME,
-      url: BASE_URL,
+      url: currentSiteUrl(),
       description: PAGE_SEO.home.description,
       inLanguage: SITE_LANGUAGE,
     },
     {
       '@type': 'WebPage',
-      '@id': `${BASE_URL}#${page}`,
+      '@id': `${currentSiteUrl()}#${page}`,
       name: seo.title,
       description: seo.description,
-      url: BASE_URL,
+      url: currentRouteUrl(),
       inLanguage: SITE_LANGUAGE,
-      isPartOf: { '@id': `${BASE_URL}#website` },
+      isPartOf: { '@id': `${currentSiteUrl()}#website` },
     },
   ];
 

@@ -39,33 +39,103 @@ const GuidePage = React.lazy(() =>
   import('./pages/GuidePage').then((m) => ({ default: m.GuidePage }))
 );
 
+const BASE = import.meta.env.BASE_URL;
+const ROUTED_PAGES: PageId[] = [
+  'events',
+  'vision',
+  'clubs',
+  'gallery',
+  'contact',
+  'blog',
+  'sponsors',
+  'guide',
+];
+const KNOWN_SEGMENTS = ['home', ...ROUTED_PAGES];
+
+interface RouteState {
+  page: PageId;
+  eventId: string | null;
+}
+
+/** Drops the deployment base (/ or /kocaeli-social-hub/) from a pathname. */
+function stripBase(pathname: string): string {
+  const baseDir = BASE === '/' ? '' : BASE.replace(/\/+$/, '');
+  let rest = pathname;
+  if (baseDir && (rest === baseDir || rest.startsWith(`${baseDir}/`))) {
+    rest = rest.slice(baseDir.length);
+  }
+  return rest.replace(/^\/+|\/+$/g, '');
+}
+
+/** One path segment ("", "events", "event/abc") -> route. Unknown -> home. */
+function parseSegment(segment: string): RouteState {
+  const seg = segment.replace(/^\/+|\/+$/g, '').toLowerCase();
+  if (seg.startsWith('event/')) {
+    const eventId = seg.slice('event/'.length);
+    const found = ACTIVITIES_DATA.find((e) => e.id === eventId);
+    if (found) return { page: 'events', eventId: found.id };
+    return { page: 'home', eventId: null };
+  }
+  if (KNOWN_SEGMENTS.includes(seg)) return { page: seg as PageId, eventId: null };
+  return { page: 'home', eventId: null };
+}
+
+function parseRoute(pathname: string): RouteState {
+  return parseSegment(stripBase(pathname));
+}
+
+/** Clean URL for a route: home is the base itself, no trailing page segment. */
+function routeUrl(route: RouteState): string {
+  const suffix = route.eventId ? `event/${route.eventId}` : route.page === 'home' ? '' : route.page;
+  return `${BASE}${suffix}`;
+}
+
+function eventById(eventId: string | null): ActivityEvent | null {
+  return eventId ? ACTIVITIES_DATA.find((e) => e.id === eventId) ?? null : null;
+}
+
+/** Runs before the first render: #events style links land on their clean path. */
+function migrateLegacyHash(): void {
+  const legacy = window.location.hash.replace(/^#\/?/, '').toLowerCase();
+  if (!legacy) return;
+  if (!KNOWN_SEGMENTS.includes(legacy) && !legacy.startsWith('event/')) return;
+  window.history.replaceState(null, '', routeUrl(parseSegment(legacy)));
+}
+
+migrateLegacyHash();
+
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('home');
-  const [selectedEvent, setSelectedEvent] = useState<ActivityEvent | null>(null);
+  const [currentPage, setCurrentPage] = useState<PageId>(
+    () => parseRoute(window.location.pathname).page
+  );
+  const [selectedEvent, setSelectedEvent] = useState<ActivityEvent | null>(() =>
+    eventById(parseRoute(window.location.pathname).eventId)
+  );
 
-  // Hash-based client routing for seamless GitHub Pages & Cloudflare Pages hosting
+  // History-API routing: Back/Forward re-derive the route from the pathname.
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
-      if (hash.startsWith('event/')) {
-        const eventId = hash.replace('event/', '');
-        const found = ACTIVITIES_DATA.find((e) => e.id === eventId);
-        if (found) {
-          setSelectedEvent(found);
-          setCurrentPage('events');
-          return;
-        }
-      }
-
-      if (['home', 'events', 'vision', 'clubs', 'gallery', 'contact', 'blog', 'sponsors', 'guide'].includes(hash)) {
-        setCurrentPage(hash as PageId);
-      } else {
-        // Empty hash (#, #/, '') or an unknown route resolves to home.
-        setCurrentPage('home');
-      }
+    const handlePopState = () => {
+      const route = parseRoute(window.location.pathname);
+      setCurrentPage(route.page);
+      setSelectedEvent(eventById(route.eventId));
     };
 
-    handleHashChange();
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Legacy "#events" links that arrive as a same-document hash change (no
+  // reload) still migrate: rewrite to the clean path and follow it.
+  useEffect(() => {
+    const handleHashChange = () => {
+      const legacy = window.location.hash.replace(/^#\/?/, '').toLowerCase();
+      if (!KNOWN_SEGMENTS.includes(legacy) && !legacy.startsWith('event/')) return;
+      migrateLegacyHash();
+      const route = parseRoute(window.location.pathname);
+      setCurrentPage(route.page);
+      setSelectedEvent(eventById(route.eventId));
+    };
+
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
@@ -75,13 +145,22 @@ export default function App() {
   }, [currentPage, selectedEvent]);
 
   const navigateTo = (page: PageId) => {
+    const url = routeUrl({ page, eventId: null });
+    if (url !== window.location.pathname) window.history.pushState(null, '', url);
     setCurrentPage(page);
-    window.location.hash = page === 'home' ? '' : `#${page}`;
+    setSelectedEvent(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectEvent = (event: ActivityEvent) => {
     setSelectedEvent(event);
+  };
+
+  const closeEvent = () => {
+    if (parseRoute(window.location.pathname).eventId) {
+      window.history.replaceState(null, '', routeUrl({ page: 'events', eventId: null }));
+    }
+    setSelectedEvent(null);
   };
 
   return (
@@ -152,7 +231,7 @@ export default function App() {
       {/* Modals */}
       <EventModal
         event={selectedEvent}
-        onClose={() => setSelectedEvent(null)}
+        onClose={closeEvent}
       />
 
       {/* Floating Quick Action Widget (WhatsApp & Join) */}

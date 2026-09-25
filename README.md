@@ -18,3 +18,23 @@ View your app in AI Studio: https://ai.studio/apps/a6ccd9d3-be77-442b-a4c7-73c21
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Build base
+
+`vite.config.ts` reads the base path from `APP_BASE`, defaulting to `/`. The
+production host serves the site from the domain root, so a plain build is
+enough:
+
+```
+npx vite build
+```
+
+The GitHub Pages test build runs under a subpath and needs the base set:
+
+```
+APP_BASE=/kocaeli-social-hub/ npx vite build
+```
+
+Routing is History-API based (`/events`, `/guide`, and so on), so the server
+must answer unknown paths with `index.html`. Local checks use a static server
+with that fallback.

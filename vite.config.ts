@@ -4,7 +4,10 @@ import path from 'path';
 import {defineConfig} from 'vite';
 import {VitePWA} from 'vite-plugin-pwa';
 
-const base = '/kocaeli-social-hub/';
+// Base path comes from the environment so one build serves both hosts:
+// production (domain root) builds with the default '/', the GitHub Pages test
+// build uses APP_BASE=/kocaeli-social-hub/.
+const base = process.env.APP_BASE || '/';
 
 export default defineConfig(() => {
   return {
@@ -19,7 +22,7 @@ export default defineConfig(() => {
         workbox: {
           globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg,ico,webp,woff,woff2}'],
           cleanupOutdatedCaches: true,
-          navigateFallback: null,
+          navigateFallback: `${base}index.html`,
           runtimeCaching: [
             {
               urlPattern: ({url, sameOrigin}) =>

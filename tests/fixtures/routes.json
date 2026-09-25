@@ -1,0 +1,83 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "pageId": "home",
+      "title": "Kocaeli Social Hub | Gençlik ve Canlı Etkinlik Topluluğu",
+      "h1": "Kocaeli'de Sosyalleş, Kendini Geliştir, Birlikte Üret!",
+      "navLabel": "Ana Sayfa",
+      "inNav": true
+    },
+    {
+      "path": "/events",
+      "pageId": "events",
+      "title": "Etkinlikler ve Haftalık Takvim | Kocaeli Social Hub",
+      "h1": "Etkinlikler & Haftalık Takvim",
+      "navLabel": "Etkinlikler",
+      "inNav": true
+    },
+    {
+      "path": "/guide",
+      "pageId": "guide",
+      "title": "Kocaeli Öğrenci Bütçe ve Yaşam Rehberi | Kocaeli Social Hub",
+      "h1": "Kocaeli Öğrenci Bütçe & Yaşam Rehberi",
+      "navLabel": "Kocaeli Rehberi",
+      "inNav": true
+    },
+    {
+      "path": "/vision",
+      "pageId": "vision",
+      "title": "Vizyon ve Misyon | Kocaeli Social Hub",
+      "h1": "KOCAELİ SOSYAL",
+      "navLabel": "Vizyon & Misyon",
+      "inNav": true
+    },
+    {
+      "path": "/clubs",
+      "pageId": "clubs",
+      "title": "Kulüpler ve Topluluk Alanları | Kocaeli Social Hub",
+      "h1": "Etkinliklerimiz & Topluluk Alanları",
+      "navLabel": null,
+      "inNav": false
+    },
+    {
+      "path": "/gallery",
+      "pageId": "gallery",
+      "title": "Galeri ve Etkinlik Fotoğrafları | Kocaeli Social Hub",
+      "h1": "Etkinliklerimizden Kareler",
+      "navLabel": "Galeri",
+      "inNav": true
+    },
+    {
+      "path": "/contact",
+      "pageId": "contact",
+      "title": "İletişim ve Topluluğa Katıl | Kocaeli Social Hub",
+      "h1": "Kocaeli Sosyal'e Katıl",
+      "navLabel": "İletişim & Katıl",
+      "inNav": true
+    },
+    {
+      "path": "/blog",
+      "pageId": "blog",
+      "title": "Duyurular ve Blog | Kocaeli Social Hub",
+      "h1": "Kocaeli Sosyal Blog",
+      "navLabel": "Duyurular & Blog",
+      "inNav": true
+    },
+    {
+      "path": "/sponsors",
+      "pageId": "sponsors",
+      "title": "Sponsorlar ve Yerel Ortaklar | Kocaeli Social Hub",
+      "h1": "Sponsorlarımız & Partnerlerimiz",
+      "navLabel": "Sponsorlar",
+      "inNav": true
+    }
+  ],
+  "unknownPath": "/bilinmeyen-sayfa",
+  "legacyHash": "/#events",
+  "legacyHashExpectedPath": "/events",
+  "viewports": [
+    { "name": "desktop", "width": 1400, "height": 900 },
+    { "name": "mobile", "width": 390, "height": 844 }
+  ]
+}
