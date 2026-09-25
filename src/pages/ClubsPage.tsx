@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CLUBS_DATA, ACTIVITIES_DATA } from '../data/mockData';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { ActivityEvent } from '../types';
+import { buttonProps } from '../utils/keyboard';
 import {
   Users,
   CheckCircle2,
@@ -131,9 +132,9 @@ export const ClubsPage: React.FC<ClubsPageProps> = ({ onSelectEvent }) => {
 
               {/* Features list */}
               <div className="space-y-2 pt-1">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   ETKİNLİK KAZANIMLARI &amp; ÖZELLİKLER
-                </h4>
+                </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {activeClub.features.map((feat, i) => (
                     <div
@@ -150,20 +151,21 @@ export const ClubsPage: React.FC<ClubsPageProps> = ({ onSelectEvent }) => {
 
             {/* Related Live Activities for this Club */}
             <div className="pt-4 border-t border-slate-800 space-y-2.5">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 BU ALANA AİT CANLI ETKİNLİKLER
-              </h4>
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {relatedEvents.map((evt) => (
                   <div
                     key={evt.id}
                     onClick={() => onSelectEvent(evt)}
+                    {...buttonProps(() => onSelectEvent(evt), `${evt.title} etkinlik detayını aç`)}
                     className="p-3 bg-slate-950/60 hover:bg-slate-800 rounded-xl border border-slate-800 cursor-pointer transition-all flex items-center justify-between gap-3 group"
                   >
                     <div>
-                      <h5 className="font-bold text-xs sm:text-sm text-white group-hover:text-cyan-300">
+                      <h4 className="font-bold text-xs sm:text-sm text-white group-hover:text-cyan-300">
                         {evt.title}
-                      </h5>
+                      </h4>
                       <span className="text-[11px] text-[#f27721] font-semibold">
                         {evt.day} • {evt.time}
                       </span>

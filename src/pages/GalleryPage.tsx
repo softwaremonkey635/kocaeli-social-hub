@@ -1,11 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GALLERY_DATA } from '../data/mockData';
 import { GalleryItem, EventCategory } from '../types';
 import { Camera, MapPin, Calendar, X } from 'lucide-react';
+import { buttonProps } from '../utils/keyboard';
 
 export const GalleryPage: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryItem | null>(null);
   const [filter, setFilter] = useState<EventCategory | 'all'>('all');
+
+  // Escape closes the lightbox and hands focus back to the card that opened it.
+  useEffect(() => {
+    if (!selectedPhoto) return;
+    const trigger = document.activeElement as HTMLElement | null;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedPhoto(null);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      if (trigger && typeof trigger.focus === 'function') trigger.focus();
+    };
+  }, [selectedPhoto]);
 
   const filteredItems = filter === 'all'
     ? GALLERY_DATA
@@ -92,11 +107,13 @@ export const GalleryPage: React.FC = () => {
       </div>
 
       {/* Photo Grid */}
+      <h2 className="sr-only">Fotoğraf Galerisi</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {filteredItems.map((item) => (
           <div
             key={item.id}
             onClick={() => setSelectedPhoto(item)}
+            {...buttonProps(() => setSelectedPhoto(item), `${item.title} fotoğrafını büyüt`)}
             className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 cursor-pointer shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-64"
           >
             <img
@@ -113,9 +130,9 @@ export const GalleryPage: React.FC = () => {
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#f8a834]">
                 {item.activity}
               </span>
-              <h4 className="font-display font-bold text-sm leading-snug line-clamp-1 mt-0.5 text-white">
+              <h3 className="font-display font-bold text-sm leading-snug line-clamp-1 mt-0.5 text-white">
                 {item.title}
-              </h4>
+              </h3>
               <div className="flex items-center justify-between text-[11px] text-slate-300 mt-2">
                 <span className="flex items-center gap-1">
                   <MapPin className="w-3 h-3 text-[#00bcd4]" />

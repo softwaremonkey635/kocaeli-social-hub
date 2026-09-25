@@ -43,7 +43,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured 
             {event.categoryName}
           </span>
           {event.badge && (
-            <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#ff7324] text-white shadow-md flex items-center gap-1">
+            <span className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-bold bg-[#ff7324] text-slate-950 shadow-md flex items-center gap-1">
               <Sparkles className="w-3 h-3" />
               <span>{event.badge}</span>
             </span>

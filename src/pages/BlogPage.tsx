@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BLOG_POSTS } from '../data/blogData';
 import { BlogPost } from '../types';
 import { COMMUNITY_LINKS } from '../constants/links';
@@ -27,6 +27,20 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
   const [copied, setCopied] = useState<boolean>(false);
+
+  // Escape closes the reader modal and returns focus to the card that opened it.
+  useEffect(() => {
+    if (!activePost) return;
+    const trigger = document.activeElement as HTMLElement | null;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActivePost(null);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      if (trigger && typeof trigger.focus === 'function') trigger.focus();
+    };
+  }, [activePost]);
 
   const categories = ['Tümü', 'Duyuru', 'Rehber', 'Topluluk', 'Etkinlik Notları'];
 
@@ -94,7 +108,7 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             <div className="lg:col-span-7 space-y-3.5">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#f27721] text-white shadow-xs">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#f27721] text-slate-950 shadow-xs">
                   <Pin className="w-3 h-3" />
                   <span>Önemli Duyuru</span>
                 </span>
@@ -324,7 +338,7 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
               </button>
 
               <div className="absolute bottom-4 left-4 right-4 text-white space-y-1">
-                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#f27721] text-white">
+                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#f27721] text-slate-950">
                   {activePost.category}
                 </span>
                 <h2 className="font-display text-lg sm:text-2xl font-extrabold leading-tight">
@@ -353,6 +367,7 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
                   <span>{activePost.readTime}</span>
                   <button
                     onClick={() => handleShare(activePost)}
+                    aria-label="Yazıyı paylaş"
                     className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-300 transition-colors cursor-pointer"
                     title="Paylaş"
                   >

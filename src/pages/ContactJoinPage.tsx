@@ -210,10 +210,11 @@ Topluluk etkinliklerinde görüşmek üzere!`;
               {/* Row 1: Name & District */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                  <label htmlFor="quick-name" className="block text-xs font-bold text-slate-300 mb-1.5">
                     Adınız veya Lakabınız
                   </label>
                   <input
+                    id="quick-name"
                     type="text"
                     value={quickName}
                     onChange={(e) => setQuickName(e.target.value)}
@@ -223,10 +224,11 @@ Topluluk etkinliklerinde görüşmek üzere!`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                  <label htmlFor="quick-district" className="block text-xs font-bold text-slate-300 mb-1.5">
                     Kocaeli&apos;de Yaşadığınız İlçe
                   </label>
                   <select
+                    id="quick-district"
                     value={quickDistrict}
                     onChange={(e) => setQuickDistrict(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-950 text-white"
@@ -242,10 +244,10 @@ Topluluk etkinliklerinde görüşmek üzere!`;
 
               {/* Row 2: Status / Role pills */}
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                <label id="label-role" className="block text-xs font-bold text-slate-300 mb-1.5">
                   Durumunuz / Profiliniz
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <div role="group" aria-labelledby="label-role" className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {roleOptions.map((role) => {
                     const isSelected = quickRole === role;
                     return (
@@ -269,14 +271,14 @@ Topluluk etkinliklerinde görüşmek üzere!`;
               {/* Row 3: UNIFIED COMMUNITY ACTIVITIES (Workshops & Events together) */}
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <label className="block text-xs font-bold text-slate-300">
+                  <label id="label-activities" className="block text-xs font-bold text-slate-300">
                     İlgi Duyduğunuz Topluluk Etkinlikleri &amp; Atölyeler
                   </label>
                   <span className="text-[11px] text-cyan-400 font-bold">
                     {selectedActivities.length} seçildi
                   </span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div role="group" aria-labelledby="label-activities" className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {communityActivities.map((act) => {
                     const isSelected = selectedActivities.includes(act.label);
                     return (
@@ -308,10 +310,11 @@ Topluluk etkinliklerinde görüşmek üzere!`;
               {/* Row 5: TIME AVAILABILITY & EXPERIENCE LEVEL */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                  <label htmlFor="preferred-time" className="block text-xs font-bold text-slate-300 mb-1.5">
                     ⏰ En Müsait Olduğunuz Zaman
                   </label>
                   <select
+                    id="preferred-time"
                     value={preferredTime}
                     onChange={(e) => setPreferredTime(e.target.value)}
                     className="w-full px-3 py-2 rounded-xl border border-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-950 text-white"
@@ -325,10 +328,11 @@ Topluluk etkinliklerinde görüşmek üzere!`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                  <label htmlFor="experience-level" className="block text-xs font-bold text-slate-300 mb-1.5">
                     💡 Katılım Düzeyi &amp; Yaklaşım
                   </label>
                   <select
+                    id="experience-level"
                     value={experienceLevel}
                     onChange={(e) => setExperienceLevel(e.target.value)}
                     className="w-full px-3 py-2 rounded-xl border border-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-950 text-white"
@@ -344,10 +348,10 @@ Topluluk etkinliklerinde görüşmek üzere!`;
 
               {/* Row 6: Primary Goal */}
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                <label id="label-goal" className="block text-xs font-bold text-slate-300 mb-1.5">
                   🎯 Topluluktan Öncelikli Beklentiniz
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div role="group" aria-labelledby="label-goal" className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {goalOptions.map((goal) => {
                     const isSelected = quickGoal === goal;
                     return (
@@ -370,10 +374,11 @@ Topluluk etkinliklerinde görüşmek üzere!`;
 
               {/* Row 7: Optional Note */}
               <div>
-                <label className="block text-xs font-bold text-slate-300 mb-1.5">
+                <label htmlFor="custom-note" className="block text-xs font-bold text-slate-300 mb-1.5">
                   Eklemek İstediğin Not veya Soru (İsteğe Bağlı)
                 </label>
                 <input
+                  id="custom-note"
                   type="text"
                   value={customNote}
                   onChange={(e) => setCustomNote(e.target.value)}

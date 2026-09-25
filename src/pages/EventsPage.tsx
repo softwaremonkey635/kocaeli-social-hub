@@ -3,6 +3,7 @@ import { ActivityEvent, EventCategory } from '../types';
 import { ACTIVITIES_DATA } from '../data/mockData';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { EventCard } from '../components/EventCard';
+import { buttonProps } from '../utils/keyboard';
 import {
   Calendar as CalendarIcon,
   Search,
@@ -166,7 +167,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                 onClick={() => setSelectedDay(day.id)}
                 className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                   active
-                    ? 'bg-[#ff7324] text-white font-bold shadow-[0_0_10px_rgba(255,115,36,0.3)]'
+                    ? 'bg-[#ff7324] text-slate-950 font-bold shadow-[0_0_10px_rgba(255,115,36,0.3)]'
                     : 'bg-[#080d19] text-slate-300 hover:bg-slate-800 border border-slate-700/60'
                 }`}
               >
@@ -178,6 +179,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
       </div>
 
       {/* Events Results */}
+      <h2 className="sr-only">Haftalık Etkinlik Programı</h2>
       {filteredEvents.length === 0 ? (
         <div className="text-center py-16 bg-slate-900/80 rounded-3xl border border-slate-800 p-8">
           <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mx-auto text-slate-400 mb-3">
@@ -218,6 +220,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                 {/* Clickable thumbnail - opens event modal directly */}
                 <div
                   onClick={() => onSelectEvent(event)}
+                  {...buttonProps(() => onSelectEvent(event), `${event.title} detaylarını aç`)}
                   className="relative group/thumb cursor-pointer shrink-0"
                   title="Detayları ve afişi görmek için tıklayın"
                 >

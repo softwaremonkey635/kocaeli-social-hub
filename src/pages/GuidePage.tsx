@@ -671,6 +671,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                         min="0"
                         step="100"
                         value={rent}
+                        aria-label="Aylık kira payın, Türk lirası"
                         onChange={(e) => setRent(Math.max(0, Number(e.target.value)))}
                         className="w-28 sm:w-44 text-center text-2xl sm:text-4xl font-black text-white bg-transparent outline-hidden tracking-tight cursor-text"
                       />
@@ -740,6 +741,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                               min="0"
                               step="500"
                               value={totalFlatRent}
+                              aria-label="Toplam daire kirası, Türk lirası"
                               onChange={(e) => setTotalFlatRent(Math.max(0, Number(e.target.value)))}
                               className="w-full text-xs font-bold text-white bg-transparent outline-hidden"
                             />
@@ -778,7 +780,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                         <button
                           type="button"
                           onClick={() => setRent(Math.round(totalFlatRent / roommatesCount))}
-                          className="px-2.5 py-1 bg-cyan-600 hover:bg-cyan-500 text-slate-950 rounded-lg text-xs font-black transition-all cursor-pointer shadow-xs"
+                          className="px-2.5 py-1 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-lg text-xs font-black transition-all cursor-pointer shadow-xs"
                         >
                           Uygula
                         </button>
@@ -797,6 +799,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                     <button
                       type="button"
                       onClick={() => setBills((b) => Math.max(0, b - 100))}
+                      aria-label="Fatura ve aidat tutarını 100 lira azalt"
                       className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-black text-sm sm:text-base cursor-pointer"
                     >
                       -
@@ -807,6 +810,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                         min="0"
                         step="50"
                         value={bills}
+                        aria-label="Kişi başı fatura ve aidat, Türk lirası"
                         onChange={(e) => setBills(Math.max(0, Number(e.target.value)))}
                         className="w-14 sm:w-16 text-right text-xs font-bold text-white bg-transparent outline-hidden"
                       />
@@ -815,6 +819,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                     <button
                       type="button"
                       onClick={() => setBills((b) => b + 100)}
+                      aria-label="Fatura ve aidat tutarını 100 lira artır"
                       className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center font-black text-sm sm:text-base cursor-pointer"
                     >
                       +
@@ -873,6 +878,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                             min="0"
                             max="7"
                             value={weeklyFirstMeals}
+                            aria-label="Birinci basım haftalık öğün günü"
                             onChange={(e) => setWeeklyFirstMeals(Math.max(0, Math.min(7, Number(e.target.value))))}
                             className="w-10 sm:w-12 text-center text-xl sm:text-2xl font-black text-white bg-transparent outline-hidden tracking-tight cursor-text"
                           />
@@ -947,6 +953,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                             min="0"
                             max="7"
                             value={weeklySecondMeals}
+                            aria-label="İkinci basım haftalık öğün günü"
                             onChange={(e) => setWeeklySecondMeals(Math.max(0, Math.min(7, Number(e.target.value))))}
                             className="w-10 sm:w-12 text-center text-xl sm:text-2xl font-black text-white bg-transparent outline-hidden tracking-tight cursor-text"
                           />
@@ -1033,6 +1040,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                         min="0"
                         max="40"
                         value={weeklyTrips}
+                        aria-label="Haftalık toplu taşıma biniş sayısı"
                         onChange={(e) => setWeeklyTrips(Math.max(0, Math.min(40, Number(e.target.value))))}
                         className="w-14 sm:w-16 text-center text-2xl sm:text-4xl font-black text-white bg-transparent outline-hidden tracking-tight cursor-text"
                       />
@@ -1258,6 +1266,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                         min="0"
                         step="100"
                         value={groceries}
+                        aria-label="Market ve mutfak harcaması, Türk lirası"
                         onChange={(e) => setGroceries(Math.max(0, Number(e.target.value)))}
                         className="w-20 sm:w-24 px-2 py-0.5 sm:py-1 text-right text-xs font-bold bg-slate-900 border border-slate-700 rounded-lg text-amber-300 outline-hidden"
                       />
@@ -1293,6 +1302,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                         min="0"
                         step="50"
                         value={phoneBill}
+                        aria-label="Telefon ve GSM paketi, Türk lirası"
                         onChange={(e) => setPhoneBill(Math.max(0, Number(e.target.value)))}
                         className="w-20 px-2 py-0.5 sm:py-1 text-right text-xs font-bold bg-slate-900 border border-slate-700 rounded-lg text-cyan-300 outline-hidden"
                       />
@@ -1325,6 +1335,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                         min="0"
                         step="100"
                         value={socialCoffee}
+                        aria-label="Kafe ve sosyal yaşam harcaması, Türk lirası"
                         onChange={(e) => setSocialCoffee(Math.max(0, Number(e.target.value)))}
                         className="w-20 sm:w-24 px-2 py-0.5 sm:py-1 text-right text-xs font-bold bg-slate-900 border border-slate-700 rounded-lg text-pink-400 outline-hidden"
                       />
@@ -1359,6 +1370,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                       min="0"
                       step="50"
                       value={stationeryEtc}
+                      aria-label="Diğer ve kırtasiye harcaması, Türk lirası"
                       onChange={(e) => setStationeryEtc(Math.max(0, Number(e.target.value)))}
                       className="w-20 px-2 py-0.5 sm:py-1 text-right text-xs font-bold bg-slate-900 border border-slate-700 rounded-lg text-slate-200 outline-hidden"
                     />
@@ -1418,6 +1430,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                     min="0"
                     step="250"
                     value={kykBursary}
+                    aria-label="KYK bursu veya öğrenim kredisi, Türk lirası"
                     onChange={(e) => setKykBursary(Math.max(0, Number(e.target.value)))}
                     className="w-full px-2.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold bg-slate-900 border border-slate-700 rounded-lg sm:rounded-xl text-white focus:border-emerald-400 outline-hidden"
                   />
@@ -1463,6 +1476,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                     min="0"
                     step="500"
                     value={familySupport}
+                    aria-label="Aile desteği ve düzenli harçlık, Türk lirası"
                     onChange={(e) => setFamilySupport(Math.max(0, Number(e.target.value)))}
                     className="w-full px-2.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold bg-slate-900 border border-slate-700 rounded-lg sm:rounded-xl text-white focus:border-emerald-400 outline-hidden"
                   />
@@ -1500,6 +1514,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                     min="0"
                     step="250"
                     value={otherBursary}
+                    aria-label="Özel vakıf veya belediye bursu, Türk lirası"
                     onChange={(e) => setOtherBursary(Math.max(0, Number(e.target.value)))}
                     className="w-full px-2.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold bg-slate-900 border border-slate-700 rounded-lg sm:rounded-xl text-white focus:border-emerald-400 outline-hidden"
                   />
@@ -1530,6 +1545,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
                     min="0"
                     step="500"
                     value={partTimeIncome}
+                    aria-label="Part time veya serbest çalışma geliri, Türk lirası"
                     onChange={(e) => setPartTimeIncome(Math.max(0, Number(e.target.value)))}
                     className="w-full px-2.5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold bg-slate-900 border border-slate-700 rounded-lg sm:rounded-xl text-white focus:border-emerald-400 outline-hidden"
                   />
@@ -2219,7 +2235,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={() => onNavigate('events')}
-                className="shrink-0 w-full sm:w-auto px-3.5 py-2 rounded-xl font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-500 transition-all cursor-pointer shadow-md text-center"
+                className="shrink-0 w-full sm:w-auto px-3.5 py-2 rounded-xl font-bold text-xs text-white bg-emerald-600 hover:bg-emerald-700 transition-all cursor-pointer shadow-md text-center"
               >
                 Ücretsiz Etkinlikleri Gör
               </button>
@@ -2472,10 +2488,10 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
 
           {/* Kocaeli Ulaşımında Hayat Kurtaran Mobil Uygulamalar */}
           <div className="pt-2 space-y-2">
-            <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+            <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
               <Smartphone className="w-3.5 h-3.5 text-cyan-400" />
               <span>Kocaeli&apos;de Her Öğrencinin Telefonunda Olması Gereken 4 Ulaşım Uygulaması</span>
-            </h4>
+            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-1">
                 <div className="flex items-center justify-between">
@@ -2523,10 +2539,10 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
           <div className="pt-3 border-t border-cyan-500/20 space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
                   <Route className="w-4 h-4 text-cyan-400" />
                   <span>Umuttepe Kampüs Otobüs Hatları Rehberi &amp; Hayatta Kalma Taktikleri</span>
-                </h4>
+                </h3>
                 <p className="text-[11px] text-slate-400">
                   Hangi hat nereden kalkar, hangisi konforlu, gece dağdan nasıl dönülür ve aktarmasız ilçe hatları.
                 </p>
@@ -2869,25 +2885,25 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <div className="p-4 rounded-xl bg-[#060c18] border border-slate-800 space-y-1.5">
             <span className="text-[10px] font-bold text-emerald-400 uppercase">7/24 KESİNTİSİZ</span>
-            <h4 className="font-bold text-white text-sm">İzmit Millet Kütüphanesi</h4>
+            <h3 className="font-bold text-white text-sm">İzmit Millet Kütüphanesi</h3>
             <p className="text-[11px] text-slate-400">Milli İrade Meydanı. Bireysel çalışma kabinleri, prizli masalar ve gece sıcak ikramlar.</p>
           </div>
 
           <div className="p-4 rounded-xl bg-[#060c18] border border-slate-800 space-y-1.5">
             <span className="text-[10px] font-bold text-emerald-400 uppercase">7/24 KESİNTİSİZ</span>
-            <h4 className="font-bold text-white text-sm">Kartepe İlçe Halk Kütüphanesi</h4>
+            <h3 className="font-bold text-white text-sm">Kartepe İlçe Halk Kütüphanesi</h3>
             <p className="text-[11px] text-slate-400">Kartepe Kent Meydanı. Sessiz etüt salonları ve ücretsiz sıcak kahve ikramı.</p>
           </div>
 
           <div className="p-4 rounded-xl bg-[#060c18] border border-slate-800 space-y-1.5">
             <span className="text-[10px] font-bold text-cyan-400 uppercase">2.200 M² KAPALI ALAN</span>
-            <h4 className="font-bold text-white text-sm">Alev Alatlı Kütüphanesi</h4>
+            <h3 className="font-bold text-white text-sm">Alev Alatlı Kütüphanesi</h3>
             <p className="text-[11px] text-slate-400">İzmit Millet Bahçesi (Eski Fuar). 500 kişilik ferah araştırma laboratuvarı.</p>
           </div>
 
           <div className="p-4 rounded-xl bg-[#060c18] border border-slate-800 space-y-1.5">
             <span className="text-[10px] font-bold text-pink-400 uppercase">09.00 - 22.00</span>
-            <h4 className="font-bold text-white text-sm">SEKA Kütüphanesi</h4>
+            <h3 className="font-bold text-white text-sm">SEKA Kütüphanesi</h3>
             <p className="text-[11px] text-slate-400">Sekapark içi restore endüstriyel miras binası. Deniz kıyısında dingin çalışma ortamı.</p>
           </div>
         </div>

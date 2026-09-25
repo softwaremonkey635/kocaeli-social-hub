@@ -3,6 +3,7 @@ import { PageId, ActivityEvent, SponsorItem } from '../types';
 import { ACTIVITIES_DATA, VISION_MISSION_DATA, TESTIMONIALS_DATA, SPONSORS_DATA } from '../data/mockData';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { getNearestUpcomingEvent } from '../utils/eventHelpers';
+import { buttonProps } from '../utils/keyboard';
 import { SponsorMarquee } from '../components/SponsorMarquee';
 import { WeatherWidget } from '../components/WeatherWidget';
 import {
@@ -134,9 +135,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                   </div>
                 </div>
 
-                <h3 className="font-display text-sm sm:text-base font-bold text-white truncate">
+                <h2 className="font-display text-sm sm:text-base font-bold text-white truncate">
                   {nextUpcoming.title}
-                </h3>
+                </h2>
                 <p className="text-[10px] sm:text-[11px] font-medium text-[#ff7324] truncate">
                   {nextUpcoming.subtitle}
                 </p>
@@ -220,11 +221,17 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         {/* MOBILE VIEW (sm:hidden): Ultra-compact horizontal swipe ribbon (~140px height total) */}
         <div className="sm:hidden -mx-4 px-4">
-          <div className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory">
+          <div
+            role="region"
+            aria-label="Haftalık etkinlikler, yatay kaydırın"
+            tabIndex={0}
+            className="flex gap-2.5 overflow-x-auto pb-2 scrollbar-none snap-x snap-mandatory"
+          >
             {coreActivities.map((act) => (
               <div
                 key={act.id}
                 onClick={() => onSelectEvent(act)}
+                {...buttonProps(() => onSelectEvent(act), `${act.title} etkinlik detayını aç`)}
                 className="snap-start shrink-0 w-44 bg-[#0c1424]/95 rounded-2xl p-2.5 border border-slate-800/90 active:border-cyan-400 shadow-md flex flex-col justify-between cursor-pointer"
               >
                 <div className="relative h-20 rounded-xl overflow-hidden mb-2">
@@ -236,7 +243,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     decoding="async"
                   />
                   <div className="absolute top-1 right-1">
-                    <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-[#ff7324] text-white">
+                    <span className="px-1.5 py-0.5 rounded text-[9px] font-extrabold bg-[#ff7324] text-slate-950">
                       {act.pricing}
                     </span>
                   </div>
@@ -265,6 +272,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div
               key={act.id}
               onClick={() => onSelectEvent(act)}
+              {...buttonProps(() => onSelectEvent(act), `${act.title} etkinlik detayını aç`)}
               className="group bg-[#0c1424]/90 rounded-2xl p-2.5 border border-slate-800/90 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(0,210,235,0.15)] transition-all duration-200 cursor-pointer flex flex-col justify-between hover:-translate-y-0.5 shadow-md"
             >
               <div>
@@ -277,7 +285,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     decoding="async"
                   />
                   <div className="absolute top-1.5 right-1.5">
-                    <span className="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-[#ff7324] text-white shadow-xs">
+                    <span className="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-[#ff7324] text-slate-950 shadow-xs">
                       {act.pricing}
                     </span>
                   </div>
@@ -397,6 +405,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div
               key={sp.id}
               onClick={() => onNavigate('sponsors')}
+              {...buttonProps(() => onNavigate('sponsors'), `${sp.name} sponsor sayfasını aç`)}
               className="p-3.5 sm:p-4 rounded-2xl bg-[#0c1424]/90 backdrop-blur-md border border-slate-800/90 hover:border-cyan-500/40 hover:shadow-[0_0_15px_rgba(0,210,235,0.1)] transition-all flex flex-col justify-between cursor-pointer group"
             >
               <div>
@@ -416,9 +425,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                   </div>
                 </div>
 
-                <h4 className="font-display font-bold text-white group-hover:text-[#00d2eb] transition-colors text-xs sm:text-sm">
+                <h3 className="font-display font-bold text-white group-hover:text-[#00d2eb] transition-colors text-xs sm:text-sm">
                   {sp.name}
-                </h4>
+                </h3>
                 <p className="text-[10px] font-semibold text-[#ff7324] mt-0.5">
                   {sp.category}
                 </p>
@@ -559,7 +568,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   decoding="async"
                 />
                 <div>
-                  <h4 className="font-bold text-xs text-white">{item.name}</h4>
+                  <h3 className="font-bold text-xs text-white">{item.name}</h3>
                   <p className="text-[10px] text-slate-400">{item.role}</p>
                   <span className="inline-block text-[9px] font-semibold text-[#ff7324]">
                     {item.activity}
@@ -593,7 +602,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               href={COMMUNITY_LINKS.whatsappGroup}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-emerald-600 hover:bg-emerald-500 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer border border-emerald-400/30"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-emerald-600 hover:bg-emerald-700 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer border border-emerald-400/30"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp Topluluğuna Katıl</span>

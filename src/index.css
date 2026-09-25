@@ -122,9 +122,11 @@ h1, h2, h3, h4, .font-display {
    still covers every other control. */
 :focus-visible,
 .focus\:outline-none:focus-visible,
-.outline-hidden:focus-visible {
+.outline-hidden:focus-visible,
+html body :is(a, button, [role="button"], input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 2px solid var(--color-brand-cyan);
   outline-offset: 2px;
+  transition: none;
 }
 
 /* Motion is opt-out, not opt-in: the marquee keeps running for everyone

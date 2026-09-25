@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ActivityEvent } from '../types';
+import { buttonProps } from '../utils/keyboard';
 import { COMMUNITY_LINKS } from '../constants/links';
 import {
   downloadIcs,
@@ -41,6 +42,32 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [ticketId, setTicketId] = useState('');
   const [copied, setCopied] = useState(false);
+
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+  const lightboxOpenRef = useRef(isLightboxOpen);
+  lightboxOpenRef.current = isLightboxOpen;
+
+  // Escape closes the top-most layer (lightbox first, then the dialog) and
+  // hands focus back to the control that opened it. The ref mirrors keep the
+  // listener stable so focus is not yanked around on every re-render.
+  useEffect(() => {
+    if (!event) return;
+    const trigger = document.activeElement as HTMLElement | null;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (lightboxOpenRef.current) {
+        setIsLightboxOpen(false);
+        return;
+      }
+      onCloseRef.current();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      if (trigger && typeof trigger.focus === 'function') trigger.focus();
+    };
+  }, [event]);
 
   if (!event) return null;
 
@@ -89,6 +116,9 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto bg-slate-950/85 backdrop-blur-md animate-fade-in">
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${event.title} etkinlik detayı`}
           className="relative w-full max-w-3xl bg-slate-900 rounded-3xl shadow-2xl overflow-hidden my-6 border border-slate-800 max-h-[92vh] flex flex-col text-slate-100"
           onClick={(e) => e.stopPropagation()}
         >
@@ -97,6 +127,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             <div
               className="relative h-64 sm:h-80 w-full overflow-hidden flex items-center justify-center cursor-pointer group"
               onClick={() => setIsLightboxOpen(true)}
+              {...buttonProps(() => setIsLightboxOpen(true), 'Afişi tam ekran aç')}
               title="Afişi tam boyutta görmek için tıklayın"
             >
               <img
@@ -142,11 +173,11 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
               <span className="px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider bg-slate-900/90 text-cyan-300 border border-slate-700 shadow-sm">
                 {event.categoryName}
               </span>
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#f27721] text-white">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#f27721] text-slate-950">
                 {event.pricing}
               </span>
               {event.badge && (
-                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#009cb4] text-white flex items-center gap-1">
+                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#009cb4] text-slate-950 flex items-center gap-1">
                   <Sparkles className="w-3 h-3" />
                   {event.badge}
                 </span>
@@ -173,7 +204,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                       onClick={() => setSelectedImage(sub.image)}
                       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                         isActive
-                          ? 'bg-[#009cb4] text-white shadow-md ring-2 ring-white/50'
+                          ? 'bg-[#009cb4] text-slate-950 shadow-md ring-2 ring-white/50'
                           : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                       }`}
                     >
@@ -327,9 +358,9 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
 
             {/* Description */}
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
                 ETKİNLİK DETAYI
-              </h4>
+              </h3>
               <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
                 {event.description}
               </p>
@@ -338,9 +369,9 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             {/* Highlights */}
             {event.highlights && event.highlights.length > 0 && (
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">
-                  ÖNE ÇIKANLAR & KAZANIMLAR
-                </h4>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">
+                  ÖNE ÇIKANLAR &amp; KAZANIMLAR
+                </h3>
                 <ul className="space-y-2">
                   {event.highlights.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5 text-sm text-slate-300">
@@ -439,6 +470,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             {/* Close Lightbox */}
             <button
               onClick={() => setIsLightboxOpen(false)}
+              aria-label="Poster afişini kapat"
               className="absolute -top-12 right-0 sm:top-2 sm:right-2 z-30 p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-white transition-colors"
               title="Kapat"
             >
@@ -463,7 +495,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                     onClick={() => setSelectedImage(sub.image)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                       currentDisplayImage === sub.image
-                        ? 'bg-[#009cb4] text-white shadow'
+                        ? 'bg-[#009cb4] text-slate-950 shadow'
                         : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                     }`}
                   >
