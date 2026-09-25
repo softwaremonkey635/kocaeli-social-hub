@@ -59,6 +59,9 @@ export default function App() {
 
       if (['home', 'events', 'vision', 'clubs', 'gallery', 'contact', 'blog', 'sponsors', 'guide'].includes(hash)) {
         setCurrentPage(hash as PageId);
+      } else {
+        // Empty hash (#, #/, '') or an unknown route resolves to home.
+        setCurrentPage('home');
       }
     };
 
