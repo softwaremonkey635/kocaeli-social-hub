@@ -81,12 +81,14 @@ const MONTH_ALIASES: Record<string, number> = {
   haziran: 6,
   temmuz: 7,
   agustos: 8,
+  ağustos: 8,
   eylul: 9,
   eylül: 9,
   ekim: 10,
   kasim: 11,
   kasım: 11,
   aralik: 12,
+  aralık: 12,
 };
 
 const DAY_MS = 86400000;

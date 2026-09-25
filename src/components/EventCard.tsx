@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActivityEvent } from '../types';
-import { Calendar, Clock, MapPin, Users, ArrowRight, Sparkles, MessageCircle, Eye } from 'lucide-react';
+import { whatsappShareUrl } from '../utils/calendar';
+import { Calendar, Clock, MapPin, Users, ArrowRight, Sparkles, MessageCircle, Eye, Share2 } from 'lucide-react';
 
 interface EventCardProps {
   event: ActivityEvent;
@@ -145,18 +146,33 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured 
             <span className="truncate">WhatsApp Grubu</span>
           </div>
 
-          <button
-            id={`btn-event-detail-${event.id}`}
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onSelect(event);
-            }}
-            className="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-[#009cb4] transition-all duration-200 border border-slate-700/80 hover:border-cyan-400"
-          >
-            <span>Detay &amp; Katıl</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-          </button>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(whatsappShareUrl(event), '_blank', 'noopener,noreferrer');
+              }}
+              aria-label="Etkinliği WhatsApp'ta paylaş"
+              title="WhatsApp'ta paylaş"
+              className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-300 bg-slate-800 hover:bg-emerald-600 hover:text-white transition-all duration-200 border border-slate-700/80 hover:border-emerald-500"
+            >
+              <Share2 className="w-4 h-4" />
+            </button>
+
+            <button
+              id={`btn-event-detail-${event.id}`}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onSelect(event);
+              }}
+              className="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-[#009cb4] transition-all duration-200 border border-slate-700/80 hover:border-cyan-400"
+            >
+              <span>Detay &amp; Katıl</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

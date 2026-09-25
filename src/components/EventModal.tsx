@@ -2,8 +2,17 @@ import React, { useState } from 'react';
 import { ActivityEvent } from '../types';
 import { COMMUNITY_LINKS } from '../constants/links';
 import {
+  downloadIcs,
+  formatTrDateTime,
+  googleCalendarUrl,
+  nextOccurrence,
+  whatsappShareUrl
+} from '../utils/calendar';
+import {
   X,
   Calendar,
+  CalendarPlus,
+  CalendarDays,
   Clock,
   MapPin,
   Users,
@@ -11,7 +20,6 @@ import {
   ShieldCheck,
   Sparkles,
   Share2,
-  Download,
   MessageCircle,
   Maximize2,
   ZoomIn,
@@ -37,6 +45,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
   if (!event) return null;
 
   const currentDisplayImage = selectedImage || event.image;
+  const occurrence = nextOccurrence(event);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,32 +81,9 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
     }
   };
 
-  const downloadICS = () => {
-    const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Kocaeli Social Hub//Etkinlik Takvimi//TR
-CALSCALE:GREGORIAN
-BEGIN:VEVENT
-SUMMARY:Kocaeli Social Hub: ${event.title}
-DESCRIPTION:${event.description.replace(/\n/g, ' ')}
-LOCATION:${event.location || 'Kocaeli (WhatsApp grubunda duyurulur)'}
-STATUS:CONFIRMED
-END:VEVENT
-END:VCALENDAR`;
+  const downloadICS = () => downloadIcs(event);
 
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', `${event.id}-kocaeli-social.ics`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
-  const directWhatsappText = encodeURIComponent(
-    `Merhaba Kocaeli Social Hub! "${event.title}" (${event.day} ${event.time}) etkinliğinize katılmak istiyorum.`
-  );
-  const directWhatsappUrl = `${COMMUNITY_LINKS.whatsappGroup}`;
 
   return (
     <>
@@ -288,6 +274,55 @@ END:VCALENDAR`;
                   <span>{event.capacity}</span>
                 </div>
               </div>
+            </div>
+
+            {/* Takvim ve paylaşım aksiyonları */}
+            <div className="p-4 bg-slate-950/60 rounded-2xl border border-slate-800 space-y-2.5">
+              <div className="flex flex-wrap items-center gap-2">
+                {occurrence && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={downloadICS}
+                      aria-label="Etkinliği takvime ekle, ics dosyası indir"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-[#009cb4] transition-all duration-200 border border-slate-700/80 hover:border-cyan-400"
+                    >
+                      <CalendarPlus className="w-4 h-4 text-[#00bcd4]" />
+                      <span>Takvime Ekle (.ics)</span>
+                    </button>
+                    <a
+                      href={googleCalendarUrl(event)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Etkinliği Google Takvim'e ekle"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-[#f27721] transition-all duration-200 border border-slate-700/80 hover:border-[#f27721]"
+                    >
+                      <CalendarDays className="w-4 h-4 text-[#f27721]" />
+                      <span>Google Takvim</span>
+                    </a>
+                  </>
+                )}
+                <a
+                  href={whatsappShareUrl(event)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Etkinliği WhatsApp'ta paylaş"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-slate-800 hover:bg-emerald-600 transition-all duration-200 border border-slate-700/80 hover:border-emerald-500"
+                >
+                  <Share2 className="w-4 h-4 text-emerald-400" />
+                  <span>WhatsApp'ta Paylaş</span>
+                </a>
+              </div>
+              {occurrence ? (
+                <p className="text-[11px] leading-relaxed text-slate-400">
+                  Sıradaki buluşma:{' '}
+                  <span className="font-bold text-cyan-300">{formatTrDateTime(occurrence.start)}</span>
+                </p>
+              ) : (
+                <p className="text-[11px] leading-relaxed text-slate-400">
+                  Bu etkinliğin tarihi WhatsApp grubunda duyurulur, takvime ekleme seçeneği kapalıdır.
+                </p>
+              )}
             </div>
 
             {/* Description */}
