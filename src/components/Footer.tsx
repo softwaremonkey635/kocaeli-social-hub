@@ -71,9 +71,9 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Sayfalar */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#f27721] mb-4">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#f27721] mb-4">
               HIZLI GEZİNTİ
-            </h4>
+            </h2>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <button
@@ -145,9 +145,9 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* Haftalık Aktiviteler */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-[#009cb4] mb-4">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-[#009cb4] mb-4">
               HAFTALIK BULUŞMALAR
-            </h4>
+            </h2>
             <ul className="space-y-2 text-xs text-slate-400">
               <li className="flex flex-col">
                 <span className="font-semibold text-white">Cumartesi 18:00</span>
@@ -174,9 +174,9 @@ export const Footer: React.FC<FooterProps> = ({
 
           {/* İlçelerimiz */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 mb-4">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 mb-4">
               KOCAELİ GENELİ
-            </h4>
+            </h2>
             <p className="text-xs text-slate-400 mb-3 leading-relaxed">
               12 ilçemizden gençlerin buluştuğu ortak sosyal platform:
             </p>

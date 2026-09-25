@@ -8,6 +8,16 @@
   --color-brand-cyan: #00d2eb;
   --color-brand-orange: #ff7324;
   --color-brand-amber: #f8a834;
+
+  /* WCAG 2.1 AA (4.5:1 for white text). The stock steps sat at 3.6:1, 3.6:1
+     and 3.6:1 for emerald/cyan/orange 600, so each 600 moves one step darker
+     and each 700 moves one step darker to keep a visible hover difference. */
+  --color-emerald-600: #047857;
+  --color-emerald-700: #065f46;
+  --color-cyan-600: #0e7490;
+  --color-cyan-700: #155e75;
+  --color-orange-600: #c2410c;
+  --color-orange-700: #9a3412;
 }
 
 :root {
@@ -104,6 +114,42 @@ h1, h2, h3, h4, .font-display {
 
 .animate-slide-down {
   animation: slide-down 0.18s ease-out both;
+}
+
+/* One focus indicator for the whole site. The two compound selectors carry
+   specificity (0,2,0), which is what it takes to outrank Tailwind's own
+   `.focus\:outline-none:focus` and `.outline-hidden`; the base selector
+   still covers every other control. */
+:focus-visible,
+.focus\:outline-none:focus-visible,
+.outline-hidden:focus-visible {
+  outline: 2px solid var(--color-brand-cyan);
+  outline-offset: 2px;
+}
+
+/* Motion is opt-out, not opt-in: the marquee keeps running for everyone
+   who did not ask their OS to calm things down. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-marquee {
+    animation: none;
+  }
+
+  .animate-fade-in,
+  .animate-slide-down,
+  .animate-ping,
+  .animate-pulse {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 

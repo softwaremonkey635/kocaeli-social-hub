@@ -143,7 +143,10 @@ export default function App() {
       />
 
       {/* Floating Quick Action Widget (WhatsApp & Join) */}
-      <div className="fixed bottom-5 right-5 z-30 flex flex-col items-end gap-2.5">
+      <aside
+        aria-label="Hızlı İletişim"
+        className="fixed bottom-5 right-5 z-30 flex flex-col items-end gap-2.5"
+      >
         <a
           href={COMMUNITY_LINKS.whatsappGroup}
           target="_blank"
@@ -159,7 +162,7 @@ export default function App() {
             WhatsApp Topluluğuna Katıl
           </span>
         </a>
-      </div>
+      </aside>
     </div>
   );
 }
