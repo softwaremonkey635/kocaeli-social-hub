@@ -27,7 +27,7 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
       let lastErr: unknown;
       for (let i = 0; i < tries; i++) {
         try {
-          const r = await fetch(url);
+          const r = await fetch(url, { cache: 'no-store' });
           if (!r.ok) throw new Error(`HTTP ${r.status}`);
           return await r.json();
         } catch (e) {
@@ -39,15 +39,17 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
     };
 
     try {
-      const [fxResult, bistResult] = await Promise.allSettled([
+      const [fxResult, bistResult, altResult] = await Promise.allSettled([
         fetchJson('https://finans.truncgil.com/today.json'),
         fetchJson(
           'https://scanner.tradingview.com/symbol?symbol=BIST%3AXU100&fields=close,change&no_404=true'
         ),
+        fetchJson('https://open.er-api.com/v6/latest/USD'),
       ]);
 
       const data = fxResult.status === 'fulfilled' ? fxResult.value : null;
       const bist = bistResult.status === 'fulfilled' ? bistResult.value : null;
+      const alt = altResult.status === 'fulfilled' ? altResult.value : null;
       const bistClose = typeof bist?.close === 'number' ? bist.close : null;
       const bistChange = typeof bist?.change === 'number' ? bist.change : null;
 
@@ -64,6 +66,19 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
               maximumFractionDigits: digits,
             })} ₺`;
 
+      // Fallback when truncgil returns nothing: open.er-api.com quotes rates
+      // against a USD base, so USD/TRY is rates.TRY and EUR/TRY is
+      // rates.TRY / rates.EUR. That source carries no daily change, so the
+      // change stays '—'. Numbers are read back through the same toNum path.
+      const altTry = typeof alt?.rates?.TRY === 'number' ? alt.rates.TRY : null;
+      const altEurBase = typeof alt?.rates?.EUR === 'number' ? alt.rates.EUR : null;
+      const altToNum = (n: number | null) =>
+        n === null || !Number.isFinite(n) || n <= 0
+          ? null
+          : toNum(n.toLocaleString('tr-TR', { maximumFractionDigits: 6 }));
+      const altUsdTRY = altToNum(altTry);
+      const altEurTRY = altTry !== null && altEurBase ? altToNum(altTry / altEurBase) : null;
+
       setItems((prev) => {
         const prevByCode = new Map(prev.map((i) => [i.code, i]));
         const fallback = (code: string): TickerItem =>
@@ -73,13 +88,20 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
         const eurChange = data?.EUR?.Değişim || '%0,00';
         const goldChange = data?.['gram-altin']?.Değişim || '%0,00';
 
+        const usdItem = data
+          ? { code: 'USD', name: 'Dolar', value: fmtTRY(toNum(data.USD?.Satış), 2), change: usdChange, isUp: !usdChange.startsWith('%-') }
+          : altUsdTRY !== null
+            ? { code: 'USD', name: 'Dolar', value: fmtTRY(altUsdTRY, 2), change: '—', isUp: true }
+            : fallback('USD');
+        const eurItem = data
+          ? { code: 'EUR', name: 'Euro', value: fmtTRY(toNum(data.EUR?.Satış), 2), change: eurChange, isUp: !eurChange.startsWith('%-') }
+          : altEurTRY !== null
+            ? { code: 'EUR', name: 'Euro', value: fmtTRY(altEurTRY, 2), change: '—', isUp: true }
+            : fallback('EUR');
+
         return [
-          data
-            ? { code: 'USD', name: 'Dolar', value: fmtTRY(toNum(data.USD?.Satış), 2), change: usdChange, isUp: !usdChange.startsWith('%-') }
-            : fallback('USD'),
-          data
-            ? { code: 'EUR', name: 'Euro', value: fmtTRY(toNum(data.EUR?.Satış), 2), change: eurChange, isUp: !eurChange.startsWith('%-') }
-            : fallback('EUR'),
+          usdItem,
+          eurItem,
           bistClose !== null
             ? {
                 code: 'BIST100',
@@ -103,6 +125,8 @@ export const FinanceTicker: React.FC<{ className?: string }> = ({ className = ''
       if (data?.Update_Date) {
         const timePart = data.Update_Date.split(' ')[1]?.slice(0, 5);
         setLastUpdate(timePart || 'Yeni');
+      } else if (!data) {
+        setLastUpdate('Canlı');
       }
     } catch (err) {
       console.warn('Döviz verisi çekilemedi:', err);
