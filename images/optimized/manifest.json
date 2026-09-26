@@ -1,0 +1,156 @@
+[
+  {
+    "original": "/images/events/biblo-boyama.jpeg",
+    "width": 1080,
+    "height": 1350,
+    "variants": [
+      {
+        "path": "/images/optimized/events/biblo-boyama/biblo-boyama-400.webp",
+        "w": 400,
+        "h": 500,
+        "bytes": 34404
+      },
+      {
+        "path": "/images/optimized/events/biblo-boyama/biblo-boyama-800.webp",
+        "w": 800,
+        "h": 1000,
+        "bytes": 91410
+      }
+    ],
+    "lqip": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAACQAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JQBYdg3CaudWAdkdQAP6OIbNn41YuZgp0/fqjkTR26j8Wjg+0xVx8TsaS/zt+eTh9KboAfcEONY36MoDQpAo3D4CGhGSZpvx/FCoXIon/V33u6igftQTAAAA="
+  },
+  {
+    "original": "/images/events/camping.jpeg",
+    "width": 1080,
+    "height": 1350,
+    "variants": [
+      {
+        "path": "/images/optimized/events/camping/camping-400.webp",
+        "w": 400,
+        "h": 500,
+        "bytes": 25536
+      },
+      {
+        "path": "/images/optimized/events/camping/camping-800.webp",
+        "w": 800,
+        "h": 1000,
+        "bytes": 58212
+      }
+    ],
+    "lqip": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADQAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JYwCo9B4+JBQih6D154AA/CC7/rnC9Es+QPnDoNhQ/0UqjMJ2TVFw2G2jZTyyTPXcuDH54kWORMMhw5dAvDCPMCwM2yPyWn0ICYJaZZVQmd2qYBXEAA=="
+  },
+  {
+    "original": "/images/events/canta-boyama.jpeg",
+    "width": 1080,
+    "height": 1350,
+    "variants": [
+      {
+        "path": "/images/optimized/events/canta-boyama/canta-boyama-400.webp",
+        "w": 400,
+        "h": 500,
+        "bytes": 27510
+      },
+      {
+        "path": "/images/optimized/events/canta-boyama/canta-boyama-800.webp",
+        "w": 800,
+        "h": 1000,
+        "bytes": 66600
+      }
+    ],
+    "lqip": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADQAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JYwCo9Bos3qDyck9+ciAA/mZVYWUKQHjiuyJV5/xnxdr+oKhdfxabX0tQkLq+0Auu6qC2uMggbeO1N0Y1u5bmVRUcLF95GS60sLSOG/LfU/u0xF7/3wL4p+e89KosW9nQcAAA"
+  },
+  {
+    "original": "/images/events/hiking.jpeg",
+    "width": 1080,
+    "height": 1350,
+    "variants": [
+      {
+        "path": "/images/optimized/events/hiking/hiking-400.webp",
+        "w": 400,
+        "h": 500,
+        "bytes": 33980
+      },
+      {
+        "path": "/images/optimized/events/hiking/hiking-800.webp",
+        "w": 800,
+        "h": 1000,
+        "bytes": 82246
+      }
+    ],
+    "lqip": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADQAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JZQC7ABKJG3GyhSnK+AAA/fzbHRftKqC79AtbTJ9On74r1Cjzsrz+TQKqpL2BD1LAEx5aRuygtGQ6pa1QZly8aucmS7Sqw235Hja+q/S8r0N5T2GPlcbEAAA="
+  },
+  {
+    "original": "/images/events/kil-boyama.jpeg",
+    "width": 1080,
+    "height": 1350,
+    "variants": [
+      {
+        "path": "/images/optimized/events/kil-boyama/kil-boyama-400.webp",
+        "w": 400,
+        "h": 500,
+        "bytes": 33582
+      },
+      {
+        "path": "/images/optimized/events/kil-boyama/kil-boyama-800.webp",
+        "w": 800,
+        "h": 1000,
+        "bytes": 86088
+      }
+    ],
+    "lqip": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADwAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JQBOgA4kfZp4dHl8NrgQAAP6RmjBSAA/h1CuCrqgT7V9owO3kS6UX6LKGgaYs8EyVevcvqbxYL7FUemoFjRhLiq5o66P/2J8RCw1qLEpzX7MU3NU1Wd3JEWoot7+hrAAAAA=="
+  },
+  {
+    "original": "/images/events/kitap-soylesisi.jpeg",
+    "width": 1080,
+    "height": 1350,
+    "variants": [
+      {
+        "path": "/images/optimized/events/kitap-soylesisi/kitap-soylesisi-400.webp",
+        "w": 400,
+        "h": 500,
+        "bytes": 24970
+      },
+      {
+        "path": "/images/optimized/events/kitap-soylesisi/kitap-soylesisi-800.webp",
+        "w": 800,
+        "h": 1000,
+        "bytes": 60168
+      }
+    ],
+    "lqip": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAABQBACdASoQABQAPu1iqU2ppaOiMAgBMB2JQBadZYJz0QnvZBGCitFfwVkAAP5qGFSAw/1LDbGRw/p1n1xO+0RGzXc13L1NGKxcwv9hMnzSlwCmb7HZU+dlq7FoTYJorDBdbyd91jJXm4b/HZShKEwrxQFsGd/C2uwdAb25wEO+rG8Z9t975g1eAAA="
+  },
+  {
+    "original": "/images/events/speaking-club.jpeg",
+    "width": 960,
+    "height": 1205,
+    "variants": [
+      {
+        "path": "/images/optimized/events/speaking-club/speaking-club-400.webp",
+        "w": 400,
+        "h": 502,
+        "bytes": 50766
+      },
+      {
+        "path": "/images/optimized/events/speaking-club/speaking-club-800.webp",
+        "w": 800,
+        "h": 1004,
+        "bytes": 200930
+      }
+    ],
+    "lqip": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAwBACdASoQABQAPu1iqU2ppaOiMAgBMB2JQBOkFThi7ibVD9mT+qwnRKAA/mWFNxyFKFL9LU++e8OZZ3P2Ic3fmuca09tUD/oEQIq9EUtjDQlxvr2p+97UomKg7wrbCcHX/x8RonNTCO5+MY4rX+jEuFIZ5NuBvKx74rqWTtPN0uGCJ8ecFvu2ImTaMAAA"
+  },
+  {
+    "original": "/images/logo/kocaeli-logo.jpeg",
+    "width": 640,
+    "height": 640,
+    "variants": [
+      {
+        "path": "/images/optimized/logo/kocaeli-logo/kocaeli-logo-400.webp",
+        "w": 400,
+        "h": 400,
+        "bytes": 13736
+      }
+    ],
+    "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQABAAA4BaJZwAAp0Bxr+66AD+9xFxaGRzlSRkY02iurQkmShfLG6SgQjifqBDgSZ4r2TCDZjYzJU+0JhelWGro2okd7hYgAA="
+  }
+]
