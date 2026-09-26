@@ -159,12 +159,16 @@ interface WeatherWidgetProps {
   className?: string;
   badgeLabel?: string;
   showAllDistricts?: boolean;
+  /** Root DOM id. IDs must stay unique per page, so a second widget on the
+   *  same page has to pass its own id. */
+  id?: string;
 }
 
 export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
   className = '',
   badgeLabel = 'CANLI KAMPÜS & KOCAELİ HAVA DURUMU',
-  showAllDistricts = true
+  showAllDistricts = true,
+  id = 'campus-live-weather'
 }) => {
   // Live Clock State
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
@@ -331,7 +335,7 @@ export const WeatherWidget: React.FC<WeatherWidgetProps> = ({
 
   return (
     <div
-      id="campus-live-weather"
+      id={id}
       className={`relative rounded-2xl bg-[#070e1c] border border-cyan-500/25 p-3 sm:p-4 shadow-lg overflow-hidden ${className}`}
     >
       {/* Background subtle glow */}

@@ -84,10 +84,11 @@ function parseRoute(pathname: string): RouteState {
   return parseSegment(stripBase(pathname));
 }
 
-/** Clean URL for a route: home is the base itself, no trailing page segment. */
+/** Clean URL for a route: home is the base itself, every other route keeps a
+ *  trailing slash (GitHub Pages serves /events/ and redirects /events). */
 function routeUrl(route: RouteState): string {
   const suffix = route.eventId ? `event/${route.eventId}` : route.page === 'home' ? '' : route.page;
-  return `${BASE}${suffix}`;
+  return suffix ? `${BASE}${suffix}/` : BASE;
 }
 
 function eventById(eventId: string | null): ActivityEvent | null {

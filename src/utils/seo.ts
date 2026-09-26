@@ -37,10 +37,14 @@ function currentOrigin(): string {
     : SITE_ORIGIN;
 }
 
-/** Real per-route URL for the current host: origin + base + route, no fragment. */
+/** Real per-route URL for the current host: origin + base + route, no fragment.
+ *  Route URLs carry a trailing slash (GitHub Pages serves /events/ and
+ *  redirects /events); the home URL is the deployment base, which already
+ *  ends in '/'. */
 export function currentRouteUrl(): string {
   if (typeof window === 'undefined') return BASE_URL;
-  return currentOrigin() + window.location.pathname;
+  const pathname = window.location.pathname;
+  return currentOrigin() + (pathname.endsWith('/') ? pathname : `${pathname}/`);
 }
 
 /** Origin + deployment base, without a route segment. */

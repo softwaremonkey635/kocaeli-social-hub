@@ -2232,7 +2232,7 @@ export const GuidePage: React.FC<GuidePageProps> = ({ onNavigate }) => {
 
             {/* Canlı Mikroklimal Hava Durumu Widget'ı */}
             <div className="pt-2">
-              <WeatherWidget badgeLabel="ANLIK MİKROKLİMA FARKI" showAllDistricts={false} />
+              <WeatherWidget id="campus-live-weather-detail" badgeLabel="ANLIK MİKROKLİMA FARKI" showAllDistricts={false} />
             </div>
           </div>
         </div>

@@ -2,7 +2,8 @@
 // scripts/gen-sitemap.mjs — clean-URL sitemap + robots.txt for the static build.
 //
 // Writes:
-//   dist/sitemap.xml    9 clean URLs: ${SITE_ORIGIN}${base}<route>, <lastmod> today
+//   dist/sitemap.xml    9 clean URLs: ${SITE_ORIGIN}${base}<route>/, <lastmod> today
+//                       (home = base itself, already ends in '/')
 //   public/sitemap.xml  same content, kept in sync (tracked template)
 //   dist/robots.txt     Sitemap line driven by SITE_ORIGIN + base (overrides the
 //                       copy vite made from public/)

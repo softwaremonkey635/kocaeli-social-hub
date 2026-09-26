@@ -40,7 +40,11 @@ export function resolveOrigin(env = process.env) {
   return raw.replace(/\/+$/, '');
 }
 
-/** Full URL for a route ('' = home) under the given origin+base. No fragments. */
+/** Full URL for a route ('' = home) under the given origin+base. No fragments.
+ *  Page routes from ROUTES carry a trailing slash (GitHub Pages serves
+ *  /events/ and redirects /events); file routes such as sitemap.xml, feed.xml
+ *  or events.ics keep their exact name. */
 export function routeUrl(origin, base, route) {
-  return `${origin}${base}${route}`;
+  const segment = ROUTES.includes(route) && route !== '' ? `${route}/` : route;
+  return `${origin}${base}${segment}`;
 }

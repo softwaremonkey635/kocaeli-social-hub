@@ -398,7 +398,9 @@ async function main() {
 
   try {
     for (const route of ROUTES) {
-      const expectedCanonical = `${localOrigin}${base}${route}`;
+      // Trailing-slash form: applySeo() reports the served directory URL, and
+      // GitHub Pages redirects /events -> /events/ before it serves anything.
+      const expectedCanonical = `${localOrigin}${base}${route ? `${route}/` : ''}`;
       const label = route === '' ? '/' : `/${route}`;
       const page = await context.newPage();
       const consoleErrors = [];
