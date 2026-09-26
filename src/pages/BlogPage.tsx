@@ -17,8 +17,11 @@ import {
   Sparkles,
   ArrowRight,
   Pin,
+  Rss,
   Send
 } from 'lucide-react';
+
+const BASE = import.meta.env.BASE_URL;
 
 interface BlogPageProps {
   onNavigateToJoin?: () => void;
@@ -96,6 +99,31 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
         <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
           Topluluk duyuruları, etkinlik rehberleri, atölye deneyimleri ve gençlik buluşmalarımızdan en güncel haberler burada.
         </p>
+      </div>
+
+      {/* Abone ol: RSS akışı + etkinlik takvimi */}
+      <div className="flex flex-wrap items-center justify-center gap-2 text-xs">
+        <span className="font-semibold text-slate-400">Abone ol</span>
+        <a
+          href={`${BASE}feed.xml`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Kocaeli Social Hub blogunu RSS akışına abone ol (feed.xml)"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-[#f27721] hover:border-slate-700 font-semibold transition-colors cursor-pointer"
+        >
+          <Rss className="w-3.5 h-3.5" aria-hidden="true" />
+          <span>RSS</span>
+        </a>
+        <a
+          href={`${BASE}events.ics`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Etkinlik takvimine abone ol (events.ics)"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-[#00bcd4] hover:border-slate-700 font-semibold transition-colors cursor-pointer"
+        >
+          <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+          <span>Takvim</span>
+        </a>
       </div>
 
       {/* VİKİPEDİ TÜRKÇE: TARİHTE BUGÜN */}

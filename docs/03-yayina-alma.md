@@ -58,3 +58,4 @@ Site PWA (Progressive Web App) desteklidir. Yeni bir build yuklendiginde tarayic
 - Her build islemi benzersiz dosya isimleri uretir (`index-ABC123.js` gibi). Bu sayede eski dosyalar carpismaz.
 - `.htaccess` dosyasi SPA routing icin zorunludur. Yuklenmezse sayfalar arasi gecisler calismaz.
 - Eger sunucuda LiteSpeed Cache aktifse, `deploy/litespeed-notes.md` dosyasindaki talimatleri izleyin.
+- RSS akisi (`dist/feed.xml`) ve etkinlik takvimi (`dist/events.ics`) build sirasinda `scripts/gen-feeds.mjs` ile otomatik uretilir.
