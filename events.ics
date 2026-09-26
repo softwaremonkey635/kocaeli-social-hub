@@ -1,0 +1,298 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Kocaeli Social Hub//Etkinlik Takvimi//TR
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Kocaeli Social Hub
+BEGIN:VEVENT
+UID:speaking-club-20260926T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20260926T150000Z
+DTEND:20260926T170000Z
+SUMMARY:Kocaeli Social Hub: Speaking Club
+DESCRIPTION:Hata yapmaktan korkmadan\, samimi bir masa etrafında çay-kahv
+  eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: "Grammar polisi 
+ iremez!" Amacımız akıcı konuşma cesareti kazanmak\, yeni arkadaşlık
+ ar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.\n\nHe
+  hafta Cumartesi | 18:00 - 20:00\nDetaylar: https://softwaremonkey635.gith
+ b.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:sanat-workshop-20260927T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20260927T150000Z
+DTEND:20260927T170000Z
+SUMMARY:Kocaeli Social Hub: Biblo\, Çanta & Kil Boyama Workshop
+DESCRIPTION:Biblo boyama\, bez çanta tasarımı ve kil şekillendirme atö
+ yelerimiz her pazar dönüşümlü olarak düzenlenmektedir. Her hafta bu 
+ ç sanatsal atölyeden biri seçilir. Bu haftanın workshopunun hangisi ol
+ cağı WhatsApp grubumuzda toplulukla birlikte kararlaştırılır. Kendi 
+ l emeğinizi üreterek haftanın stresini geride bırakın!\n\nHer Pazar g
+ nü | 18:00 - 20:00\nDetaylar: https://softwaremonkey635.github.io/kocaeli
+ social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:halk-oyunlari-20260929T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20260929T150000Z
+DTEND:20260929T170000Z
+SUMMARY:Kocaeli Social Hub: Halk Oyunları
+DESCRIPTION:Zeybek’in asaletinden Horon’un coşkusuna\, Halay’ın bir
+ ikteliğine kadar zengin halk oyunları kültürümüzü profesyonel eğit
+ en eşliğinde adım adım öğreniyoruz. Sıfırdan başlayanlar için ha
+ ika bir fırsat!\n\nHer Salı | 18:00 - 20:00\nDetaylar: https://softwarem
+ nkey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:kitap-okuma-20260930T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20260930T150000Z
+DTEND:20260930T170000Z
+SUMMARY:Kocaeli Social Hub: Kitap Okuma
+DESCRIPTION:Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema
+ üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi
+  Düşüncelerini özgürce aktarabileceğin\, yeni yazarlar keşfedeceği
+  ilham dolu iki saat.\n\nHer Çarşamba | 18:00 - 20:00\nDetaylar: https:/
+ softwaremonkey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:hiking-20261001T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261001T150000Z
+DTEND:20261001T170000Z
+SUMMARY:Kocaeli Social Hub: Hiking
+DESCRIPTION:İş ya da okul çıkışı doğanın kucağına kaçıyoruz! K
+ lay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüy
+ ş yapıyor hem de harika sohbetler eşliğinde Kocaeli’nin yeşilini ke
+ fediyoruz.\n\nHer Perşembe | 18:00 - 20:00\nDetaylar: https://softwaremon
+ ey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:speaking-club-20261003T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261003T150000Z
+DTEND:20261003T170000Z
+SUMMARY:Kocaeli Social Hub: Speaking Club
+DESCRIPTION:Hata yapmaktan korkmadan\, samimi bir masa etrafında çay-kahv
+  eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: "Grammar polisi 
+ iremez!" Amacımız akıcı konuşma cesareti kazanmak\, yeni arkadaşlık
+ ar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.\n\nHe
+  hafta Cumartesi | 18:00 - 20:00\nDetaylar: https://softwaremonkey635.gith
+ b.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:sanat-workshop-20261004T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261004T150000Z
+DTEND:20261004T170000Z
+SUMMARY:Kocaeli Social Hub: Biblo\, Çanta & Kil Boyama Workshop
+DESCRIPTION:Biblo boyama\, bez çanta tasarımı ve kil şekillendirme atö
+ yelerimiz her pazar dönüşümlü olarak düzenlenmektedir. Her hafta bu 
+ ç sanatsal atölyeden biri seçilir. Bu haftanın workshopunun hangisi ol
+ cağı WhatsApp grubumuzda toplulukla birlikte kararlaştırılır. Kendi 
+ l emeğinizi üreterek haftanın stresini geride bırakın!\n\nHer Pazar g
+ nü | 18:00 - 20:00\nDetaylar: https://softwaremonkey635.github.io/kocaeli
+ social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:halk-oyunlari-20261006T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261006T150000Z
+DTEND:20261006T170000Z
+SUMMARY:Kocaeli Social Hub: Halk Oyunları
+DESCRIPTION:Zeybek’in asaletinden Horon’un coşkusuna\, Halay’ın bir
+ ikteliğine kadar zengin halk oyunları kültürümüzü profesyonel eğit
+ en eşliğinde adım adım öğreniyoruz. Sıfırdan başlayanlar için ha
+ ika bir fırsat!\n\nHer Salı | 18:00 - 20:00\nDetaylar: https://softwarem
+ nkey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:kitap-okuma-20261007T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261007T150000Z
+DTEND:20261007T170000Z
+SUMMARY:Kocaeli Social Hub: Kitap Okuma
+DESCRIPTION:Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema
+ üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi
+  Düşüncelerini özgürce aktarabileceğin\, yeni yazarlar keşfedeceği
+  ilham dolu iki saat.\n\nHer Çarşamba | 18:00 - 20:00\nDetaylar: https:/
+ softwaremonkey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:hiking-20261008T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261008T150000Z
+DTEND:20261008T170000Z
+SUMMARY:Kocaeli Social Hub: Hiking
+DESCRIPTION:İş ya da okul çıkışı doğanın kucağına kaçıyoruz! K
+ lay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüy
+ ş yapıyor hem de harika sohbetler eşliğinde Kocaeli’nin yeşilini ke
+ fediyoruz.\n\nHer Perşembe | 18:00 - 20:00\nDetaylar: https://softwaremon
+ ey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:speaking-club-20261010T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261010T150000Z
+DTEND:20261010T170000Z
+SUMMARY:Kocaeli Social Hub: Speaking Club
+DESCRIPTION:Hata yapmaktan korkmadan\, samimi bir masa etrafında çay-kahv
+  eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: "Grammar polisi 
+ iremez!" Amacımız akıcı konuşma cesareti kazanmak\, yeni arkadaşlık
+ ar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.\n\nHe
+  hafta Cumartesi | 18:00 - 20:00\nDetaylar: https://softwaremonkey635.gith
+ b.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:sanat-workshop-20261011T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261011T150000Z
+DTEND:20261011T170000Z
+SUMMARY:Kocaeli Social Hub: Biblo\, Çanta & Kil Boyama Workshop
+DESCRIPTION:Biblo boyama\, bez çanta tasarımı ve kil şekillendirme atö
+ yelerimiz her pazar dönüşümlü olarak düzenlenmektedir. Her hafta bu 
+ ç sanatsal atölyeden biri seçilir. Bu haftanın workshopunun hangisi ol
+ cağı WhatsApp grubumuzda toplulukla birlikte kararlaştırılır. Kendi 
+ l emeğinizi üreterek haftanın stresini geride bırakın!\n\nHer Pazar g
+ nü | 18:00 - 20:00\nDetaylar: https://softwaremonkey635.github.io/kocaeli
+ social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:halk-oyunlari-20261013T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261013T150000Z
+DTEND:20261013T170000Z
+SUMMARY:Kocaeli Social Hub: Halk Oyunları
+DESCRIPTION:Zeybek’in asaletinden Horon’un coşkusuna\, Halay’ın bir
+ ikteliğine kadar zengin halk oyunları kültürümüzü profesyonel eğit
+ en eşliğinde adım adım öğreniyoruz. Sıfırdan başlayanlar için ha
+ ika bir fırsat!\n\nHer Salı | 18:00 - 20:00\nDetaylar: https://softwarem
+ nkey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:kitap-okuma-20261014T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261014T150000Z
+DTEND:20261014T170000Z
+SUMMARY:Kocaeli Social Hub: Kitap Okuma
+DESCRIPTION:Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema
+ üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi
+  Düşüncelerini özgürce aktarabileceğin\, yeni yazarlar keşfedeceği
+  ilham dolu iki saat.\n\nHer Çarşamba | 18:00 - 20:00\nDetaylar: https:/
+ softwaremonkey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:hiking-20261015T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261015T150000Z
+DTEND:20261015T170000Z
+SUMMARY:Kocaeli Social Hub: Hiking
+DESCRIPTION:İş ya da okul çıkışı doğanın kucağına kaçıyoruz! K
+ lay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüy
+ ş yapıyor hem de harika sohbetler eşliğinde Kocaeli’nin yeşilini ke
+ fediyoruz.\n\nHer Perşembe | 18:00 - 20:00\nDetaylar: https://softwaremon
+ ey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:speaking-club-20261017T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261017T150000Z
+DTEND:20261017T170000Z
+SUMMARY:Kocaeli Social Hub: Speaking Club
+DESCRIPTION:Hata yapmaktan korkmadan\, samimi bir masa etrafında çay-kahv
+  eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: "Grammar polisi 
+ iremez!" Amacımız akıcı konuşma cesareti kazanmak\, yeni arkadaşlık
+ ar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.\n\nHe
+  hafta Cumartesi | 18:00 - 20:00\nDetaylar: https://softwaremonkey635.gith
+ b.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:sanat-workshop-20261018T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261018T150000Z
+DTEND:20261018T170000Z
+SUMMARY:Kocaeli Social Hub: Biblo\, Çanta & Kil Boyama Workshop
+DESCRIPTION:Biblo boyama\, bez çanta tasarımı ve kil şekillendirme atö
+ yelerimiz her pazar dönüşümlü olarak düzenlenmektedir. Her hafta bu 
+ ç sanatsal atölyeden biri seçilir. Bu haftanın workshopunun hangisi ol
+ cağı WhatsApp grubumuzda toplulukla birlikte kararlaştırılır. Kendi 
+ l emeğinizi üreterek haftanın stresini geride bırakın!\n\nHer Pazar g
+ nü | 18:00 - 20:00\nDetaylar: https://softwaremonkey635.github.io/kocaeli
+ social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:halk-oyunlari-20261020T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261020T150000Z
+DTEND:20261020T170000Z
+SUMMARY:Kocaeli Social Hub: Halk Oyunları
+DESCRIPTION:Zeybek’in asaletinden Horon’un coşkusuna\, Halay’ın bir
+ ikteliğine kadar zengin halk oyunları kültürümüzü profesyonel eğit
+ en eşliğinde adım adım öğreniyoruz. Sıfırdan başlayanlar için ha
+ ika bir fırsat!\n\nHer Salı | 18:00 - 20:00\nDetaylar: https://softwarem
+ nkey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:kitap-okuma-20261021T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261021T150000Z
+DTEND:20261021T170000Z
+SUMMARY:Kocaeli Social Hub: Kitap Okuma
+DESCRIPTION:Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema
+ üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi
+  Düşüncelerini özgürce aktarabileceğin\, yeni yazarlar keşfedeceği
+  ilham dolu iki saat.\n\nHer Çarşamba | 18:00 - 20:00\nDetaylar: https:/
+ softwaremonkey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+BEGIN:VEVENT
+UID:hiking-20261022T150000Z@kocaeli-social-hub
+DTSTAMP:20260926T093710Z
+DTSTART:20261022T150000Z
+DTEND:20261022T170000Z
+SUMMARY:Kocaeli Social Hub: Hiking
+DESCRIPTION:İş ya da okul çıkışı doğanın kucağına kaçıyoruz! K
+ lay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüy
+ ş yapıyor hem de harika sohbetler eşliğinde Kocaeli’nin yeşilini ke
+ fediyoruz.\n\nHer Perşembe | 18:00 - 20:00\nDetaylar: https://softwaremon
+ ey635.github.io/kocaeli-social-hub/events
+LOCATION:Kocaeli (buluşma noktası WhatsApp grubunda paylaşılır)
+URL:https://softwaremonkey635.github.io/kocaeli-social-hub/events
+END:VEVENT
+END:VCALENDAR
