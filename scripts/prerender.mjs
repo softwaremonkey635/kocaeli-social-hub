@@ -16,6 +16,11 @@
 //      least one h1, no local origin left), then writes dist/index.html (home),
 //      dist/<route>/index.html for the other 8 routes, and dist/404.html as a
 //      copy of the home capture so GitHub Pages serves the app on unknown paths.
+//   5. Injects structured data into the two routes that own it: the Event
+//      ItemList (id="events-jsonld") into dist/events/index.html and the
+//      FAQPage (id="faq-jsonld") into dist/contact/index.html, then asserts
+//      each block appears exactly once, with the expected node count, and in
+//      no other emitted file.
 //
 // Playwright resolution (documented): playwright@1.63.0 is NOT a package.json
 // dependency. It is present in this sandbox's node_modules and resolved by
@@ -46,6 +51,13 @@ const EVENTS_JSONLD = path.join(ROOT, 'public', 'structured-data', 'events.json'
 const EVENTS_JSONLD_ROUTE = 'events';
 /** Expected number of Event nodes in events.json (guard against a stale file). */
 const EVENTS_JSONLD_NODE_COUNT = 20;
+const FAQ_JSONLD = path.join(ROOT, 'public', 'structured-data', 'faq.json');
+/** Build-time copy imported by the visible FAQ section (src/pages/ContactJoinPage.tsx). */
+const FAQ_JSONLD_SRC = path.join(ROOT, 'src', 'data', 'faq.json');
+/** Route whose <head> gets the FAQPage JSON-LD injected. */
+const FAQ_JSONLD_ROUTE = 'contact';
+/** Expected number of Question nodes in faq.json (guard against a stale file). */
+const FAQ_JSONLD_NODE_COUNT = 20;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -169,6 +181,16 @@ function escapeRe(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+/** Index of the last case-insensitive </head> measured on the ORIGINAL string.
+ *  html.toLowerCase().lastIndexOf() is wrong here: lowercasing grows the string
+ *  (Turkish 'İ' -> 'i' + combining dot), so the index it returns points past
+ *  the real tag and the injection splits "</head>" into "</he" + tag + "ad>". */
+function lastHeadCloseIndex(html) {
+  let idx = -1;
+  for (const match of html.matchAll(/<\/head\s*>/gi)) idx = match.index;
+  return idx;
+}
+
 /** Read public/structured-data/events.json once, validate it parses and carries
  *  the expected Event node count, then hand the raw text back for injection. */
 function loadEventsJsonLd() {
@@ -193,8 +215,50 @@ function loadEventsJsonLd() {
 /** Insert the Event ItemList JSON-LD immediately before </head>, once. */
 function injectEventsJsonLd(html, raw) {
   const tag = `<script type="application/ld+json" id="events-jsonld">\n${raw}\n</script>\n`;
-  const idx = html.toLowerCase().lastIndexOf('</head>');
+  const idx = lastHeadCloseIndex(html);
   if (idx === -1) fail('capture has no </head> - cannot inject events JSON-LD');
+  return html.slice(0, idx) + tag + html.slice(idx);
+}
+
+/** Read public/structured-data/faq.json once, validate the Question count, and
+ *  check that the src/ copy the visible section imports is the same content
+ *  (so FAQPage JSON-LD and the on-page Q&As cannot drift apart). */
+function loadFaqJsonLd() {
+  if (!existsSync(FAQ_JSONLD)) fail(`missing ${FAQ_JSONLD}`);
+  const raw = readFileSync(FAQ_JSONLD, 'utf8').trim();
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    fail(`faq.json does not parse: ${err.message}`);
+  }
+  const nodes = Array.isArray(parsed.mainEntity) ? parsed.mainEntity.length : 0;
+  if (nodes !== FAQ_JSONLD_NODE_COUNT) {
+    fail(`faq.json has ${nodes} nodes, expected ${FAQ_JSONLD_NODE_COUNT}`);
+  }
+  if (/<\/script/i.test(raw)) {
+    fail('faq.json contains a closing script tag - refusing to inline it');
+  }
+  if (!existsSync(FAQ_JSONLD_SRC)) {
+    fail(`missing ${FAQ_JSONLD_SRC} - the visible FAQ section imports it`);
+  }
+  let srcParsed;
+  try {
+    srcParsed = JSON.parse(readFileSync(FAQ_JSONLD_SRC, 'utf8'));
+  } catch (err) {
+    fail(`src/data/faq.json does not parse: ${err.message}`);
+  }
+  if (JSON.stringify(srcParsed) !== JSON.stringify(parsed)) {
+    fail('src/data/faq.json is out of sync with public/structured-data/faq.json');
+  }
+  return raw;
+}
+
+/** Insert the FAQPage JSON-LD immediately before </head>, once. */
+function injectFaqJsonLd(html, raw) {
+  const tag = `<script type="application/ld+json" id="faq-jsonld">\n${raw}\n</script>\n`;
+  const idx = lastHeadCloseIndex(html);
+  if (idx === -1) fail('capture has no </head> - cannot inject FAQ JSON-LD');
   return html.slice(0, idx) + tag + html.slice(idx);
 }
 
@@ -230,6 +294,9 @@ function assertEventsJsonLd() {
   if (nodes !== EVENTS_JSONLD_NODE_COUNT) {
     fail(`injected events JSON-LD has ${nodes} nodes, expected ${EVENTS_JSONLD_NODE_COUNT}`);
   }
+  if (!/id="events-jsonld">[\s\S]*?<\/script>\s*<\/head>/i.test(html)) {
+    fail('events JSON-LD is not immediately before </head> (head close damaged)');
+  }
 
   const strays = walkIndexFiles(DIST).filter(
     (file) =>
@@ -244,6 +311,56 @@ function assertEventsJsonLd() {
   );
 }
 
+/** Post-write gate: contact/index.html carries exactly one parseable FAQPage
+ *  JSON-LD block with the expected Question count, no other emitted file does,
+ *  and its questions match the visible accordion rendered on that page. */
+function assertFaqJsonLd() {
+  const faqFile = path.join(DIST, FAQ_JSONLD_ROUTE, 'index.html');
+  if (!existsSync(faqFile)) fail('dist/contact/index.html was not written');
+  const html = readFileSync(faqFile, 'utf8');
+  const marker = 'id="faq-jsonld"';
+  const hits = html.split(marker).length - 1;
+  if (hits !== 1) fail(`dist/contact/index.html has ${hits} faq-jsonld markers, expected 1`);
+
+  const match = /<script type="application\/ld\+json" id="faq-jsonld">([\s\S]*?)<\/script>/.exec(html);
+  if (!match) fail('FAQ JSON-LD block not found in dist/contact/index.html');
+  let parsed;
+  try {
+    parsed = JSON.parse(match[1]);
+  } catch (err) {
+    fail(`injected FAQ JSON-LD does not parse: ${err.message}`);
+  }
+  const nodes = Array.isArray(parsed.mainEntity) ? parsed.mainEntity.length : 0;
+  if (nodes !== FAQ_JSONLD_NODE_COUNT) {
+    fail(`injected FAQ JSON-LD has ${nodes} nodes, expected ${FAQ_JSONLD_NODE_COUNT}`);
+  }
+  if (!/id="faq-jsonld">[\s\S]*?<\/script>\s*<\/head>/i.test(html)) {
+    fail('FAQ JSON-LD is not immediately before </head> (head close damaged)');
+  }
+
+  // Visible-content match: every structured question must appear as the text of
+  // a <summary> on the page (Google rejects FAQ markup that is not visible).
+  for (const question of parsed.mainEntity.map((entry) => entry.name)) {
+    if (!html.includes(question)) {
+      fail(`FAQ question not visible in dist/contact/index.html: ${question.slice(0, 60)}`);
+    }
+  }
+
+  const strays = walkIndexFiles(DIST).filter(
+    (file) => file !== faqFile && readFileSync(file, 'utf8').includes(marker)
+  );
+  const notFound = path.join(DIST, '404.html');
+  if (existsSync(notFound) && readFileSync(notFound, 'utf8').includes(marker)) {
+    strays.push(notFound);
+  }
+  if (strays.length) {
+    fail(`FAQ JSON-LD leaked into ${strays.length} other file(s): ${strays.join(', ')}`);
+  }
+  console.log(
+    `[prerender] FAQ JSON-LD OK: ${nodes} nodes in dist/contact/index.html, 0 other files`
+  );
+}
+
 async function main() {
   const base = resolveBase();
   const origin = resolveOrigin();
@@ -252,8 +369,9 @@ async function main() {
     fail(`dist/index.html not found at ${SHELL} - run vite build first`);
   }
 
-  // Validate the Event ItemList source before spending a browser run on it.
+  // Validate the Event ItemList and FAQPage sources before spending a browser run on them.
   const eventsRaw = loadEventsJsonLd();
+  const faqRaw = loadFaqJsonLd();
 
   const server = createServer(base);
   await new Promise((resolve, reject) => {
@@ -393,19 +511,24 @@ async function main() {
     mkdirSync(dir, { recursive: true });
     const file = path.join(dir, 'index.html');
     const isEvents = capture.route === EVENTS_JSONLD_ROUTE;
-    const html = isEvents ? injectEventsJsonLd(capture.html, eventsRaw) : capture.html;
+    const isFaq = capture.route === FAQ_JSONLD_ROUTE;
+    let html = capture.html;
+    if (isEvents) html = injectEventsJsonLd(html, eventsRaw);
+    if (isFaq) html = injectFaqJsonLd(html, faqRaw);
     writeFileSync(file, html);
     console.log(
       `[prerender] wrote dist/${capture.route}/index.html (${html.length} bytes${
-        isEvents ? ', events JSON-LD injected' : ''
+        isEvents ? ', events JSON-LD injected' : isFaq ? ', FAQ JSON-LD injected' : ''
       })`
     );
   }
 
-  assertEventsJsonLd();
-
   writeFileSync(path.join(DIST, '404.html'), home.html);
   console.log(`[prerender] wrote dist/404.html (copy of dist/index.html)`);
+
+  assertEventsJsonLd();
+  assertFaqJsonLd();
+
   console.log(`[prerender] OK: ${captures.length} routes prerendered`);
 }
 

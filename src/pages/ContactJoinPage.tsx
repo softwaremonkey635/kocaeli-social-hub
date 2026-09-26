@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FAQ_DATA, DISTRICTS } from '../data/mockData';
+import { DISTRICTS } from '../data/mockData';
 import { COMMUNITY_LINKS } from '../constants/links';
+import faqJson from '../data/faq.json';
 import {
   MessageCircle,
   Instagram,
@@ -33,7 +34,14 @@ export const ContactJoinPage: React.FC = () => {
   const [experienceLevel, setExperienceLevel] = useState('İlk Defa Katılacağım (Yeni Başlayan)');
   const [quickGoal, setQuickGoal] = useState('Yeni arkadaşlar edinmek & sosyalleşmek');
   const [customNote, setCustomNote] = useState('');
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Same source of truth as the FAQPage JSON-LD injected into
+  // dist/contact/index.html (public/structured-data/faq.json), so the visible
+  // questions and answers always match the structured data Google reads.
+  const faqItems = faqJson.mainEntity.map((entry) => ({
+    question: entry.name,
+    answer: entry.acceptedAnswer.text
+  }));
 
   const roleOptions = [
     'Öğrenci (KOU)',
@@ -106,10 +114,6 @@ Topluluk etkinliklerinde görüşmek üzere!`;
     e.preventDefault();
     const encoded = encodeURIComponent(generateMessageText());
     window.open(`https://wa.me/${COMMUNITY_LINKS.founderPhoneRaw}?text=${encoded}`, '_blank');
-  };
-
-  const toggleFaq = (index: number) => {
-    setOpenFaq(openFaq === index ? null : index);
   };
 
   return (
@@ -513,15 +517,15 @@ Topluluk etkinliklerinde görüşmek üzere!`;
         </div>
       </div>
 
-      {/* FAQ SECTION */}
-      <section className="space-y-6 max-w-4xl mx-auto pt-4">
+      {/* FAQ SECTION — content mirrors public/structured-data/faq.json (FAQPage JSON-LD) */}
+      <section aria-labelledby="faq-heading" className="space-y-6 max-w-4xl mx-auto pt-4">
         <div className="text-center space-y-1.5">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-400">
             <HelpCircle className="w-4 h-4" />
-            <span>SIKÇA SORULAN SORULAR</span>
+            <span>SIK SORULAN SORULAR</span>
           </div>
-          <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
-            Aklınıza Takılan Sorular &amp; Cevaplar
+          <h2 id="faq-heading" className="font-display text-2xl sm:text-3xl font-bold text-white">
+            Sık Sorulan Sorular
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
             Etkinliklerimize ilk kez katılacak olan arkadaşlarımızın en çok sorduğu sorular.
@@ -529,32 +533,17 @@ Topluluk etkinliklerinde görüşmek üzere!`;
         </div>
 
         <div className="space-y-2.5">
-          {FAQ_DATA.map((faq, index) => {
-            const isOpen = openFaq === index;
-            return (
-              <div
-                key={index}
-                className="bg-slate-900/90 rounded-2xl border border-slate-800 overflow-hidden shadow-xs transition-colors"
-              >
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-white hover:text-cyan-300 cursor-pointer"
-                >
-                  <span>{faq.question}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-[#f27721]' : ''
-                    }`}
-                  />
-                </button>
-                {isOpen && (
-                  <div className="px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-3 animate-fade-in">
-                    {faq.answer}
-                  </div>
-                )}
+          {faqItems.map((faq, index) => (
+            <details key={index} className="faq-item bg-slate-900/90 rounded-2xl border border-slate-800 overflow-hidden shadow-xs transition-colors">
+              <summary className="faq-summary p-4 sm:p-5 flex items-center justify-between gap-4 font-display font-bold text-sm sm:text-base text-white hover:text-cyan-300 cursor-pointer">
+                <span>{faq.question}</span>
+                <ChevronDown className="faq-chevron w-4 h-4 text-slate-400 shrink-0" />
+              </summary>
+              <div className="px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-3 animate-fade-in">
+                {faq.answer}
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </section>
     </div>

@@ -116,6 +116,23 @@ h1, h2, h3, h4, .font-display {
   animation: slide-down 0.18s ease-out both;
 }
 
+/* FAQ accordion: native <details>/<summary> keeps Enter/Space and screen-reader
+   behaviour for free, so only the default disclosure marker and the chevron
+   rotation are styled here (the summary keeps its own focus outline). */
+.faq-summary {
+  list-style: none;
+}
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+.faq-chevron {
+  transition: transform 0.2s ease;
+}
+.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+  color: #f27721;
+}
+
 /* One focus indicator for the whole site. The two compound selectors carry
    specificity (0,2,0), which is what it takes to outrank Tailwind's own
    `.focus\:outline-none:focus` and `.outline-hidden`; the base selector
