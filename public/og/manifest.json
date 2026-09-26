@@ -1,0 +1,56 @@
+{
+  "home": {
+    "file": "/og/home.png",
+    "title": "Ana Sayfa",
+    "subtitle": "Kocaeli’nin Gençlik Platformu",
+    "filesizeKB": 14
+  },
+  "events": {
+    "file": "/og/events.png",
+    "title": "Etkinlikler",
+    "subtitle": "Speak Up, Workshop, Kamp ve Daha Fazlası",
+    "filesizeKB": 15
+  },
+  "vision": {
+    "file": "/og/vision.png",
+    "title": "Vizyon & Misyon",
+    "subtitle": "Geleceği Birlikte İnşa Ediyoruz",
+    "filesizeKB": 16
+  },
+  "clubs": {
+    "file": "/og/clubs.png",
+    "title": "Kulüpler",
+    "subtitle": "Ilgi Alanına Göre Topluluklar",
+    "filesizeKB": 13
+  },
+  "gallery": {
+    "file": "/og/gallery.png",
+    "title": "Galeri",
+    "subtitle": "Anılarımızdan Kareler",
+    "filesizeKB": 12
+  },
+  "contact": {
+    "file": "/og/contact.png",
+    "title": "İletişim & Katıl",
+    "subtitle": "Topluluğumuzla Bağlantı Kur",
+    "filesizeKB": 15
+  },
+  "blog": {
+    "file": "/og/blog.png",
+    "title": "Blog",
+    "subtitle": "Güncel Yazılar ve Düşünceler",
+    "filesizeKB": 13
+  },
+  "sponsors": {
+    "file": "/og/sponsors.png",
+    "title": "Sponsorlar",
+    "subtitle": "Bize Destek Verenler",
+    "filesizeKB": 14
+  },
+  "guide": {
+    "file": "/og/guide.png",
+    "title": "Rehber",
+    "subtitle": "Kocaeli’yi Keşfet",
+    "filesizeKB": 12
+  }
+}

@@ -32,7 +32,8 @@
 //   origin = SITE_ORIGIN env, else https://softwaremonkey635.github.io
 
 import http from 'node:http';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import os from 'node:os';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ROUTES, resolveBase, resolveOrigin } from './static-routes.mjs';
@@ -40,6 +41,11 @@ import { ROUTES, resolveBase, resolveOrigin } from './static-routes.mjs';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
 const SHELL = path.join(DIST, 'index.html');
+const EVENTS_JSONLD = path.join(ROOT, 'public', 'structured-data', 'events.json');
+/** Route that gets the bulk Event ItemList injected into its <head>. */
+const EVENTS_JSONLD_ROUTE = 'events';
+/** Expected number of Event nodes in events.json (guard against a stale file). */
+const EVENTS_JSONLD_NODE_COUNT = 20;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -96,32 +102,58 @@ function createServer(base) {
   });
 }
 
+/** True when the chromium build a given npx-cache playwright copy expects is
+ *  actually installed under ~/.cache/ms-playwright. Several copies live in the
+ *  npx cache at different versions; picking one whose browser is missing fails
+ *  at launch time instead of at resolve time. */
+function chromiumInstalledFor(candidate) {
+  try {
+    const browsersFile = path.join(path.dirname(candidate), 'playwright-core', 'browsers.json');
+    const browsers = JSON.parse(readFileSync(browsersFile, 'utf8'));
+    const entry = (browsers.browsers || []).find((b) => b.name === 'chromium');
+    if (!entry) return false;
+    const root =
+      process.env.PLAYWRIGHT_BROWSERS_PATH || path.join(os.homedir(), '.cache', 'ms-playwright');
+    return existsSync(path.join(root, `chromium-${entry.revision}`));
+  } catch {
+    return false;
+  }
+}
+
 async function loadChromium() {
   try {
     const pw = await import('playwright');
-    return pw.chromium;
+    if (pw && pw.chromium) return pw.chromium;
   } catch {
-    const { readdirSync, existsSync: exists } = await import('node:fs');
-    const npxBase = '/home/bazzite/.npm/_npx';
-    if (exists(npxBase)) {
-      for (const dir of readdirSync(npxBase)) {
-        const candidate = `${npxBase}/${dir}/node_modules/playwright`;
-        if (exists(candidate)) {
-          try {
-            const pw = await import(candidate);
-            return pw.chromium;
-          } catch {
-            /* keep scanning */
-          }
-        }
+    /* fall through to the npx cache scan */
+  }
+  const { createRequire } = await import('node:module');
+  const npxBase = '/home/bazzite/.npm/_npx';
+  if (existsSync(npxBase)) {
+    const candidates = readdirSync(npxBase)
+      .map((dir) => `${npxBase}/${dir}/node_modules/playwright`)
+      .filter((candidate) => existsSync(candidate));
+    const ordered = [
+      ...candidates.filter(chromiumInstalledFor),
+      ...candidates.filter((candidate) => !chromiumInstalledFor(candidate)),
+    ];
+    for (const candidate of ordered) {
+      try {
+        // Node's ESM loader rejects directory imports (ERR_UNSUPPORTED_DIR_IMPORT),
+        // so require the package entry through a createRequire anchored at its
+        // own package.json instead of importing the folder path.
+        const req = createRequire(path.join(candidate, 'package.json'));
+        const pw = req('playwright');
+        if (pw && pw.chromium) return pw.chromium;
+      } catch {
+        /* keep scanning */
       }
     }
-    fail(
-      'playwright not resolvable. Expected <repo>/node_modules/playwright ' +
-        '(documented sandbox install) or an npx cache copy.'
-    );
-    return null;
   }
+  fail(
+    'playwright not resolvable. Expected <repo>/node_modules/playwright ' +
+      '(documented sandbox install) or an npx cache copy.'
+  );
 }
 
 function extractTitle(html) {
@@ -137,6 +169,81 @@ function escapeRe(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+/** Read public/structured-data/events.json once, validate it parses and carries
+ *  the expected Event node count, then hand the raw text back for injection. */
+function loadEventsJsonLd() {
+  if (!existsSync(EVENTS_JSONLD)) fail(`missing ${EVENTS_JSONLD}`);
+  const raw = readFileSync(EVENTS_JSONLD, 'utf8').trim();
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    fail(`events.json does not parse: ${err.message}`);
+  }
+  const nodes = Array.isArray(parsed.itemListElement) ? parsed.itemListElement.length : 0;
+  if (nodes !== EVENTS_JSONLD_NODE_COUNT) {
+    fail(`events.json has ${nodes} nodes, expected ${EVENTS_JSONLD_NODE_COUNT}`);
+  }
+  if (/<\/script/i.test(raw)) {
+    fail('events.json contains a closing script tag - refusing to inline it');
+  }
+  return raw;
+}
+
+/** Insert the Event ItemList JSON-LD immediately before </head>, once. */
+function injectEventsJsonLd(html, raw) {
+  const tag = `<script type="application/ld+json" id="events-jsonld">\n${raw}\n</script>\n`;
+  const idx = html.toLowerCase().lastIndexOf('</head>');
+  if (idx === -1) fail('capture has no </head> - cannot inject events JSON-LD');
+  return html.slice(0, idx) + tag + html.slice(idx);
+}
+
+function walkIndexFiles(dir) {
+  const out = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) out.push(...walkIndexFiles(full));
+    else if (entry.name === 'index.html') out.push(full);
+  }
+  return out;
+}
+
+/** Post-write gate: events/index.html carries exactly one parseable JSON-LD
+ *  block with the expected node count, and no other index.html carries it. */
+function assertEventsJsonLd() {
+  const eventsFile = path.join(DIST, EVENTS_JSONLD_ROUTE, 'index.html');
+  if (!existsSync(eventsFile)) fail('dist/events/index.html was not written');
+  const html = readFileSync(eventsFile, 'utf8');
+  const marker = 'id="events-jsonld"';
+  const hits = html.split(marker).length - 1;
+  if (hits !== 1) fail(`dist/events/index.html has ${hits} events-jsonld markers, expected 1`);
+
+  const match = /<script type="application\/ld\+json" id="events-jsonld">([\s\S]*?)<\/script>/.exec(html);
+  if (!match) fail('events JSON-LD block not found in dist/events/index.html');
+  let parsed;
+  try {
+    parsed = JSON.parse(match[1]);
+  } catch (err) {
+    fail(`injected events JSON-LD does not parse: ${err.message}`);
+  }
+  const nodes = Array.isArray(parsed.itemListElement) ? parsed.itemListElement.length : 0;
+  if (nodes !== EVENTS_JSONLD_NODE_COUNT) {
+    fail(`injected events JSON-LD has ${nodes} nodes, expected ${EVENTS_JSONLD_NODE_COUNT}`);
+  }
+
+  const strays = walkIndexFiles(DIST).filter(
+    (file) =>
+      file !== eventsFile &&
+      readFileSync(file, 'utf8').includes(marker)
+  );
+  if (strays.length) {
+    fail(`events JSON-LD leaked into ${strays.length} other file(s): ${strays.join(', ')}`);
+  }
+  console.log(
+    `[prerender] events JSON-LD OK: ${nodes} nodes in dist/events/index.html, 0 other index.html`
+  );
+}
+
 async function main() {
   const base = resolveBase();
   const origin = resolveOrigin();
@@ -144,6 +251,9 @@ async function main() {
   if (!existsSync(SHELL)) {
     fail(`dist/index.html not found at ${SHELL} - run vite build first`);
   }
+
+  // Validate the Event ItemList source before spending a browser run on it.
+  const eventsRaw = loadEventsJsonLd();
 
   const server = createServer(base);
   await new Promise((resolve, reject) => {
@@ -282,11 +392,17 @@ async function main() {
     const dir = path.join(DIST, capture.route);
     mkdirSync(dir, { recursive: true });
     const file = path.join(dir, 'index.html');
-    writeFileSync(file, capture.html);
+    const isEvents = capture.route === EVENTS_JSONLD_ROUTE;
+    const html = isEvents ? injectEventsJsonLd(capture.html, eventsRaw) : capture.html;
+    writeFileSync(file, html);
     console.log(
-      `[prerender] wrote dist/${capture.route}/index.html (${capture.html.length} bytes)`
+      `[prerender] wrote dist/${capture.route}/index.html (${html.length} bytes${
+        isEvents ? ', events JSON-LD injected' : ''
+      })`
     );
   }
+
+  assertEventsJsonLd();
 
   writeFileSync(path.join(DIST, '404.html'), home.html);
   console.log(`[prerender] wrote dist/404.html (copy of dist/index.html)`);

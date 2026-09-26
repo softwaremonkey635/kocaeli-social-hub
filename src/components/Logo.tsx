@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { srcSetFor } from '../utils/responsiveImages';
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -57,6 +58,7 @@ export const Logo: React.FC<LogoProps> = ({
             {!imgError ? (
               <img
                 src={`${BASE}images/logo/kocaeli-logo.jpeg`}
+                {...srcSetFor(`${BASE}images/logo/kocaeli-logo.jpeg`, `${iconDimensions}px`)}
                 alt="Kocaeli Social Hub Logo"
                 width={iconDimensions}
                 height={iconDimensions}

@@ -4,6 +4,7 @@ import { COMMUNITY_LINKS } from '../constants/links';
 import { ActivityEvent } from '../types';
 import { buttonProps } from '../utils/keyboard';
 import { imageDims } from '../utils/imageDims';
+import { srcSetFor } from '../utils/responsiveImages';
 import {
   Users,
   CheckCircle2,
@@ -98,6 +99,7 @@ export const ClubsPage: React.FC<ClubsPageProps> = ({ onSelectEvent }) => {
           <div className="lg:col-span-5 relative h-64 lg:h-auto min-h-[300px]">
             <img
               src={activeClub.image}
+              {...srcSetFor(activeClub.image, '(max-width: 1024px) calc(100vw - 32px), 40vw')}
               alt={activeClub.name}
               width={imageDims(activeClub.image)?.w}
               height={imageDims(activeClub.image)?.h}

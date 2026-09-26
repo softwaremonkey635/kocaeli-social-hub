@@ -4,6 +4,7 @@ import { GalleryItem, EventCategory } from '../types';
 import { Camera, MapPin, Calendar, X } from 'lucide-react';
 import { buttonProps } from '../utils/keyboard';
 import { imageDims } from '../utils/imageDims';
+import { srcSetFor } from '../utils/responsiveImages';
 
 export const GalleryPage: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryItem | null>(null);
@@ -119,6 +120,10 @@ export const GalleryPage: React.FC = () => {
           >
             <img
               src={item.image}
+              {...srcSetFor(
+                item.image,
+                '(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 44px), (max-width: 1280px) calc(33vw - 41px), 295px'
+              )}
               alt={item.title}
               width={imageDims(item.image)?.w}
               height={imageDims(item.image)?.h}
@@ -168,6 +173,7 @@ export const GalleryPage: React.FC = () => {
 
             <img
               src={selectedPhoto.image}
+              {...srcSetFor(selectedPhoto.image, '(max-width: 800px) calc(100vw - 32px), 768px')}
               alt={selectedPhoto.title}
               width={imageDims(selectedPhoto.image)?.w}
               height={imageDims(selectedPhoto.image)?.h}

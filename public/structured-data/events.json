@@ -1,0 +1,809 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Kocaeli Social Hub Etkinlikleri",
+  "description": "Kocaeli'de düzenlenen gençlik etkinlikleri: Speaking Club, hiking, sanat workshopları, kitap söyleşileri ve halk oyunları.",
+  "numberOfItems": 20,
+  "itemListElement": [
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#speaking-club-2026-09-26",
+      "name": "Speaking Club",
+      "description": "Hata yapmaktan korkmadan, samimi bir masa etrafında çay-kahve eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: \"Grammar polisi giremez!\" Amacımız akıcı konuşma cesareti kazanmak, yeni arkadaşlıklar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.",
+      "startDate": "2026-09-26T18:00:00+03:00",
+      "endDate": "2026-09-26T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Speaking Club - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/speaking-club.jpeg",
+      "url": "https://kocaelisosyal.com/events#speaking-club"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#speaking-club-2026-10-03",
+      "name": "Speaking Club",
+      "description": "Hata yapmaktan korkmadan, samimi bir masa etrafında çay-kahve eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: \"Grammar polisi giremez!\" Amacımız akıcı konuşma cesareti kazanmak, yeni arkadaşlıklar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.",
+      "startDate": "2026-10-03T18:00:00+03:00",
+      "endDate": "2026-10-03T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Speaking Club - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/speaking-club.jpeg",
+      "url": "https://kocaelisosyal.com/events#speaking-club"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#speaking-club-2026-10-10",
+      "name": "Speaking Club",
+      "description": "Hata yapmaktan korkmadan, samimi bir masa etrafında çay-kahve eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: \"Grammar polisi giremez!\" Amacımız akıcı konuşma cesareti kazanmak, yeni arkadaşlıklar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.",
+      "startDate": "2026-10-10T18:00:00+03:00",
+      "endDate": "2026-10-10T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Speaking Club - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/speaking-club.jpeg",
+      "url": "https://kocaelisosyal.com/events#speaking-club"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#speaking-club-2026-10-17",
+      "name": "Speaking Club",
+      "description": "Hata yapmaktan korkmadan, samimi bir masa etrafında çay-kahve eşliğinde İngilizce sohbet ediyoruz. Kuralımız net: \"Grammar polisi giremez!\" Amacımız akıcı konuşma cesareti kazanmak, yeni arkadaşlıklar kurmak ve eğlenceli buz kırıcı oyunlarla dil pratiği yapmak.",
+      "startDate": "2026-10-17T18:00:00+03:00",
+      "endDate": "2026-10-17T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Speaking Club - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/speaking-club.jpeg",
+      "url": "https://kocaelisosyal.com/events#speaking-club"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#hiking-2026-10-01",
+      "name": "Hiking",
+      "description": "İş ya da okul çıkışı doğanın kucağına kaçıyoruz! Kolay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüyüş yapıyor hem de harika sohbetler eşliğinde Kocaeli'nin yeşilini keşfediyoruz.",
+      "startDate": "2026-10-01T18:00:00+03:00",
+      "endDate": "2026-10-01T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Hiking - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/hiking.jpeg",
+      "url": "https://kocaelisosyal.com/events#hiking"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#hiking-2026-10-08",
+      "name": "Hiking",
+      "description": "İş ya da okul çıkışı doğanın kucağına kaçıyoruz! Kolay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüyüş yapıyor hem de harika sohbetler eşliğinde Kocaeli'nin yeşilini keşfediyoruz.",
+      "startDate": "2026-10-08T18:00:00+03:00",
+      "endDate": "2026-10-08T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Hiking - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/hiking.jpeg",
+      "url": "https://kocaelisosyal.com/events#hiking"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#hiking-2026-10-15",
+      "name": "Hiking",
+      "description": "İş ya da okul çıkışı doğanın kucağına kaçıyoruz! Kolay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüyüş yapıyor hem de harika sohbetler eşliğinde Kocaeli'nin yeşilini keşfediyoruz.",
+      "startDate": "2026-10-15T18:00:00+03:00",
+      "endDate": "2026-10-15T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Hiking - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/hiking.jpeg",
+      "url": "https://kocaelisosyal.com/events#hiking"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#hiking-2026-10-22",
+      "name": "Hiking",
+      "description": "İş ya da okul çıkışı doğanın kucağına kaçıyoruz! Kolay-orta seviye kısa mesafe parkurlarımızda hem sağlıklı bir yürüyüş yapıyor hem de harika sohbetler eşliğinde Kocaeli'nin yeşilini keşfediyoruz.",
+      "startDate": "2026-10-22T18:00:00+03:00",
+      "endDate": "2026-10-22T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Hiking - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/hiking.jpeg",
+      "url": "https://kocaelisosyal.com/events#hiking"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#sanat-workshop-2026-09-27",
+      "name": "Biblo, Çanta & Kil Boyama Workshop",
+      "description": "Biblo boyama, bez çanta tasarımı ve kil şekillendirme atölyelerimiz her pazar dönüşümlü olarak düzenlenmektedir. Her hafta bu üç sanatsal atölyeden biri seçilir. Bu haftanın workshopunun hangisi olacağı WhatsApp grubumuzda toplulukla birlikte kararlaştırılır. Kendi el emeğinizi üreterek haftanın stresini geride bırakın!",
+      "startDate": "2026-09-27T18:00:00+03:00",
+      "endDate": "2026-09-27T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Biblo, Çanta & Kil Boyama Workshop - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/biblo-boyama.jpeg",
+      "url": "https://kocaelisosyal.com/events#sanat-workshop"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#sanat-workshop-2026-10-04",
+      "name": "Biblo, Çanta & Kil Boyama Workshop",
+      "description": "Biblo boyama, bez çanta tasarımı ve kil şekillendirme atölyelerimiz her pazar dönüşümlü olarak düzenlenmektedir. Her hafta bu üç sanatsal atölyeden biri seçilir. Bu haftanın workshopunun hangisi olacağı WhatsApp grubumuzda toplulukla birlikte kararlaştırılır. Kendi el emeğinizi üreterek haftanın stresini geride bırakın!",
+      "startDate": "2026-10-04T18:00:00+03:00",
+      "endDate": "2026-10-04T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Biblo, Çanta & Kil Boyama Workshop - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/biblo-boyama.jpeg",
+      "url": "https://kocaelisosyal.com/events#sanat-workshop"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#sanat-workshop-2026-10-11",
+      "name": "Biblo, Çanta & Kil Boyama Workshop",
+      "description": "Biblo boyama, bez çanta tasarımı ve kil şekillendirme atölyelerimiz her pazar dönüşümlü olarak düzenlenmektedir. Her hafta bu üç sanatsal atölyeden biri seçilir. Bu haftanın workshopunun hangisi olacağı WhatsApp grubumuzda toplulukla birlikte kararlaştırılır. Kendi el emeğinizi üreterek haftanın stresini geride bırakın!",
+      "startDate": "2026-10-11T18:00:00+03:00",
+      "endDate": "2026-10-11T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Biblo, Çanta & Kil Boyama Workshop - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/biblo-boyama.jpeg",
+      "url": "https://kocaelisosyal.com/events#sanat-workshop"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#sanat-workshop-2026-10-18",
+      "name": "Biblo, Çanta & Kil Boyama Workshop",
+      "description": "Biblo boyama, bez çanta tasarımı ve kil şekillendirme atölyelerimiz her pazar dönüşümlü olarak düzenlenmektedir. Her hafta bu üç sanatsal atölyeden biri seçilir. Bu haftanın workshopunun hangisi olacağı WhatsApp grubumuzda toplulukla birlikte kararlaştırılır. Kendi el emeğinizi üreterek haftanın stresini geride bırakın!",
+      "startDate": "2026-10-18T18:00:00+03:00",
+      "endDate": "2026-10-18T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Biblo, Çanta & Kil Boyama Workshop - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/biblo-boyama.jpeg",
+      "url": "https://kocaelisosyal.com/events#sanat-workshop"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#kitap-okuma-2026-09-30",
+      "name": "Kitap Okuma",
+      "description": "Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi. Düşüncelerini özgürce aktarabileceğin, yeni yazarlar keşfedeceğin ilham dolu iki saat.",
+      "startDate": "2026-09-30T18:00:00+03:00",
+      "endDate": "2026-09-30T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Kitap Okuma - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/kitap-soylesisi.jpeg",
+      "url": "https://kocaelisosyal.com/events#kitap-okuma"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#kitap-okuma-2026-10-07",
+      "name": "Kitap Okuma",
+      "description": "Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi. Düşüncelerini özgürce aktarabileceğin, yeni yazarlar keşfedeceğin ilham dolu iki saat.",
+      "startDate": "2026-10-07T18:00:00+03:00",
+      "endDate": "2026-10-07T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Kitap Okuma - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/kitap-soylesisi.jpeg",
+      "url": "https://kocaelisosyal.com/events#kitap-okuma"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#kitap-okuma-2026-10-14",
+      "name": "Kitap Okuma",
+      "description": "Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi. Düşüncelerini özgürce aktarabileceğin, yeni yazarlar keşfedeceğin ilham dolu iki saat.",
+      "startDate": "2026-10-14T18:00:00+03:00",
+      "endDate": "2026-10-14T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Kitap Okuma - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/kitap-soylesisi.jpeg",
+      "url": "https://kocaelisosyal.com/events#kitap-okuma"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#kitap-okuma-2026-10-21",
+      "name": "Kitap Okuma",
+      "description": "Her hafta seçilen bir eser veya belirli bir edebi/felsefi tema üzerine 10 kişilik butik ve samimi bir çemberde derinlemesine söyleşi. Düşüncelerini özgürce aktarabileceğin, yeni yazarlar keşfedeceğin ilham dolu iki saat.",
+      "startDate": "2026-10-21T18:00:00+03:00",
+      "endDate": "2026-10-21T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Kitap Okuma - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://kocaelisosyal.com/images/events/kitap-soylesisi.jpeg",
+      "url": "https://kocaelisosyal.com/events#kitap-okuma"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#halk-oyunlari-2026-09-29",
+      "name": "Halk Oyunları",
+      "description": "Zeybek'in asaletinden Horon'un coşkusuna, Halay'ın birlikteliğine kadar zengin halk oyunları kültürümüzü profesyonel eğitmen eşliğinde adım adım öğreniyoruz. Sıfırdan başlayanlar için harika bir fırsat!",
+      "startDate": "2026-09-29T18:00:00+03:00",
+      "endDate": "2026-09-29T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Halk Oyunları - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=900&q=80",
+      "url": "https://kocaelisosyal.com/events#halk-oyunlari"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#halk-oyunlari-2026-10-06",
+      "name": "Halk Oyunları",
+      "description": "Zeybek'in asaletinden Horon'un coşkusuna, Halay'ın birlikteliğine kadar zengin halk oyunları kültürümüzü profesyonel eğitmen eşliğinde adım adım öğreniyoruz. Sıfırdan başlayanlar için harika bir fırsat!",
+      "startDate": "2026-10-06T18:00:00+03:00",
+      "endDate": "2026-10-06T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Halk Oyunları - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=900&q=80",
+      "url": "https://kocaelisosyal.com/events#halk-oyunlari"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#halk-oyunlari-2026-10-13",
+      "name": "Halk Oyunları",
+      "description": "Zeybek'in asaletinden Horon'un coşkusuna, Halay'ın birlikteliğine kadar zengin halk oyunları kültürümüzü profesyonel eğitmen eşliğinde adım adım öğreniyoruz. Sıfırdan başlayanlar için harika bir fırsat!",
+      "startDate": "2026-10-13T18:00:00+03:00",
+      "endDate": "2026-10-13T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Halk Oyunları - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=900&q=80",
+      "url": "https://kocaelisosyal.com/events#halk-oyunlari"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://kocaelisosyal.com/events#halk-oyunlari-2026-10-20",
+      "name": "Halk Oyunları",
+      "description": "Zeybek'in asaletinden Horon'un coşkusuna, Halay'ın birlikteliğine kadar zengin halk oyunları kültürümüzü profesyonel eğitmen eşliğinde adım adım öğreniyoruz. Sıfırdan başlayanlar için harika bir fırsat!",
+      "startDate": "2026-10-20T18:00:00+03:00",
+      "endDate": "2026-10-20T20:00:00+03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Halk Oyunları - Kocaeli",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kocaeli",
+          "addressRegion": "Kocaeli",
+          "addressCountry": "TR"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "performer": {
+        "@type": "Organization",
+        "name": "Kocaeli Social Hub",
+        "url": "https://kocaelisosyal.com",
+        "logo": "https://kocaelisosyal.com/images/logo.png",
+        "sameAs": [
+          "https://www.instagram.com/kocaelisosyal.41"
+        ]
+      },
+      "image": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=900&q=80",
+      "url": "https://kocaelisosyal.com/events#halk-oyunlari"
+    }
+  ]
+}

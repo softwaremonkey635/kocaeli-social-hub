@@ -5,6 +5,7 @@ import { COMMUNITY_LINKS } from '../constants/links';
 import { EventCard } from '../components/EventCard';
 import { buttonProps } from '../utils/keyboard';
 import { imageDims } from '../utils/imageDims';
+import { srcSetFor } from '../utils/responsiveImages';
 import {
   Calendar as CalendarIcon,
   Search,
@@ -227,6 +228,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({
                 >
                   <img
                     src={event.image}
+                    {...srcSetFor(event.image, '(max-width: 640px) 72px, 80px')}
                     alt={event.title}
                     width={imageDims(event.image)?.w}
                     height={imageDims(event.image)?.h}

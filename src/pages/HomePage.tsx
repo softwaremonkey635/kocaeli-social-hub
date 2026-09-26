@@ -4,6 +4,7 @@ import { ACTIVITIES_DATA, VISION_MISSION_DATA, TESTIMONIALS_DATA, SPONSORS_DATA 
 import { COMMUNITY_LINKS } from '../constants/links';
 import { getNearestUpcomingEvent } from '../utils/eventHelpers';
 import { imageDims } from '../utils/imageDims';
+import { srcSetFor } from '../utils/responsiveImages';
 import { buttonProps } from '../utils/keyboard';
 import { SponsorMarquee } from '../components/SponsorMarquee';
 import { WeatherWidget } from '../components/WeatherWidget';
@@ -148,6 +149,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className="mt-2 rounded-xl overflow-hidden h-24 sm:h-28 relative group">
                   <img
                     src={nextUpcoming.image}
+                    {...srcSetFor(nextUpcoming.image, '(max-width: 640px) calc(100vw - 40px), 360px')}
                     alt={nextUpcoming.title}
                     width={imageDims(nextUpcoming.image)?.w}
                     height={imageDims(nextUpcoming.image)?.h}
@@ -243,6 +245,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className="relative h-20 rounded-xl overflow-hidden mb-2">
                   <img
                     src={act.image}
+                    {...srcSetFor(act.image, '156px')}
                     alt={act.title}
                     width={imageDims(act.image)?.w}
                     height={imageDims(act.image)?.h}
@@ -287,6 +290,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div className="relative h-24 rounded-xl overflow-hidden mb-2">
                   <img
                     src={act.image}
+                    {...srcSetFor(act.image, '(max-width: 1024px) calc((100vw - 136px) / 5), 215px')}
                     alt={act.title}
                     width={imageDims(act.image)?.w}
                     height={imageDims(act.image)?.h}
@@ -572,6 +576,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="flex items-center gap-2.5 mt-3 pt-2.5 border-t border-slate-800/80">
                 <img
                   src={item.avatar}
+                  {...srcSetFor(item.avatar, '32px')}
                   alt={item.name}
                   width={imageDims(item.avatar)?.w}
                   height={imageDims(item.avatar)?.h}

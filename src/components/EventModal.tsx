@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ActivityEvent } from '../types';
 import { buttonProps } from '../utils/keyboard';
 import { imageDims } from '../utils/imageDims';
+import { srcSetFor } from '../utils/responsiveImages';
 import { COMMUNITY_LINKS } from '../constants/links';
 import {
   downloadIcs,
@@ -133,6 +134,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             >
               <img
                 src={currentDisplayImage}
+                {...srcSetFor(currentDisplayImage, '(max-width: 800px) calc(100vw - 24px), 768px')}
                 alt={event.title}
                 width={imageDims(currentDisplayImage)?.w}
                 height={imageDims(currentDisplayImage)?.h}
@@ -213,6 +215,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
                     >
                       <img
                         src={sub.image}
+                        {...srcSetFor(sub.image, '16px')}
                         alt={sub.title}
                         width={imageDims(sub.image)?.w}
                         height={imageDims(sub.image)?.h}
@@ -486,6 +489,7 @@ export const EventModal: React.FC<EventModalProps> = ({ event, onClose }) => {
             <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl max-h-[82vh] flex items-center justify-center p-2 border border-slate-800">
               <img
                 src={currentDisplayImage}
+                {...srcSetFor(currentDisplayImage, '(max-width: 912px) calc(100vw - 48px), 896px')}
                 alt={event.title}
                 width={imageDims(currentDisplayImage)?.w}
                 height={imageDims(currentDisplayImage)?.h}

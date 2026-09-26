@@ -2,6 +2,7 @@ import React from 'react';
 import { ActivityEvent } from '../types';
 import { whatsappShareUrl, nextOccurrence, formatTrShort } from '../utils/calendar';
 import { imageDims } from '../utils/imageDims';
+import { srcSetFor } from '../utils/responsiveImages';
 import { Calendar, Clock, MapPin, Users, ArrowRight, Sparkles, MessageCircle, Eye, Share2 } from 'lucide-react';
 
 interface EventCardProps {
@@ -25,6 +26,10 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured 
       <div className="relative h-60 sm:h-64 w-full overflow-hidden bg-[#060a14] flex items-center justify-center">
         <img
           src={event.image}
+          {...srcSetFor(
+            event.image,
+            '(max-width: 640px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 36px), 286px'
+          )}
           alt={event.title}
           width={imageDims(event.image)?.w}
           height={imageDims(event.image)?.h}
@@ -63,6 +68,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelect, featured 
                 <img
                   key={i}
                   src={sub.image}
+                  {...srcSetFor(sub.image, '28px')}
                   alt={sub.title}
                   width={imageDims(sub.image)?.w}
                   height={imageDims(sub.image)?.h}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BLOG_POSTS } from '../data/blogData';
 import { BlogPost } from '../types';
 import { imageDims } from '../utils/imageDims';
+import { srcSetFor } from '../utils/responsiveImages';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { HistoryTodayWidget } from '../components/HistoryTodayWidget';
 import {
@@ -151,6 +152,7 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
               <div className="rounded-2xl overflow-hidden shadow-2xl h-56 sm:h-64 border border-slate-800">
                 <img
                   src={pinnedPost.image}
+                  {...srcSetFor(pinnedPost.image, '(max-width: 1024px) calc(100vw - 32px), 373px')}
                   alt={pinnedPost.title}
                   width={imageDims(pinnedPost.image)?.w}
                   height={imageDims(pinnedPost.image)?.h}
@@ -230,6 +232,10 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
               >
                 <img
                   src={post.image}
+                  {...srcSetFor(
+                    post.image,
+                    '(max-width: 768px) calc(100vw - 32px), (max-width: 1024px) calc(50vw - 44px), 405px'
+                  )}
                   alt={post.title}
                   width={imageDims(post.image)?.w}
                   height={imageDims(post.image)?.h}
@@ -327,6 +333,7 @@ export const BlogPage: React.FC<BlogPageProps> = () => {
             <div className="relative h-60 sm:h-72 w-full overflow-hidden">
               <img
                 src={activePost.image}
+                {...srcSetFor(activePost.image, '(max-width: 800px) calc(100vw - 32px), 768px')}
                 alt={activePost.title}
                 width={imageDims(activePost.image)?.w}
                 height={imageDims(activePost.image)?.h}

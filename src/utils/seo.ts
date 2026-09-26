@@ -7,6 +7,30 @@ export const DEFAULT_IMAGE = 'https://softwaremonkey635.github.io/kocaeli-social
 export const SITE_NAME = 'Kocaeli Social Hub';
 export const SITE_LANGUAGE = 'tr';
 
+/**
+ * Routes with a dedicated 1200x630 OG card in public/og (see that directory's
+ * manifest.json for the exact filenames). Any route missing here — or missing
+ * its file on disk — falls back to DEFAULT_IMAGE.
+ */
+const ROUTE_OG_IMAGES: Record<string, string> = {
+  home: 'home.png',
+  events: 'events.png',
+  vision: 'vision.png',
+  clubs: 'clubs.png',
+  gallery: 'gallery.png',
+  contact: 'contact.png',
+  blog: 'blog.png',
+  sponsors: 'sponsors.png',
+  guide: 'guide.png',
+};
+
+/** Absolute URL of the per-route OG image, or the site default. */
+export function routeOgImage(page: PageId): string {
+  const file = ROUTE_OG_IMAGES[page];
+  if (!file) return DEFAULT_IMAGE;
+  return `${currentOrigin()}${APP_BASE}og/${file}`;
+}
+
 function currentOrigin(): string {
   return typeof window !== 'undefined' && window.location.origin
     ? window.location.origin
@@ -208,6 +232,7 @@ function buildEventNode(event: SeoEventInput, startDate: string, fallback: PageS
 export function applySeo(page: PageId, event?: SeoEventInput | null): void {
   const seo = PAGE_SEO[page] || PAGE_SEO.home;
   const routeUrl = currentRouteUrl();
+  const ogImage = routeOgImage(page);
 
   document.title = seo.title;
   upsertMeta('meta[name="description"]', 'name', 'description', seo.description);
@@ -216,10 +241,10 @@ export function applySeo(page: PageId, event?: SeoEventInput | null): void {
   upsertMeta('meta[property="og:description"]', 'property', 'og:description', seo.description);
   upsertMeta('meta[property="og:url"]', 'property', 'og:url', routeUrl);
   upsertMeta('meta[property="og:type"]', 'property', 'og:type', 'website');
-  upsertMeta('meta[property="og:image"]', 'property', 'og:image', DEFAULT_IMAGE);
+  upsertMeta('meta[property="og:image"]', 'property', 'og:image', ogImage);
   upsertMeta('meta[name="twitter:title"]', 'name', 'twitter:title', seo.title);
   upsertMeta('meta[name="twitter:description"]', 'name', 'twitter:description', seo.description);
-  upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', DEFAULT_IMAGE);
+  upsertMeta('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage);
 
   const graph: unknown[] = [
     {

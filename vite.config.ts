@@ -21,6 +21,7 @@ export default defineConfig(() => {
         includeAssets: ['images/logo/kocaeli-logo.jpeg'],
         workbox: {
           globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,svg,ico,webp,woff,woff2}'],
+          globIgnores: ['**/og/**', '**/structured-data/**', '**/images/optimized/**'],
           cleanupOutdatedCaches: true,
           navigateFallback: `${base}index.html`,
           runtimeCaching: [
