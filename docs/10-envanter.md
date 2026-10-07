@@ -271,16 +271,16 @@ Kod içinde okunan tüm ortam değişkenleri ve varsayılanları.
 | `dist/feed.xml` (RSS 2.0) | `scripts/gen-feeds.mjs` |
 | `dist/events.ics` (RFC 5545) | `scripts/gen-feeds.mjs` |
 | `public/pwa-192x192.png`, `public/pwa-512x512.png`, `public/pwa-maskable-512x512.png`, `public/apple-touch-icon.png` | `scripts/generate-pwa-icons.mjs` (manuel; npm script'i yok) |
-| `public/images/optimized/**` + `public/images/optimized/manifest.json` | `optimize-images.js` (manuel; yol sabit `/tmp/opencode/kocaeli-social-hub`) |
+| `public/images/optimized/**` + `public/images/optimized/manifest.json` | `optimize-images.js` (manuel; yolları betiğin kendi konumundan çözer) |
 | `src/utils/imageDims.ts` | `scripts/image-dims.mjs --write` (manuel) |
 
 ---
 
 ## 9. Yeni bir makinede ne bozulur
 
-1. **Playwright yok.** `scripts/prerender.mjs` `playwright` paketini `package.json`'dan değil, `<repo>/node_modules/playwright` veya `/home/bazzite/.npm/_npx` önbelleğinden çözümlüyor. Bu paket `package.json`'da bağımlılık olarak listelenmiyor. Yeni makinede ne `node_modules/playwright` ne de npx önbelleği ne de `~/.cache/ms-playwright` tarayıcı ikili dosyası var; `build:static` bu adımda hata verir.
-2. **Sabit npx önbellek yolu.** `scripts/prerender.mjs:143` ve `tests/e2e-matrix.mjs:49` yolu `/home/bazzite/.npm/_npx` olarak sabit yazıyor. Farklı kullanıcı adında bu yol bulunmaz.
-3. **Sabit proje yolu.** `optimize-images.js:13-14` kaynak ve hedef dizinleri `/tmp/opencode/kocaeli-social-hub/...` olarak sabit yazıyor. Yeni makinede bu dizin yok; betik çalışmaz.
+1. **Playwright yok.** `scripts/prerender.mjs` `playwright` paketini `package.json`'dan değil, `<repo>/node_modules/playwright` veya `os.homedir()` ile kurulan `~/.npm/_npx` önbelleğinden çözümlüyor. Bu paket `package.json`'da bağımlılık olarak listelenmiyor. Yeni makinede ne `node_modules/playwright` ne de npx önbelleği ne de `~/.cache/ms-playwright` tarayıcı ikili dosyası olabilir; bu durumda `build:static` bu adımda hata verir. Playwright'ı `npm install --no-save playwright` ve `npx playwright install --with-deps --only-shell chromium` ile kurun.
+2. **Sabit npx önbellek yolu (taşınabilir).** `scripts/prerender.mjs` npx önbellek yolunu `os.homedir()` ile kurar; `tests/e2e-matrix.mjs`'de `_npx` başvurusu yoktur. İki betikte de kullanıcı adına sabit bir yol kalmadı.
+3. **Sabit proje yolu (taşınabilir).** `optimize-images.js` kaynak ve hedef dizinleri kendi konumundan (`import.meta.url`) çözer; betik herhangi bir klonda çalışır.
 4. **Node sürümü.** `.nvmrc` = `24`; `package.json` `engines.node` = `>=22`; `migration/bootstrap.sh` Vite 8 için Node 20.19+ veya 22.12+ istiyor. Düşük sürümde build başarısız olur.
 5. **Önce `vite build` şart.** `scripts/gen-sitemap.mjs` ve `scripts/gen-feeds.mjs` `dist/` klasörünün var olmasını gerektiriyor; `gen-feeds.mjs` `dist/` yoksa hata veriyor.
 6. **`public/` üzerine yazma yan etkisi.** `scripts/gen-sitemap.mjs` takip edilen `public/sitemap.xml` ve `public/robots.txt` dosyalarının içeriğini değiştiriyor.

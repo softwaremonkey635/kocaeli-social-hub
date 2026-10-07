@@ -67,9 +67,9 @@ export default defineConfig(() => {
       },
     },
     server: {
-      // Do not modify - file watching is disabled to prevent flickering during agent edits.
+      // HMR and file watching are on by default. Set DISABLE_HMR=true to turn
+      // both off, which saves CPU during long agent edit sessions.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
   };

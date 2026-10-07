@@ -16,6 +16,9 @@
     "validate:content": "node --no-warnings scripts/validate-content.mjs",
     "test:calendar": "node tests/calendar.test.mjs"
   },
+  "overrides": {
+    "source-map-js": "^1.2.2"
+  },
   "dependencies": {
     "lucide-react": "^0.546.0",
     "react": "^19.0.1",
@@ -30,7 +33,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "autoprefixer": "^10.4.21",
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.28.0",
     "pagefind": "^1.5.2",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.3.3",

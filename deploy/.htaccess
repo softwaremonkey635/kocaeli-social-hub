@@ -42,7 +42,6 @@ RewriteRule . /index.html [L]
 # MIME types
 # =============================================================================
 AddType application/manifest+json   .webmanifest
-AddType application/manifest+json   .webmanifest
 AddType application/json            .json
 
 # =============================================================================

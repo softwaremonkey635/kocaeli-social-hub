@@ -40,15 +40,16 @@ after you have watched it pass.
 - [ ] The weather widget loads for the Kocaeli districts.
 - [ ] No mixed-content warnings in the browser console.
 
-## Sandbox-specific details to retire
+## Sandbox-specific details (retired)
 
-These were true in the old opencode flatpak sandbox. They should not be
-needed on the new system, and a few are hardcoded in the repo.
+These were true in the old opencode flatpak sandbox. The repo has since been
+de-sandboxed, so the hardcoded paths are gone. The checklist records the
+current state.
 
-- [ ] Playwright is not a `package.json` dependency. It resolved from the sandbox `node_modules` or from the npx cache path `/home/bazzite/.npm/_npx`, which is hardcoded in `scripts/prerender.mjs` and `tests/e2e-matrix.mjs`. On the new host, install it with `npm install --no-save playwright` and `npx playwright install --with-deps --only-shell chromium`, and expect the hardcoded npx path to miss.
-- [ ] Chromium binaries lived at `~/.cache/ms-playwright`, also hardcoded as a fallback in both scripts. The migration scripts instead set `PLAYWRIGHT_BROWSERS_PATH` to `$HOME/pw-browsers`.
-- [ ] Node came from the sandbox at `~/.local/bin/node` (v24.19.0), not from a system package. The new system gets Node from the Fedora distro package `nodejs24` inside the container.
-- [ ] The repo used to live at `/tmp/opencode/kocaeli-social-hub`, which is volatile. `tests/README.md` and `deploy/.deploy-summary.md` still name that path.
-- [ ] `.env.example` carries `GEMINI_API_KEY` and `APP_URL` from AI Studio. Neither is used at runtime.
-- [ ] The repo standardized on `package-lock.json`, so both scripts use `npm ci`.
-- [ ] The E2E matrix writes its JSON to `/tmp/opencode/e2e-matrix.json`, so `/tmp/opencode` must exist. Under distrobox this is the container's own `/tmp`.
+- [ ] Playwright is still not a `package.json` dependency. `scripts/prerender.mjs` resolves it from `<repo>/node_modules/playwright` or, as a fallback, from the npx cache under `os.homedir()/.npm/_npx` (the path is built with `os.homedir()`, no hardcoded username). `tests/e2e-matrix.mjs` has no `_npx` reference. On a fresh host, install it with `npm install --no-save playwright` and `npx playwright install --with-deps --only-shell chromium`.
+- [ ] Chromium binaries: `scripts/prerender.mjs` looks under `$PLAYWRIGHT_BROWSERS_PATH` or `os.homedir()/.cache/ms-playwright`. The migration scripts set `PLAYWRIGHT_BROWSERS_PATH` to `$HOME/pw-browsers`.
+- [ ] Node comes from the Fedora distro package `nodejs24` inside the container (matches `.nvmrc` = 24 and `engines.node` >= 22).
+- [ ] The repo no longer lives at `/tmp/opencode/kocaeli-social-hub`. Neither `tests/README.md` nor `deploy/.deploy-summary.md` names that path (`tests/README.md` writes its JSON to the OS temp dir; the deploy summary has been removed).
+- [ ] `.env.example` is comment-only. It documents the two optional build-time variables (`APP_BASE`, `SITE_ORIGIN`) and carries no keys.
+- [ ] The repo standardizes on `package-lock.json`; use `npm ci` for a clean install.
+- [ ] The E2E matrix writes its JSON to `os.tmpdir()/e2e-matrix.json`, so no `/tmp/opencode` directory is required.
