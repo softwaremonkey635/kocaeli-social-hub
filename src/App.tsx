@@ -103,7 +103,26 @@ function migrateLegacyHash(): void {
   window.history.replaceState(null, '', routeUrl(parseSegment(legacy)));
 }
 
+/** Bare clean URLs ("/events") get the trailing-slash canonical form. The
+ *  service worker's navigateFallback serves the precached shell for the bare
+ *  path, so the server's redirect never runs and the address bar would keep
+ *  the non-canonical URL. Normalize on load so served path and canonical agree. */
+function normalizeTrailingSlash(): void {
+  const pathname = window.location.pathname;
+  const baseDir = BASE === '/' ? '' : BASE.replace(/\/+$/, '');
+  let rest = pathname;
+  if (baseDir && (rest === baseDir || rest.startsWith(`${baseDir}/`))) {
+    rest = rest.slice(baseDir.length);
+  }
+  const seg = rest.replace(/^\/+|\/+$/g, '');
+  const isHome = seg === '';
+  if ((isHome || ROUTED_PAGES.includes(seg as PageId)) && !pathname.endsWith('/')) {
+    window.history.replaceState(null, '', `${pathname}/`);
+  }
+}
+
 migrateLegacyHash();
+normalizeTrailingSlash();
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>(
