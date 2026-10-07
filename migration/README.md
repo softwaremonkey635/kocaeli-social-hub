@@ -19,7 +19,7 @@ or any of its hidden paths.
 | `distrobox/kocaeli.ini` | Distrobox assemble manifest that defines the dev container. |
 | `distrobox/setup.sh` | Runs `distrobox assemble create` and checks the pinned Node inside the container. |
 | `bootstrap.sh` | Detects Node, installs deps, builds, runs the unit test, prints PASS/FAIL. |
-| `verify.sh` | Typechecks, runs the full static build, then the Playwright E2E matrix. |
+| `verify.sh` | Typechecks, runs the unit test and the full static build, then the Playwright E2E matrix. |
 | `HANDOVER-CHECKLIST.md` | What to check after the move, plus the list of sandbox-only details. |
 | `OWNER-INPUTS.md` | The short list of facts only the owner can supply. |
 | `NOTES-FROM-RESEARCH.md` | Sourced notes behind the container and Playwright choices, each line tagged VERIFIED or UNVERIFIED. |
@@ -38,9 +38,9 @@ or any of its hidden paths.
 5. From the repo root, inside the container, run
    `sh migration/bootstrap.sh`. This installs dependencies, runs the
    typecheck, runs the full static build, and runs the unit test.
-6. Run the full gate: `sh migration/verify.sh`. It typechecks, rebuilds,
-   serves `dist/` locally, and runs the Playwright E2E matrix. It exits
-   non-zero on any failure.
+6. Run the full gate: `sh migration/verify.sh`. It typechecks, runs the unit
+   test, rebuilds, serves `dist/` locally, and runs the Playwright E2E matrix.
+   It exits non-zero on any failure.
 7. Work through `HANDOVER-CHECKLIST.md` before you call the move done.
 
 ## Node version

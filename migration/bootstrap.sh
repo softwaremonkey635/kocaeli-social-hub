@@ -31,11 +31,23 @@ if ! command -v npm >/dev/null 2>&1; then
 fi
 
 NODE_VERSION=$(node -v)
-NODE_MAJOR=${NODE_VERSION#v}
-NODE_MAJOR=${NODE_MAJOR%%.*}
+NODE_NUM=${NODE_VERSION#v}
+NODE_MAJOR=${NODE_NUM%%.*}
+NODE_REST=${NODE_NUM#*.}
+NODE_MINOR=${NODE_REST%%.*}
 echo "==> node ${NODE_VERSION}"
-if [ "$NODE_MAJOR" -lt 20 ]; then
+
+# Vite 8 supports 20.19+ and 22.12+ (and any later major). Node 21 and
+# 22.0 through 22.11 are outside that range, so a bare "major >= 20" check
+# is too loose and would let a broken toolchain through.
+NODE_OK=0
+if [ "$NODE_MAJOR" -eq 20 ] && [ "$NODE_MINOR" -ge 19 ]; then NODE_OK=1; fi
+if [ "$NODE_MAJOR" -eq 22 ] && [ "$NODE_MINOR" -ge 12 ]; then NODE_OK=1; fi
+if [ "$NODE_MAJOR" -ge 23 ]; then NODE_OK=1; fi
+if [ "$NODE_OK" -ne 1 ]; then
   echo "FAIL: Vite 8 needs Node 20.19+ or 22.12+. Found ${NODE_VERSION}."
+  echo "      Use Node 20.19 or newer, or 22.12 or newer. The dev container"
+  echo "      installs the Fedora nodejs24 package, which satisfies this."
   exit 1
 fi
 

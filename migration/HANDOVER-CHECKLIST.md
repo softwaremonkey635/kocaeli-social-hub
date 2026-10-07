@@ -50,5 +50,5 @@ needed on the new system, and a few are hardcoded in the repo.
 - [ ] Node came from the sandbox at `~/.local/bin/node` (v24.19.0), not from a system package. The new system gets Node from the Fedora distro package `nodejs24` inside the container.
 - [ ] The repo used to live at `/tmp/opencode/kocaeli-social-hub`, which is volatile. `tests/README.md` and `deploy/.deploy-summary.md` still name that path.
 - [ ] `.env.example` carries `GEMINI_API_KEY` and `APP_URL` from AI Studio. Neither is used at runtime.
-- [ ] The repo standardized on `package-lock.json` (the old `bun.lock` was dropped), so both scripts use `npm ci`.
+- [ ] The repo standardized on `package-lock.json`, so both scripts use `npm ci`.
 - [ ] The E2E matrix writes its JSON to `/tmp/opencode/e2e-matrix.json`, so `/tmp/opencode` must exist. Under distrobox this is the container's own `/tmp`.

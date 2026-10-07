@@ -1,14 +1,14 @@
 # MANIFEST - Kocaeli Social Hub
 
-Ground truth for the migration pack. Read from the repo on 2026-10-07, repo
-head `839bb98`.
+Ground truth for the migration pack. Read from the repo on 2026-10-08, repo
+head `c08ae8e`.
 
 ## Identity
 
 | Field | Value |
 |---|---|
 | Project name | Kocaeli Social Hub |
-| Package name | `react-example` (private, not published) |
+| Package name | `kocaeli-social-hub` (private, not published) |
 | Repo | https://github.com/softwaremonkey635/kocaeli-social-hub.git (branch `main`) |
 | Live URL | https://softwaremonkey635.github.io/kocaeli-social-hub/ |
 | Owner | Murat Malkoç, founder. Instagram @kocaelisosyal.41 |
