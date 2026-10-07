@@ -27,7 +27,7 @@
 // Node's normal module resolution from the repo root:
 //     node -e "require.resolve('playwright')"
 //     -> <repo>/node_modules/playwright/index.js
-// Browser binaries: ~/.cache/ms-playwright (chromium-1243).
+// Browser binaries: $HOME/.cache/ms-playwright (chromium-1243).
 // If the direct import fails we fall back to scanning the npx cache, the same
 // strategy tests/e2e-matrix.mjs uses. No dependency is added to package.json.
 //
@@ -140,7 +140,7 @@ async function loadChromium() {
     /* fall through to the npx cache scan */
   }
   const { createRequire } = await import('node:module');
-  const npxBase = '/home/bazzite/.npm/_npx';
+  const npxBase = path.join(os.homedir(), '.npm', '_npx');
   if (existsSync(npxBase)) {
     const candidates = readdirSync(npxBase)
       .map((dir) => `${npxBase}/${dir}/node_modules/playwright`)

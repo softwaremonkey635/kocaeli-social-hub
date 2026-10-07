@@ -9,9 +9,12 @@
 import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const SRC_DIR = '/tmp/opencode/kocaeli-social-hub/public/images';
-const OUT_DIR = '/tmp/opencode/kocaeli-social-hub/public/images/optimized';
+// Resolve from this script's location so the optimizer works from any checkout.
+const REPO_ROOT = path.dirname(fileURLToPath(import.meta.url));
+const SRC_DIR = path.join(REPO_ROOT, 'public', 'images');
+const OUT_DIR = path.join(REPO_ROOT, 'public', 'images', 'optimized');
 const WIDTHS = [400, 800, 1200];
 const LQIP_WIDTH = 16;
 const QUALITY = 80;
@@ -31,7 +34,7 @@ function findImages(dir) {
 }
 
 // Convert a source path to a relative path with dashes
-// e.g. /tmp/.../public/images/events/biblo-boyama.jpeg -> events/biblo-boyama
+// e.g. <repo>/public/images/events/biblo-boyama.jpeg -> events/biblo-boyama
 function toRelPath(srcPath) {
   const rel = path.relative(SRC_DIR, srcPath);
   const ext = path.extname(rel);
@@ -171,7 +174,7 @@ async function main() {
   let verifyFail = 0;
   for (const entry of manifest) {
     for (const v of entry.variants) {
-      const fullPath = path.join('/tmp/opencode/kocaeli-social-hub', v.path);
+      const fullPath = path.join(REPO_ROOT, v.path);
       if (!fs.existsSync(fullPath)) {
         console.log(`FAIL missing: ${v.path}`);
         verifyFail++;
