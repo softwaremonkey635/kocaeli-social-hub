@@ -525,8 +525,13 @@ async function main() {
     );
   }
 
-  writeFileSync(path.join(DIST, '404.html'), home.html);
-  console.log(`[prerender] wrote dist/404.html (copy of dist/index.html)`);
+  // 404.html is a byte-for-byte copy of the home page, so indexing it would
+  // surface a duplicate of the home content under /404.html. Pagefind has no
+  // --exclude flag; the supported mechanism is data-pagefind-ignore on the
+  // <body> tag, which drops the whole page from the index.
+  const notFoundHtml = home.html.replace(/<body\b/i, '<body data-pagefind-ignore');
+  writeFileSync(path.join(DIST, '404.html'), notFoundHtml);
+  console.log(`[prerender] wrote dist/404.html (copy of dist/index.html, excluded from Pagefind)`);
 
   assertEventsJsonLd();
   assertFaqJsonLd();

@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { PageId } from '../types';
 import { Logo } from './Logo';
+import { Search } from './Search';
 import { COMMUNITY_LINKS } from '../constants/links';
 import { ACTIVITIES_DATA } from '../data/mockData';
 import { getNearestUpcomingEvent } from '../utils/eventHelpers';
@@ -124,8 +125,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Desktop Right CTA: Instagram (Only Instagram logo and group IG handle) */}
+          {/* Desktop Right CTA: Search + Instagram (Only Instagram logo and group IG handle) */}
           <div className="hidden sm:flex items-center gap-2 shrink-0">
+            <Search />
             <a
               id="nav-btn-instagram"
               href={COMMUNITY_LINKS.instagram}
@@ -139,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
           </div>
 
-          {/* Mobile buttons: Quick Instagram + Mobile menu hamburger */}
+          {/* Mobile buttons: Quick Instagram + Search + Mobile menu hamburger */}
           <div className="flex items-center gap-1.5 lg:hidden shrink-0">
             <a
               href={COMMUNITY_LINKS.instagram}
@@ -151,6 +153,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Instagram className="w-3.5 h-3.5" />
               <span className="text-[11px] font-bold">{COMMUNITY_LINKS.instagramHandle}</span>
             </a>
+            <Search id="nav-btn-search-mobile" className="sm:hidden" />
             <button
               id="mobile-menu-toggle-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

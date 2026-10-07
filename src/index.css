@@ -146,6 +146,15 @@ html body :is(a, button, [role="button"], input, select, textarea, summary, [tab
   transition: none;
 }
 
+/* Pagefind wraps matched terms in the search excerpt with <mark>; the browser
+   default (black on yellow) breaks the dark theme, so restyle it to the brand
+   cyan without a background. */
+.search-excerpt mark {
+  background: transparent;
+  color: var(--color-brand-cyan);
+  font-weight: 600;
+}
+
 /* Motion is opt-out, not opt-in: the marquee keeps running for everyone
    who did not ask their OS to calm things down. */
 @media (prefers-reduced-motion: reduce) {
