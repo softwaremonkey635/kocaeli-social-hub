@@ -16,12 +16,13 @@ or any of its hidden paths.
 | File | Purpose |
 |---|---|
 | `MANIFEST.md` | Project identity, environment variables, commands, runtime services, repo layout. Read this first. |
-| `distrobox/kocaeli.ini` | Distrobox manifest that defines the dev container. |
-| `distrobox/setup.sh` | Creates the container and checks the pinned Node inside it. |
+| `distrobox/kocaeli.ini` | Distrobox assemble manifest that defines the dev container. |
+| `distrobox/setup.sh` | Runs `distrobox assemble create` and checks the pinned Node inside the container. |
 | `bootstrap.sh` | Detects Node, installs deps, builds, runs the unit test, prints PASS/FAIL. |
 | `verify.sh` | Typechecks, runs the full static build, then the Playwright E2E matrix. |
 | `HANDOVER-CHECKLIST.md` | What to check after the move, plus the list of sandbox-only details. |
 | `OWNER-INPUTS.md` | The short list of facts only the owner can supply. |
+| `NOTES-FROM-RESEARCH.md` | Sourced notes behind the container and Playwright choices, each line tagged VERIFIED or UNVERIFIED. |
 
 ## Run order on a fresh Distrobox system
 
@@ -30,12 +31,12 @@ or any of its hidden paths.
    `git clone https://github.com/softwaremonkey635/kocaeli-social-hub.git`
    then `cd kocaeli-social-hub`.
 3. Create the dev container: `sh migration/distrobox/setup.sh`.
-   The script uses `distrobox assemble` when your version has it and falls
-   back to `distrobox create`. Both use only flags verified against the
-   current Distrobox docs.
+   It runs `distrobox assemble create --file migration/distrobox/kocaeli.ini`,
+   which builds the Fedora 44 toolbox image and installs Node 24 from the
+   Fedora distro package. A `distrobox create` fallback covers older versions.
 4. Enter the container: `distrobox enter kocaeli`.
 5. From the repo root, inside the container, run
-   `bash migration/bootstrap.sh`. This installs dependencies, runs the
+   `sh migration/bootstrap.sh`. This installs dependencies, runs the
    typecheck, runs the full static build, and runs the unit test.
 6. Run the full gate: `sh migration/verify.sh`. It typechecks, rebuilds,
    serves `dist/` locally, and runs the Playwright E2E matrix. It exits
@@ -44,6 +45,6 @@ or any of its hidden paths.
 
 ## Node version
 
-Vite 8 needs Node 20.19 or newer, or 22.12 or newer. The container pins the
-Node 22 LTS image, which satisfies that range. `bootstrap.sh` refuses to run
-on an older Node.
+Vite 8 needs Node 20.19 or newer, or 22.12 or newer. The container installs
+the Fedora `nodejs24` distro package, which matches the repo `.nvmrc` (24) and
+satisfies that range. `bootstrap.sh` refuses to run on an older Node.

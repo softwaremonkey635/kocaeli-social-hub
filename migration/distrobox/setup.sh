@@ -1,11 +1,9 @@
 #!/bin/sh
 # setup.sh - create the Kocaeli Social Hub dev container with a pinned Node.
 #
-# Uses `distrobox assemble` with kocaeli.ini when the installed version has
-# it, and falls back to `distrobox create`. Flags were verified on 2026-10-07
-# against the Distrobox docs:
-#   https://distrobox.it/usage/distrobox-create/
-#   https://distrobox.it/usage/distrobox-assemble/
+# Primary path is `distrobox assemble create --file kocaeli.ini`, verified
+# 2026-10-07 against https://distrobox.it/usage/distrobox-assemble/
+# A `distrobox create` fallback is kept for versions without `assemble`.
 # Anything not verifiable is marked UNVERIFIED in a comment.
 #
 # POSIX sh. Run it from anywhere; it finds kocaeli.ini next to itself.
@@ -15,8 +13,8 @@ set -eu
 HERE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 INI="$HERE/kocaeli.ini"
 NAME=kocaeli
-IMAGE=node:22-bookworm
-PACKAGES="git ca-certificates"
+IMAGE=registry.fedoraproject.org/fedora-toolbox:44
+PACKAGES="git curl ca-certificates nodejs24 nodejs24-npm-bin fontconfig liberation-fonts noto-sans-fonts"
 
 command -v distrobox >/dev/null 2>&1 || {
   echo "FAIL: distrobox not found on PATH. Install it first (Bazzite ships it)."
