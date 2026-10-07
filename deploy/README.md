@@ -1,4 +1,4 @@
-# Deploy Runbook — Kocaeli Social Hub
+# Kocaeli Social Hub Deploy Runbook
 
 Bu belge, siteyi GitHub Pages'ten türk bir hosting firmasina (cPanel / Apache /
 LiteSpeed) tasima adimlarini aciklar. Node veya npm sunucuda yoktur; sadece
@@ -14,7 +14,7 @@ statik dosyalar yuklenir.
 ## Adim 1: Build dosyalarini hazirla
 
 ```
-npm run build
+npm run build:static
 ```
 
 `dist/` klasorundeki tum dosyalar yuklenecek.

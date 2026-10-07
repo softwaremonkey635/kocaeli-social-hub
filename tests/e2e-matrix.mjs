@@ -2,19 +2,20 @@
 // tests/e2e-matrix.mjs — comprehensive Playwright E2E matrix
 // Usage: node tests/e2e-matrix.mjs [BASE_URL]
 // Default BASE_URL: http://127.0.0.1:4173/
-// Requires: playwright (resolved via npx or PLAYWRIGHT_BROWSERS_PATH)
+// Requires: playwright (install with: npm i -D playwright; browsers via PLAYWRIGHT_BROWSERS_PATH)
 //
-// Output: PASS/FAIL table to stdout, JSON summary to /tmp/opencode/e2e-matrix.json
+// Output: PASS/FAIL table to stdout, JSON summary to <tmpdir>/e2e-matrix.json
 // Exit code: 0 all pass, 1 any failure.
 
 import { readFileSync, writeFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { tmpdir } from 'node:os';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const BASE_URL = process.argv[2] || 'http://127.0.0.1:4173/';
 const FIXTURES = JSON.parse(readFileSync(resolve(__dirname, 'fixtures/routes.json'), 'utf8'));
-const OUT_JSON = '/tmp/opencode/e2e-matrix.json';
+const OUT_JSON = join(tmpdir(), 'e2e-matrix.json');
 
 // ── Base handling ────────────────────────────────────────────────────────
 // BASE_URL may carry a subpath base (http://host/kocaeli-social-hub/).
@@ -44,27 +45,8 @@ try {
   const pw = await import('playwright');
   chromium = pw.chromium;
 } catch {
-  // Fallback: scan npx cache directories for playwright
-  const { readdirSync, existsSync } = await import('node:fs');
-  const npxBase = '/home/bazzite/.npm/_npx';
-  let found = false;
-  if (existsSync(npxBase)) {
-    for (const dir of readdirSync(npxBase)) {
-      const candidate = `${npxBase}/${dir}/node_modules/playwright`;
-      if (existsSync(candidate)) {
-        try {
-          const pw = await import(candidate);
-          chromium = pw.chromium;
-          found = true;
-          break;
-        } catch { /* try next */ }
-      }
-    }
-  }
-  if (!found) {
-    console.error('FAIL: playwright not found. Install with: npm i -D playwright && npx playwright install chromium');
-    process.exit(1);
-  }
+  console.error('FAIL: playwright not found. Install with: npm i -D playwright && npx playwright install chromium');
+  process.exit(1);
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────

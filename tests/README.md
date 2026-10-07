@@ -4,7 +4,7 @@ Comprehensive Playwright-based end-to-end checks for the Kocaeli Social Hub site
 
 ## Prerequisites
 
-- Node.js 18+
+- Node.js 20.19+ or 22.12+
 - Playwright with Chromium installed
 
 ### Installing Playwright
@@ -14,18 +14,16 @@ npm i -D playwright
 npx playwright install chromium
 ```
 
-If running inside the opencode flatpak sandbox, Playwright browsers resolve from the npx cache. The script will also fall back to:
-```
-/home/bazzite/.cache/ms-playwright/
-```
+Playwright resolves its browsers from `~/.cache/ms-playwright` by default. Set
+`PLAYWRIGHT_BROWSERS_PATH` if you keep them somewhere else.
 
 ## Running the Tests
 
 ### 1. Build and serve the site
 
 ```bash
-cd /tmp/opencode/kocaeli-social-hub
-npm run build          # produces dist/
+cd /path/to/kocaeli-social-hub
+npm run build:static   # produces dist/
 npx serve dist -l 4173 # or any static server on a port
 ```
 
@@ -42,7 +40,7 @@ node tests/e2e-matrix.mjs https://your-domain.com/kocaeli-social-hub/
 ### 3. Read the output
 
 - **stdout**: a PASS/FAIL line per check, followed by a summary table.
-- **JSON**: `/tmp/opencode/e2e-matrix.json` contains every result with timestamps.
+- **JSON**: `e2e-matrix.json` in the OS temp dir contains every result with timestamps.
 - **Exit code**: 0 = all pass, 1 = any failure.
 
 ## Route Fixture

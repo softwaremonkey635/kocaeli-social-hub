@@ -9,7 +9,7 @@ Bir degisikligin canli siteye nasil yansitilacagi.
 Degistirdiginiz dosyalari kaydedin. Emin olmak icin derleme yapin:
 
 ```sh
-npm run build
+npm run build:static
 ```
 
 `dist/` klasoru guncellenmeli. Hata alirsaniz once hatalari duzeltin.

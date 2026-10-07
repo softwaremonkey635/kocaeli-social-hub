@@ -4,20 +4,20 @@ Projenin kendi bilgisayarinizda nasil calistirilacagi.
 
 ## On Kosullar
 
-Bilgisayarinizda Node.js (surum 18 veya ustu) ve npm kurulu olmali. Kontrol etmek icin terminalde su komutu calistirin:
+Bilgisayarinizda Node.js (surum 20.19 veya ustu, veya 22.12 veya ustu) ve npm kurulu olmali. Kontrol etmek icin terminalde su komutu calistirin:
 
 ```sh
 node --version
 ```
 
-`v18.x.x` veya ustu gorunmeli. Node.js yoksa https://nodejs.org adresinden LTS surumunu indirip kurun.
+`v20.19.x` veya `v22.12.x` veya ustu gorunmeli. Node.js yoksa https://nodejs.org adresinden LTS surumunu indirip kurun.
 
 ## Adim 1: Dosyalari Indirme
 
 Proje klasorunu terminalde acin:
 
 ```sh
-cd /tmp/opencode/kocaeli-social-hub
+cd /path/to/kocaeli-social-hub
 ```
 
 Eger proje henuz indirilmemisse, git ile klonlayin veya dosyalari indirin.
@@ -27,7 +27,7 @@ Eger proje henuz indirilmemisse, git ile klonlayin veya dosyalari indirin.
 Terminalde su komutu calistirin:
 
 ```sh
-npm install
+npm ci
 ```
 
 Bu islem ortalama 1-2 dakika surer. `node_modules` adinda bir klasor olusmali. Bu klasoru silmeyin, projenin calismasi icin gerekli.
@@ -35,7 +35,7 @@ Bu islem ortalama 1-2 dakika surer. `node_modules` adinda bir klasor olusmali. B
 Basarili olursa son satirda `added X packages` gibi bir cikti gorunur.
 
 Hata alirsaniz:
-- "permission denied" hatasi: `sudo npm install` deneyin
+- "permission denied" hatasi: `sudo npm ci` deneyin
 - "network error" hatasi: internet baglantinizi kontrol edin
 
 ## Adim 3: Gelistirme Sunucusunu Baslatma
@@ -66,7 +66,7 @@ Gelistirme sunucusu calisirken `src/` altindaki herhangi bir dosyayi duzenledigi
 Siteyi yayinlamak icin once derleme yapin:
 
 ```sh
-npm run build
+npm run build:static
 ```
 
 Basarili olursa `dist/` adinda bir klasor olusur ve terminalde su ciktiyi gorunursunuz:

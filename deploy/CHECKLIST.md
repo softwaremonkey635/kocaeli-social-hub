@@ -31,7 +31,7 @@ maddenin isaretli oldugundan emin olun.
 ## 404 ve SPA fallback
 - [ ] `https://domain.com/events` 200 donuyor (SPA fallback calisiyor)
 - [ ] `https://domain.com/guide` 200 donuyor
-- [ ] Var olmayan dosya 404 donuyor (ornegin `https://domain.com/olmayan-dosya`)
+- [ ] Var olmayan bir yol 404 donmuyor; SPA fallback devreye girip uygulamayi yukler (ornegin `https://domain.com/olmayan-dosya` 200 donuyor ve ana sayfa gorunur)
 
 ## PWA / Mobil
 - [ ] Telefonda "Ana ekrana ekle" secenegi gorunuyor

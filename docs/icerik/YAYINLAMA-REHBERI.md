@@ -54,7 +54,7 @@ Markdown dosyasındaki frontmatter ve içerik `src/data/blogData.ts` dosyasına 
 
 Yayınlamadan önce:
 
-1. `npm run build` ile derleme hatası olmadığından emin olun
+1. `npm run build:static` ile derleme hatası olmadığından emin olun
 2. Local sunucuda(`npm run dev`) yazıyı kontrol edin
 3. Görselin doğru yüklendiğini doğrulayın
 
