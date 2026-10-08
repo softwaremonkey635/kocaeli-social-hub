@@ -34,13 +34,18 @@ function loadPagefind(): Promise<PagefindRuntime> {
   return pagefindPromise;
 }
 
-/** Pagefind reports URLs relative to the site root ("/clubs/"). Prefix the
- *  deployment base so links resolve both at the domain root and under the
- *  GitHub Pages subpath. */
+/** Pagefind's runtime auto-detects the deployment base from the script URL
+ *  and may already return result.url carrying it ("/kocaeli-social-hub/clubs/").
+ *  Prefix the base exactly once: absolute http(s) URLs pass through untouched,
+ *  URLs already starting with the base are returned as-is, everything else gets
+ *  the base prepended. */
 function absoluteUrl(url: string): string {
   const base = import.meta.env.BASE_URL;
+  if (/^https?:\/\//i.test(url)) return url;
   if (url === '/') return base;
-  return `${base}${url.replace(/^\//, '')}`;
+  const path = url.replace(/^\//, '');
+  if (base !== '/' && url.startsWith(base)) return url;
+  return `${base}${path}`;
 }
 
 const MAX_RESULTS = 8;
@@ -150,6 +155,35 @@ export const Search: React.FC<SearchProps> = ({ className = '', id = 'nav-btn-se
     }
   };
 
+  // Focus trap: while the dialog is open, Tab and Shift+Tab cycle through the
+  // dialog's own controls instead of escaping to the page behind it.
+  const trapFocus = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Tab') return;
+    const root = event.currentTarget;
+    const focusable = Array.from(
+      root.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => el.getClientRects().length > 0);
+    if (focusable.length === 0) {
+      event.preventDefault();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+    const inside = active !== null && root.contains(active);
+    if (event.shiftKey) {
+      if (!inside || active === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (!inside || active === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
+
   // Keep the selected result inside the scrollable list.
   useEffect(() => {
     if (activeIndex < 0 || !listRef.current) return;
@@ -182,7 +216,10 @@ export const Search: React.FC<SearchProps> = ({ className = '', id = 'nav-btn-se
             aria-label="Site Araması"
             className="w-full max-w-xl mt-[8vh] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden text-slate-100"
             onClick={(event) => event.stopPropagation()}
-            onKeyDown={handleKeyDown}
+            onKeyDown={(event) => {
+              handleKeyDown(event);
+              trapFocus(event);
+            }}
           >
             <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800">
               <SearchIcon className="w-4 h-4 text-slate-400 shrink-0" />
@@ -231,7 +268,7 @@ export const Search: React.FC<SearchProps> = ({ className = '', id = 'nav-btn-se
                       <a
                         href={absoluteUrl(result.url)}
                         onClick={close}
-                        aria-current={index === activeIndex}
+                        aria-current={index === activeIndex ? true : undefined}
                         className={`block px-4 py-3 transition-colors ${
                           index === activeIndex ? 'bg-slate-800/70' : 'hover:bg-slate-800/40'
                         }`}
